@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,7 +13,10 @@ public class RandomBlockAssigner : MonoBehaviour
     private string Right = "Right";
     public List<Color> RandomColour;     // A nice sky blue
     private GameObject ChosenBlock1,ChosenBlock2;
-
+    public TextMeshProUGUI ColourText;
+    [SerializeField]
+    private string[] Colours;
+    private Color ChosenColour;
 
     private void Start()
     {
@@ -35,7 +39,8 @@ public class RandomBlockAssigner : MonoBehaviour
 
         }
 
-        Color ChosenColor = RandomColour[Random.Range(0, RandomColour.Count)];
+        ChosenColour = RandomColour[Random.Range(0, RandomColour.Count)];
+        ColourText.color = ChosenColour;
 
         for (int i = 0; i < 1; i++)
         {
@@ -54,22 +59,26 @@ public class RandomBlockAssigner : MonoBehaviour
             SpriteRenderer spriteRenderer = ChosenBlock1.GetComponent<SpriteRenderer>();
             SpriteRenderer spriteRenderer2 = ChosenBlock2.GetComponent<SpriteRenderer>();
 
-            spriteRenderer.color = ChosenColor;
-            spriteRenderer2.color = ChosenColor;
+            spriteRenderer.color = ChosenColour;
+            spriteRenderer2.color = ChosenColour;
 
         }
 
         for (int p = 0; p < Blocks.Length; p++)
         {
-            SpriteRenderer spriteRenderer = Blocks[p].GetComponent<SpriteRenderer>();
             if (Blocks[p].tag != Right)
             {
-                spriteRenderer.color = RandomColour[Random.Range(0, RandomColour.Count)];
-                if (spriteRenderer.color == ChosenColor)
+                SpriteRenderer spriteRenderer = Blocks[p].GetComponent<SpriteRenderer>();
+                Color randomColor;
+
+                // Keep generating random colors until we get one that's not the ChosenColour
+                do
                 {
-                    p= 0; 
+                    randomColor = RandomColour[Random.Range(0, RandomColour.Count)];
                 }
-             
+                while (randomColor == ChosenColour);
+
+                spriteRenderer.color = randomColor;
             }
         }
     }
@@ -79,6 +88,36 @@ public class RandomBlockAssigner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             AssignBlockCode();
+        }
+
+        if (ChosenColour == RandomColour[0])
+        {
+            ColourText.text = Colours[0];
+        }
+        else if (ChosenColour == RandomColour[1])
+        {
+            ColourText.text = Colours[1];
+
+        }
+        else if (ChosenColour == RandomColour[2])
+        {
+            ColourText.text = Colours[2];
+
+        }
+        else if (ChosenColour == RandomColour[3])
+        {
+            ColourText.text = Colours[3];
+
+        }
+        else if (ChosenColour == RandomColour[4])
+        {
+            ColourText.text = Colours[4];
+
+        }
+        else if (ChosenColour == RandomColour[5])
+        {
+            ColourText.text = Colours[5];
+
         }
     }
 }
