@@ -50,16 +50,18 @@ public class PlayerController2D : MonoBehaviour
     {
         if (collision.CompareTag("Right"))
         {
-            
             playerBlockCheckerScript.Correctblock[playerInput.playerIndex] = true;
+            collision.gameObject.tag = "OnBlock";
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Right"))
+        if (collision.CompareTag("OnBlock"))
         {
             playerBlockCheckerScript.Correctblock[playerInput.playerIndex] = false;
+            collision.gameObject.tag = "Right";
+
         }
     }
 }

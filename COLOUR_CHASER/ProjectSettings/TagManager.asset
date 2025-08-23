@@ -8,6 +8,7 @@ TagManager:
   - Right
   - Block
   - BlockChecker
+  - OnBlock
   layers:
   - Default
   - TransparentFX
