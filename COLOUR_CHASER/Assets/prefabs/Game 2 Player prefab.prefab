@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 2522521450817672359}
   - component: {fileID: 1532506596850664173}
   - component: {fileID: 8415456169676646814}
-  - component: {fileID: 526631959113765133}
   - component: {fileID: 845650054344624151}
   - component: {fileID: 7367635034963992810}
-  - component: {fileID: 7901655073807495468}
+  - component: {fileID: -7112316424001330630}
   m_Layer: 0
   m_Name: Game 2 Player prefab
   m_TagString: Untagged
@@ -116,8 +115,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 526631959113765133}
-        m_TargetAssemblyTypeName: PlayerController2D, Assembly-CSharp
+      - m_Target: {fileID: -7112316424001330630}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -132,8 +131,8 @@ MonoBehaviour:
     m_ActionName: Player/Movement[/DualShock4GamepadHID/leftStick]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 526631959113765133}
-        m_TargetAssemblyTypeName: PlayerController2D, Assembly-CSharp
+      - m_Target: {fileID: -7112316424001330630}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
         m_Arguments:
@@ -151,19 +150,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &526631959113765133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990880792847609032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d1dfe3686ce60e4f95e7a64816d8bbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
 --- !u!50 &845650054344624151
 Rigidbody2D:
   serializedVersion: 4
@@ -179,7 +165,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 40
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -236,7 +222,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 0.15}
   m_EdgeRadius: 0
---- !u!114 &7901655073807495468
+--- !u!114 &-7112316424001330630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,6 +231,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1990880792847609032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 560f92f257df84c47ba18332aa67d968, type: 3}
+  m_Script: {fileID: 11500000, guid: ceb80d649f285bc46bd25b7376c4827c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
+  jumpForce: 10
+  raycastDistance: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8

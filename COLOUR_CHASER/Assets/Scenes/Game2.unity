@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 861147847}
   - component: {fileID: 861147846}
   - component: {fileID: 861147848}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,6 +650,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1561926634853732603, guid: 2505407d354905643bbe78cf6d4105e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1817123379127769988, guid: 2505407d354905643bbe78cf6d4105e1, type: 3}
+      propertyPath: m_JoinBehavior
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1817123379127769988, guid: 2505407d354905643bbe78cf6d4105e1, type: 3}

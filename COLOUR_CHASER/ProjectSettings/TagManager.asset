@@ -7,11 +7,12 @@ TagManager:
   - Wrong
   - Right
   - Block
+  - BlockChecker
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 

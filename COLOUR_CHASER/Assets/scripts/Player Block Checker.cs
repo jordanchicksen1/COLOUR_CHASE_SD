@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerBlockChecker : MonoBehaviour
 {
-    private SpriteRenderer sprite;
-    private void OnTriggerEnter2D(Collider2D collision)
+    public List<bool> Correctblock;
+
+    private void Update()
     {
-        if (collision.CompareTag("Right"))
+        if (Correctblock.All(x => x))
         {
-            sprite = GetComponent<SpriteRenderer>();
-            sprite.color = Color.green;
+
         }
     }
 }
