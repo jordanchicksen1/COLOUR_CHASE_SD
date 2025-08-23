@@ -16,8 +16,17 @@ public class PlayerController2D : MonoBehaviour
     // Called by PlayerInput when "Move" action is triggered
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log("#############");
         moveInput = context.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            //  rb.AddForce(Vector2.up * 50f, ForceMode2D.Impulse);
+            rb.velocity = new Vector2(rb.velocity.x, 5);
+            Debug.Log("Jump");
+        }
     }
 
     void FixedUpdate()
