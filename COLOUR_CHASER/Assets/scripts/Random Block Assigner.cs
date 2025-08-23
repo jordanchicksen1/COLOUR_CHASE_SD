@@ -17,7 +17,10 @@ public class RandomBlockAssigner : MonoBehaviour
     [SerializeField]
     private string[] Colours;
     private Color ChosenColour;
-
+    [SerializeField]
+    private TextMeshProUGUI TimerText;
+    public GameObject TimerPanel;
+    public GameObject ChosenColourPanel;
     private void Start()
     {
         Blocks = GameObject.FindGameObjectsWithTag("Block");
@@ -32,15 +35,14 @@ public class RandomBlockAssigner : MonoBehaviour
 
     public void AssignBlockCode()
     {
+        TimerPanel.SetActive(false);
+
         for (int i = 0; i < Blocks.Length; i++)
         {
             Blocks[i].tag = "Block";
             Blocks[i].name = "Block";
 
         }
-
-        ChosenColour = RandomColour[Random.Range(0, RandomColour.Count)];
-        ColourText.color = ChosenColour;
 
         for (int i = 0; i < 1; i++)
         {
@@ -52,9 +54,6 @@ public class RandomBlockAssigner : MonoBehaviour
             }
             ChosenBlock1.tag = Right;
             ChosenBlock2.tag = Right;
-
-            ChosenBlock1.name = "Chosen";
-            ChosenBlock2.name = "Chosen";
 
             SpriteRenderer spriteRenderer = ChosenBlock1.GetComponent<SpriteRenderer>();
             SpriteRenderer spriteRenderer2 = ChosenBlock2.GetComponent<SpriteRenderer>();
@@ -83,11 +82,35 @@ public class RandomBlockAssigner : MonoBehaviour
         }
     }
 
+    IEnumerator AssignBlocks()
+    {
+        TimerPanel.SetActive(true);
+        ChosenColourPanel.SetActive(true);
+
+        ChosenColour = RandomColour[Random.Range(0, RandomColour.Count)];
+        ColourText.color = ChosenColour;
+
+        yield return new WaitForSeconds(2);
+        ChosenColourPanel.SetActive(false);
+        TimerText.color = ChosenColour;
+        TimerText.text = "3";
+        yield return new WaitForSeconds(1);
+        TimerText.text = "2";
+        yield return new WaitForSeconds(1);
+        TimerText.text = "1";
+        yield return new WaitForSeconds(1);
+        TimerText.text = "";
+
+        AssignBlockCode();
+
+
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            AssignBlockCode();
+            StartCoroutine(AssignBlocks());
         }
 
         if (ChosenColour == RandomColour[0])
