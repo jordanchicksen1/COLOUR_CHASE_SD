@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RandomBlockAssigner : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class RandomBlockAssigner : MonoBehaviour
     private TextMeshProUGUI TimerText;
     public GameObject TimerPanel;
     public GameObject ChosenColourPanel;
+    public PlayerBlockChecker PlayerBlockCheckerScript;
+    public PlayerInputManager playerInputManager;
+    private bool GameStarted;
     private void Start()
     {
         Blocks = GameObject.FindGameObjectsWithTag("Block");
@@ -82,8 +86,9 @@ public class RandomBlockAssigner : MonoBehaviour
         }
     }
 
-    IEnumerator AssignBlocks()
+    public IEnumerator AssignBlocks()
     {
+
         TimerPanel.SetActive(true);
         ChosenColourPanel.SetActive(true);
 
@@ -102,12 +107,23 @@ public class RandomBlockAssigner : MonoBehaviour
         TimerText.text = "";
 
         AssignBlockCode();
-
+        PlayerBlockCheckerScript.StartTimer();
 
     }
 
     private void Update()
     {
+
+        if (playerInputManager.playerCount ==2)
+        {
+            if (!GameStarted)
+            {
+                GameStarted = true;
+                StartCoroutine(AssignBlocks());
+            }
+
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine(AssignBlocks());

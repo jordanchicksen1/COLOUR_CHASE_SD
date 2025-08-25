@@ -46,7 +46,7 @@ public class PlayerController2D : MonoBehaviour
         rb.MovePosition(rb.position + moveInput * speed * Time.fixedDeltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Right"))
         {
