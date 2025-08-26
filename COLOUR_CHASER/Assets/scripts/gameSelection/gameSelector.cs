@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class gameSelector : MonoBehaviour
 {
@@ -159,6 +160,27 @@ public class gameSelector : MonoBehaviour
         game5Page.SetActive(false);
     }
 
+    public void PlayGame1()
+    {
+        SceneManager.LoadScene("Game1");
+    }
+    public void PlayGame2()
+    {
+        SceneManager.LoadScene("Game2");
+    }
 
+    public void PlayGame3()
+    {
+        SceneManager.LoadScene("Game3");
+    }
 
+    public void PlayGame4()
+    {
+        SceneManager.LoadScene("Game4");
+    }
+
+    public void PlayGame5()
+    {
+        SceneManager.LoadScene("Game5");
+    }
 }
