@@ -5,64 +5,45 @@ using UnityEngine.InputSystem;
 
 public class CarController : MonoBehaviour
 {
-    private Vector2 moveInput;
-    private Rigidbody2D rb;
-    public float speed = 5f;
-    private PlayerBlockChecker playerBlockCheckerScript;
-    private GameObject BlockChecker;
+     private Rigidbody2D rb;
     private PlayerInput playerInput;
+
+    [Header("Car Settings")]
+    public float acceleration = 8f;  
+    public float steering = 200f;     
+    public float drag = 3f;          
+
+    private float moveInput;         
+    private float turnInput;          
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
     }
 
-    private void Start()
-    {
-        BlockChecker = GameObject.FindGameObjectWithTag("BlockChecker");
-        playerBlockCheckerScript = BlockChecker.GetComponent<PlayerBlockChecker>();
-    }
-
-    // Called by PlayerInput when "Move" action is triggered
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<Vector2>();
+        Vector2 input = context.ReadValue<Vector2>();
+        moveInput = input.y;  
+        turnInput = input.x;   
     }
-
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            //  rb.AddForce(Vector2.up * 50f, ForceMode2D.Impulse);
-            rb.velocity = new Vector2(rb.velocity.x, 5);
-            Debug.Log("Jump");
-
-        }
-    }
-
-
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + moveInput * speed * Time.fixedDeltaTime);
+        Vector2 forward = transform.up * (moveInput * acceleration);
+        rb.AddForce(forward);
+
+        float speedFactor = rb.velocity.magnitude / 5f; 
+        float rotationAmount = -turnInput * steering * speedFactor * Time.fixedDeltaTime;
+        rb.MoveRotation(rb.rotation + rotationAmount);
+
+        rb.velocity = rb.velocity * (1 - drag * Time.fixedDeltaTime);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    
+    public void OnJump(InputAction.CallbackContext context)
     {
-        if (collision.CompareTag("Right"))
-        {
-            playerBlockCheckerScript.Correctblock[playerInput.playerIndex] = true;
-            collision.gameObject.tag = "OnBlock";
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("OnBlock"))
-        {
-            playerBlockCheckerScript.Correctblock[playerInput.playerIndex] = false;
-            collision.gameObject.tag = "Right";
-
-        }
+        
     }
 }
