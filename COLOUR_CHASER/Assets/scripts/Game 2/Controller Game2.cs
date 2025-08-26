@@ -30,11 +30,14 @@ public class PlayerController : MonoBehaviour
         {
             SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
             spriteRend.color = Color.blue;
+            gameObject.tag = "Player1";
         }
         else if (playerInput.playerIndex == 1)
         {
             SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
             spriteRend.color = Color.red;
+            gameObject.tag = "Player2";
+
         }
     }
     public void OnMove(InputAction.CallbackContext context)
