@@ -9,6 +9,7 @@ TagManager:
   - Block
   - BlockChecker
   - OnBlock
+  - Baloon
   layers:
   - Default
   - TransparentFX

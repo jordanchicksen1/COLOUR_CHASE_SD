@@ -14,14 +14,29 @@ public class PlayerController : MonoBehaviour
     [Header("Ground Detection")]
     [SerializeField] private float raycastDistance = 1f;
     [SerializeField] private LayerMask groundLayer;
+    private PlayerInput playerInput;
 
     private bool isGrounded;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerInput = GetComponent<PlayerInput>();
     }
 
+    private void Start()
+    {
+        if (playerInput.playerIndex == 0)
+        {
+            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+            spriteRend.color = Color.blue;
+        }
+        else if (playerInput.playerIndex == 1)
+        {
+            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+            spriteRend.color = Color.red;
+        }
+    }
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
@@ -67,5 +82,22 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         Debug.Log("Jump!");
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Baloon"))
+        {
+            if (playerInput.playerIndex == 0)
+            {
+                SpriteRenderer baloonSprite = collision.gameObject.GetComponent<SpriteRenderer>();
+                baloonSprite.color = Color.blue;
+            }
+            else if (playerInput.playerIndex == 1)
+            {
+                SpriteRenderer baloonSprite = collision.gameObject.GetComponent<SpriteRenderer>();
+                baloonSprite.color = Color.red;
+            }
+        }
     }
 }
