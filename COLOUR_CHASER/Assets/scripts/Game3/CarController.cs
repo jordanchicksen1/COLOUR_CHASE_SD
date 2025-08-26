@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class CarController : MonoBehaviour
 {
-     private Rigidbody2D rb;
+    private Rigidbody2D rb;
     private PlayerInput playerInput;
 
     [Header("Car Settings")]
