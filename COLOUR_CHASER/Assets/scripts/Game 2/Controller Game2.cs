@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,6 +18,8 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput;
 
     private bool isGrounded;
+    private BoxCollider2D Boxc;
+    private bool isDashing;
 
     void Awake()
     {
@@ -39,6 +42,8 @@ public class PlayerController : MonoBehaviour
             gameObject.tag = "Player2";
 
         }
+
+        Boxc = GetComponent<BoxCollider2D>();
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -94,13 +99,65 @@ public class PlayerController : MonoBehaviour
             if (playerInput.playerIndex == 0)
             {
                 SpriteRenderer baloonSprite = collision.gameObject.GetComponent<SpriteRenderer>();
-                baloonSprite.color = Color.blue;
+                baloonSprite.color = Color.red;
             }
             else if (playerInput.playerIndex == 1)
             {
                 SpriteRenderer baloonSprite = collision.gameObject.GetComponent<SpriteRenderer>();
+                baloonSprite.color = Color.blue;
+            }
+        }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Wall"))
+        {
+            Boxc.isTrigger = false;
+        }
+        else if (collision.CompareTag("Floor"))
+        {
+            Boxc.isTrigger = false;
+        }
+        else if (collision.CompareTag("Baloon"))
+        {
+            Boxc.isTrigger = false;
+            if (playerInput.playerIndex == 0)
+            {
+                SpriteRenderer baloonSprite = collision.gameObject.GetComponent<SpriteRenderer>();
                 baloonSprite.color = Color.red;
             }
+            else if (playerInput.playerIndex == 1)
+            {
+                SpriteRenderer baloonSprite = collision.gameObject.GetComponent<SpriteRenderer>();
+                baloonSprite.color = Color.blue;
+            }
+        }
+    }
+
+
+    IEnumerator Dash()
+    {
+        isDashing = true;
+        Boxc.isTrigger = true;
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
+        speed += 5;
+        yield return new WaitForSeconds(0.5f);
+        Boxc.isTrigger = false;
+        rb.gravityScale = 2;
+        speed -= 5;
+        isDashing = false;
+
+
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (!isDashing)
+        {
+            StartCoroutine(Dash());
         }
     }
 }
