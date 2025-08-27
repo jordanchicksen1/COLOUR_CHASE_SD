@@ -12,6 +12,9 @@ TagManager:
   - Baloon
   - Player1
   - Player2
+  - Ball
+  - GoalP1
+  - GoalP2
   layers:
   - Default
   - TransparentFX
