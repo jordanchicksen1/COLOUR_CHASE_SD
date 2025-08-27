@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private BoxCollider2D Boxc;
     private bool isDashing;
+    private Vector2 OGposition;
 
     void Awake()
     {
@@ -44,6 +45,8 @@ public class PlayerController : MonoBehaviour
         }
 
         Boxc = GetComponent<BoxCollider2D>();
+
+        OGposition = transform.position;
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -107,6 +110,10 @@ public class PlayerController : MonoBehaviour
                 baloonSprite.color = Color.blue;
             }
         }
+        else if (collision.collider.CompareTag("Kill box"))
+        {
+            transform.position = OGposition;
+        }
 
     }
 
@@ -133,6 +140,10 @@ public class PlayerController : MonoBehaviour
                 SpriteRenderer baloonSprite = collision.gameObject.GetComponent<SpriteRenderer>();
                 baloonSprite.color = Color.blue;
             }
+        }
+        else if (collision.CompareTag("Kill box"))
+        {
+            transform.position = OGposition;
         }
     }
 

@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class Ballscript : MonoBehaviour
 {
+    [SerializeField]
     private bool LasttouchPlayer1, LasttouchPlayer2;
     [SerializeField]
     private int Player1Score, Player2Score;
@@ -16,7 +17,7 @@ public class Ballscript : MonoBehaviour
     private bool GamePlaying;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRnd;
-
+    public Animator animator;
     private void Start()
     {
         OriginalPosition = transform.position;
@@ -31,27 +32,34 @@ public class Ballscript : MonoBehaviour
         if (collision.collider.CompareTag("Player1"))
         {
 
-            LasttouchPlayer1 = false;
-            LasttouchPlayer2 = true;
-        }
-        else if (collision.collider.CompareTag("Player2"))
-        {
             LasttouchPlayer1 = true;
             LasttouchPlayer2 = false;
         }
+        else if (collision.collider.CompareTag("Player2"))
+        {
+            LasttouchPlayer1 = false;
+            LasttouchPlayer2 = true;
+        }
         else if (collision.collider.CompareTag("Floor"))
         {
-            if (LasttouchPlayer1)
-            {
-                Player1Score--;
-                StartCoroutine(StartGame());
-            }
-            else if (LasttouchPlayer2)
+            if (spriteRnd.color == Color.red)
             {
                 Player2Score--;
+                Debug.Log("Last player was player 1");
                 StartCoroutine(StartGame());
+                StartCoroutine(ShakeCamera());
 
             }
+            else if (spriteRnd.color == Color.blue)
+            {
+                Player1Score--;
+                Debug.Log("Last player was player 2");
+
+                StartCoroutine(StartGame());
+                StartCoroutine(ShakeCamera());
+
+            }
+            
         }
     }
 
@@ -65,6 +73,19 @@ public class Ballscript : MonoBehaviour
             StartCoroutine(StartGame());
 
         }
+
+        if (LasttouchPlayer1 && LasttouchPlayer2)
+        {
+            spriteRnd.color = Color.white;
+        }
+    }
+    
+    IEnumerator ShakeCamera()
+    {
+        animator.SetBool("Shake", true);
+        yield return new WaitForSeconds(1.5f);
+        animator.SetBool("Shake", false);
+
     }
 
     IEnumerator StartGame()
