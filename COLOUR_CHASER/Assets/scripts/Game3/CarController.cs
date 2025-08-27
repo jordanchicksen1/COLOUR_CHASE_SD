@@ -44,15 +44,14 @@ public class CarController : MonoBehaviour
 
         trail = GetComponent<TrailRenderer>();
         spriteRnd = GetComponent<SpriteRenderer>();
+        FindObjectOfType<CarGameManager>().RegisterPlayer();
     }
 
-    // Drive button (e.g. trigger or key)
     public void OnDrive(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<float>();
     }
 
-    // Rotate stick (X-axis)
     public void OnRotate(InputAction.CallbackContext context)
     {
         turnInput = context.ReadValue<float>();

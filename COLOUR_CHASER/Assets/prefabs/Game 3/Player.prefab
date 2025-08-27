@@ -267,9 +267,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4136562f2ad2c0348bbc66a4313022cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 50
-  steering: 200
+  acceleration: 80
+  steering: 150
   drag: 3
+  turnInput: 0
 --- !u!96 &-2864913280944355289
 TrailRenderer:
   serializedVersion: 3
