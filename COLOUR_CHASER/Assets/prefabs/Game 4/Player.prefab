@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8415456169676646814}
   - component: {fileID: 7367635034963992810}
   - component: {fileID: 4758068340494581991}
+  - component: {fileID: 2203122684390747023}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -114,8 +115,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerController2D, Assembly-CSharp
+      - m_Target: {fileID: 4758068340494581991}
+        m_TargetAssemblyTypeName: FruitSortController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -145,9 +146,37 @@ MonoBehaviour:
     m_ActionId: 70c6dbdd-41c8-4b5c-ae88-7e65b6fdd4da
     m_ActionName: Player/Rotate
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4758068340494581991}
+        m_TargetAssemblyTypeName: FruitSortController, Assembly-CSharp
+        m_MethodName: OnGrab
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a0852d4b-1a5d-4421-a6c3-637f76736b1f
     m_ActionName: Player/Grab[/DualSenseGamepadHID/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4758068340494581991}
+        m_TargetAssemblyTypeName: FruitSortController, Assembly-CSharp
+        m_MethodName: OnRotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 796869d3-d0d2-47ef-96dd-c401d064f7fd
+    m_ActionName: Player/LookAround[/DualSenseGamepadHID/rightStick/left,/DualSenseGamepadHID/rightStick/right]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -211,3 +240,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  raycastDistance: 1
+  rotateSpeed: 50
+--- !u!50 &2203122684390747023
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990880792847609032}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

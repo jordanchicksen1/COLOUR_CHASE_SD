@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,12 @@ public class FruitSortController : MonoBehaviour
     private Rigidbody2D rb;
     public float speed = 5f;
     private PlayerInput playerInput;
+    [SerializeField]
+    private int raycastDistance;
+    private float turnInput;
+    [SerializeField]
+    private int rotateSpeed = 20;
+    public LayerMask FruitLayer;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,22 +32,26 @@ public class FruitSortController : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
     }
 
-    public void OnJump(InputAction.CallbackContext context)
+    public void OnGrab(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            //  rb.AddForce(Vector2.up * 50f, ForceMode2D.Impulse);
-            rb.velocity = new Vector2(rb.velocity.x, 5);
-            Debug.Log("Jump");
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.one, raycastDistance, FruitLayer);
 
-        }
     }
 
+    public void OnRotate(InputAction.CallbackContext context)
+    {
+        turnInput = context.ReadValue<float>();
+    }
 
 
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveInput * speed * Time.fixedDeltaTime);
+
+        float speedFactor = rb.velocity.magnitude / 5f;
+        float rotationAmount = -turnInput * rotateSpeed *Time.fixedDeltaTime;
+        rb.MoveRotation(rb.rotation + rotationAmount);
+
     }
 
 }
