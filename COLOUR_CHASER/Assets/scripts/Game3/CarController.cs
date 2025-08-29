@@ -17,7 +17,8 @@ public class CarController : MonoBehaviour
     private float moveInput;
     [SerializeField]
     private float turnInput;
-    private TrailRenderer trail;
+    [SerializeField]
+    private TrailRenderer[] trail;
     private SpriteRenderer spriteRnd;
 
 
@@ -42,7 +43,6 @@ public class CarController : MonoBehaviour
             gameObject.tag = "Player2";
         }
 
-        trail = GetComponent<TrailRenderer>();
         spriteRnd = GetComponent<SpriteRenderer>();
         FindObjectOfType<CarGameManager>().RegisterPlayer();
     }
@@ -72,7 +72,10 @@ public class CarController : MonoBehaviour
 
     private void Update()
     {
-        trail.startColor = spriteRnd.color;
-        trail.endColor = spriteRnd.color;
+        foreach(var t in trail)
+        {
+            t.startColor = spriteRnd.color;
+            t.endColor = spriteRnd.color;
+        }
     }
 }
