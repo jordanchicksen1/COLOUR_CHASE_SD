@@ -17,6 +17,8 @@ TagManager:
   - Kill box
   - Undefined
   - Ball
+  - Up
+  - Down
   layers:
   - Default
   - TransparentFX
@@ -24,7 +26,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - Fruit
   - 
   - 
   - 
