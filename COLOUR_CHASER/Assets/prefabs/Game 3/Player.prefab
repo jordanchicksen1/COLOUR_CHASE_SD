@@ -187,6 +187,26 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a0852d4b-1a5d-4421-a6c3-637f76736b1f
     m_ActionName: Player/Grab[/DualShock4GamepadHID/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 796869d3-d0d2-47ef-96dd-c401d064f7fd
+    m_ActionName: Player/LookAround[/DualShock4GamepadHID/rightStick/left,/DualShock4GamepadHID/rightStick/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7849943789783124951}
+        m_TargetAssemblyTypeName: CarController, Assembly-CSharp
+        m_MethodName: OnReverse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4020df32-cd80-44b2-9e5d-043a03b3b89c
+    m_ActionName: Player/Reverse[/DualShock4GamepadHID/leftTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -277,6 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 80
+  reverse: 80
   steering: 150
   drag: 3
   Position1: {fileID: 0}

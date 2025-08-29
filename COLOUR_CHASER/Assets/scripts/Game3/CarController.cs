@@ -10,20 +10,20 @@ public class CarController : MonoBehaviour
     private PlayerInput playerInput;
 
     [Header("Car Settings")]
-    public float acceleration = 8f;
-    public float reverse = 8f;
+    public float acceleration = 8f;   
+    public float reverse = -6f; 
     public float steering = 200f;
     public float drag = 3f;
+
     public GameObject Position1;
     public GameObject Position2;
 
-    private float moveInput;
-    [SerializeField]
-    private float turnInput;
-    [SerializeField]
-    private TrailRenderer[] trail;
-    private SpriteRenderer spriteRnd;
+    private float forwardInput;
+    private float reverseInput;
+    [SerializeField] private float turnInput;
 
+    [SerializeField] private TrailRenderer[] trail;
+    private SpriteRenderer spriteRnd;
 
     void Awake()
     {
@@ -38,7 +38,6 @@ public class CarController : MonoBehaviour
             SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
             spriteRend.color = Color.blue;
             gameObject.tag = "Player1";
-           
         }
         else if (playerInput.playerIndex == 1)
         {
@@ -51,14 +50,16 @@ public class CarController : MonoBehaviour
         FindObjectOfType<CarGameManager>().RegisterPlayer();
     }
 
+
     public void OnDrive(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<float>();
+        forwardInput = context.ReadValue<float>(); // 0 to 1
     }
 
+  
     public void OnReverse(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<float>();
+        reverseInput = context.ReadValue<float>(); // 0 to 1
     }
 
     public void OnRotate(InputAction.CallbackContext context)
@@ -68,23 +69,22 @@ public class CarController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 forward = transform.up * (moveInput * acceleration);
-        rb.AddForce(forward);
+   
+        float moveValue = (forwardInput * acceleration) - (reverseInput * reverse);
 
-        Vector2 backward = transform.up * (moveInput * reverse);
-        rb.AddForce(backward);
+        Vector2 force = transform.up * moveValue;
+        rb.AddForce(force);
 
-        float speedFactor = rb.velocity.magnitude / 5f;
+      
         float rotationAmount = -turnInput * steering * Time.fixedDeltaTime;
         rb.MoveRotation(rb.rotation + rotationAmount);
-
 
         rb.velocity = rb.velocity * (1 - drag * Time.fixedDeltaTime);
     }
 
     private void Update()
     {
-        foreach(var t in trail)
+        foreach (var t in trail)
         {
             t.startColor = spriteRnd.color;
             t.endColor = spriteRnd.color;

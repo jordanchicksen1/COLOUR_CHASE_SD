@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Reverse",
+                    "type": "Button",
+                    "id": "4020df32-cd80-44b2-9e5d-043a03b3b89c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Rotate",
                     "type": "Value",
                     "id": "70c6dbdd-41c8-4b5c-ae88-7e65b6fdd4da",
@@ -190,6 +199,17 @@
                     "action": "LookAround",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a62c17b2-6ef3-4fd5-9bba-b01e26464ab0",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reverse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
