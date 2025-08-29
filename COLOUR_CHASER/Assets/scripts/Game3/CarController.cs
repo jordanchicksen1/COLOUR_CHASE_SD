@@ -13,6 +13,8 @@ public class CarController : MonoBehaviour
     public float acceleration = 8f;
     public float steering = 200f;
     public float drag = 3f;
+    public GameObject Position1;
+    public GameObject Position2;
 
     private float moveInput;
     [SerializeField]
@@ -35,6 +37,7 @@ public class CarController : MonoBehaviour
             SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
             spriteRend.color = Color.blue;
             gameObject.tag = "Player1";
+           
         }
         else if (playerInput.playerIndex == 1)
         {
