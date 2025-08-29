@@ -9,6 +9,12 @@ TagManager:
   - Block
   - BlockChecker
   - OnBlock
+  - Baloon
+  - Player1
+  - Player2
+  - Floor
+  - Wall
+  - Kill box
   layers:
   - Default
   - TransparentFX
