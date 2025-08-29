@@ -183,6 +183,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 70c6dbdd-41c8-4b5c-ae88-7e65b6fdd4da
     m_ActionName: Player/Rotate[/DualSenseGamepadHID/leftStick/left,/DualSenseGamepadHID/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a0852d4b-1a5d-4421-a6c3-637f76736b1f
+    m_ActionName: Player/Grab[/DualShock4GamepadHID/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -275,6 +279,8 @@ MonoBehaviour:
   acceleration: 80
   steering: 150
   drag: 3
+  Position1: {fileID: 0}
+  Position2: {fileID: 0}
   turnInput: 0
   trail:
   - {fileID: 1721177426015325959}

@@ -11,6 +11,7 @@ public class CarController : MonoBehaviour
 
     [Header("Car Settings")]
     public float acceleration = 8f;
+    public float reverse = 8f;
     public float steering = 200f;
     public float drag = 3f;
     public GameObject Position1;
@@ -55,6 +56,11 @@ public class CarController : MonoBehaviour
         moveInput = context.ReadValue<float>();
     }
 
+    public void OnReverse(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<float>();
+    }
+
     public void OnRotate(InputAction.CallbackContext context)
     {
         turnInput = context.ReadValue<float>();
@@ -64,6 +70,9 @@ public class CarController : MonoBehaviour
     {
         Vector2 forward = transform.up * (moveInput * acceleration);
         rb.AddForce(forward);
+
+        Vector2 backward = transform.up * (moveInput * reverse);
+        rb.AddForce(backward);
 
         float speedFactor = rb.velocity.magnitude / 5f;
         float rotationAmount = -turnInput * steering * Time.fixedDeltaTime;
