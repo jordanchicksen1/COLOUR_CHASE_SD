@@ -10,13 +10,13 @@ public class CarController : MonoBehaviour
     private PlayerInput playerInput;
 
     [Header("Car Settings")]
-    public float acceleration = 8f;   
-    public float reverse = -6f; 
+    public float acceleration = 8f;
+    public float reverse = -6f;
     public float steering = 200f;
     public float drag = 3f;
 
-    public GameObject Position1;
-    public GameObject Position2;
+    public GameObject Position1; 
+    public GameObject Position2; 
 
     private float forwardInput;
     private float reverseInput;
@@ -24,6 +24,16 @@ public class CarController : MonoBehaviour
 
     [SerializeField] private TrailRenderer[] trail;
     private SpriteRenderer spriteRnd;
+
+    [Header("Abilities")]
+    public GameObject tirePrefab;
+    public GameObject oilPrefab;
+    public GameObject shockwavePrefab;
+    private string currentAbility = ""; 
+
+
+
+    private bool abilityReady = false;
 
     void Awake()
     {
@@ -35,14 +45,12 @@ public class CarController : MonoBehaviour
     {
         if (playerInput.playerIndex == 0)
         {
-            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-            spriteRend.color = Color.blue;
+            GetComponent<SpriteRenderer>().color = Color.blue;
             gameObject.tag = "Player1";
         }
         else if (playerInput.playerIndex == 1)
         {
-            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-            spriteRend.color = Color.red;
+            GetComponent<SpriteRenderer>().color = Color.red;
             gameObject.tag = "Player2";
         }
 
@@ -50,32 +58,20 @@ public class CarController : MonoBehaviour
         FindObjectOfType<CarGameManager>().RegisterPlayer();
     }
 
+    public void OnDrive(InputAction.CallbackContext context) => forwardInput = context.ReadValue<float>();
+    public void OnReverse(InputAction.CallbackContext context) => reverseInput = context.ReadValue<float>();
+    public void OnRotate(InputAction.CallbackContext context) => turnInput = context.ReadValue<float>();
 
-    public void OnDrive(InputAction.CallbackContext context)
+    public void OnAbility(InputAction.CallbackContext context)
     {
-        forwardInput = context.ReadValue<float>(); // 0 to 1
-    }
-
-  
-    public void OnReverse(InputAction.CallbackContext context)
-    {
-        reverseInput = context.ReadValue<float>(); // 0 to 1
-    }
-
-    public void OnRotate(InputAction.CallbackContext context)
-    {
-        turnInput = context.ReadValue<float>();
+        if (context.performed && abilityReady) UseAbility();
     }
 
     void FixedUpdate()
     {
-   
         float moveValue = (forwardInput * acceleration) - (reverseInput * reverse);
+        rb.AddForce(transform.up * moveValue);
 
-        Vector2 force = transform.up * moveValue;
-        rb.AddForce(force);
-
-      
         float rotationAmount = -turnInput * steering * Time.fixedDeltaTime;
         rb.MoveRotation(rb.rotation + rotationAmount);
 
@@ -89,5 +85,56 @@ public class CarController : MonoBehaviour
             t.startColor = spriteRnd.color;
             t.endColor = spriteRnd.color;
         }
+    }
+
+    public void GiveAbility(string abilityName)
+    {
+        if (!abilityReady) 
+        {
+            currentAbility = abilityName;
+            abilityReady = true;
+            Debug.Log(gameObject.name + " got ability: " + abilityName);
+        }
+    }
+
+    private void UseAbility()
+    {
+        GameObject prefab = null;
+
+        switch (currentAbility)
+        {
+            case "Tire":
+                prefab = Resources.Load<GameObject>("Abilities/TirePrefab");
+                if (prefab != null)
+                    Instantiate(prefab, Position1.transform.position, transform.rotation);
+                break;
+
+            case "Oil":
+                prefab = Resources.Load<GameObject>("Abilities/OilPrefab");
+                if (prefab != null)
+                    Instantiate(prefab, Position2.transform.position, Quaternion.identity);
+                break;
+
+            case "Speed":
+                StartCoroutine(SpeedBoost());
+                break;
+
+            case "Shockwave":
+                prefab = Resources.Load<GameObject>("Abilities/ShockwavePrefab");
+                if (prefab != null)
+                    Instantiate(prefab, transform.position, Quaternion.identity);
+                break;
+        }
+
+        currentAbility = "";
+        abilityReady = false;
+    }
+
+    private IEnumerator SpeedBoost()
+    {
+        float originalAccel = acceleration;
+        acceleration *= 2f;
+        yield return new WaitForSeconds(3f);
+        acceleration = originalAccel;
     }
 }
