@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class QuestionBox : MonoBehaviour
 {
-    public float respawnTime = 5f; // time before box reappears
+    public float respawnTime = 5f;
     private SpriteRenderer sr;
     private Collider2D col;
 
@@ -21,15 +21,12 @@ public class QuestionBox : MonoBehaviour
         CarController car = other.GetComponent<CarController>();
         if (car != null)
         {
-            // Give random ability
             string randomAbility = abilities[Random.Range(0, abilities.Length)];
             car.GiveAbility(randomAbility);
 
-            // Disable box
             sr.enabled = false;
             col.enabled = false;
 
-            // Respawn later
             Invoke(nameof(RespawnBox), respawnTime);
         }
     }

@@ -18,7 +18,6 @@ public class TireProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // You can add logic to knockback cars or ball here
         Destroy(gameObject);
     }
 }
