@@ -16,6 +16,7 @@ public class FruitSortController : MonoBehaviour
     [SerializeField]
     private int rotateSpeed = 20;
     public LayerMask FruitLayer;
+    public Transform Holder;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -36,14 +37,23 @@ public class FruitSortController : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, raycastDistance, FruitLayer);
         Debug.DrawRay(transform.position, transform.up, Color.red, raycastDistance);
-        if (hit.collider.CompareTag("Fruit"))
+        if (hit.collider.CompareTag("Apple"))
         {
-            hit.collider.gameObject.transform.SetParent(transform);
+            if (hit.collider.gameObject.transform.parent != Holder.transform)
+            {
+                hit.collider.gameObject.transform.parent = Holder.transform;
+                hit.collider.gameObject.transform.position = Holder.position;
+            }
+            else if (hit.collider.gameObject.transform.parent == Holder.transform)
+            {
+                hit.collider.gameObject.transform.parent = null;
+            }
         }
 
     }
 
-    public void OnRotate(InputAction.CallbackContext context)
+
+        public void OnRotate(InputAction.CallbackContext context)
     {
         turnInput = context.ReadValue<float>();
     }

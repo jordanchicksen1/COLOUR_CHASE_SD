@@ -46,6 +46,11 @@ public class FruitManager : MonoBehaviour
             {
                 rb.velocity = Vector2.up * moveSpeed * Time.deltaTime;
             }
+            else if (transform.parent.name == "Holder")
+            {
+                rb.velocity = Vector2.zero;
+                transform.position = transform.parent.transform.position;
+            }
         }
         else if(MoveDown)
         {
@@ -53,6 +58,13 @@ public class FruitManager : MonoBehaviour
             {
                 rb.velocity = Vector2.down * moveSpeed * Time.deltaTime;
             }
+            else if (transform.parent.name == "Holder")
+            {
+                rb.velocity = Vector2.zero;
+                transform.position = transform.parent.transform.position;
+            }
         }
+
+        
     }
 }

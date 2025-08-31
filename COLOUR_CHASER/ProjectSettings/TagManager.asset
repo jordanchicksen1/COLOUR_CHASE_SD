@@ -19,6 +19,8 @@ TagManager:
   - Ball
   - Up
   - Down
+  - Fruit
+  - Apple
   layers:
   - Default
   - TransparentFX
