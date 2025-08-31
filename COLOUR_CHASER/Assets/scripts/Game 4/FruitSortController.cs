@@ -34,7 +34,12 @@ public class FruitSortController : MonoBehaviour
 
     public void OnGrab(InputAction.CallbackContext context)
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.one, raycastDistance, FruitLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, raycastDistance, FruitLayer);
+        Debug.DrawRay(transform.position, transform.up, Color.red, raycastDistance);
+        if (hit.collider.CompareTag("Fruit"))
+        {
+            hit.collider.gameObject.transform.SetParent(transform);
+        }
 
     }
 
