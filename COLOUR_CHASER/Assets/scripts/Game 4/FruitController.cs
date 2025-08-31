@@ -52,7 +52,7 @@ public class FruitManager : MonoBehaviour
                 transform.position = transform.parent.transform.position;
             }
         }
-        else if(MoveDown)
+        else if (MoveDown)
         {
             if (transform.parent == null)
             {
@@ -64,7 +64,16 @@ public class FruitManager : MonoBehaviour
                 transform.position = transform.parent.transform.position;
             }
         }
+        else if (!MoveDown && !MoveUp)
+        {
+            if (transform.parent.gameObject.CompareTag("Holder"))
+            {
+                rb.velocity = Vector2.zero;
+                transform.position = transform.parent.transform.position;
+            }
+                rb.velocity = Vector2.zero;
 
-        
+        }
+
     }
 }

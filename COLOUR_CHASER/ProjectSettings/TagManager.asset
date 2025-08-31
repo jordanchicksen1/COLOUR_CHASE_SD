@@ -21,6 +21,7 @@ TagManager:
   - Down
   - Fruit
   - Apple
+  - Holder
   layers:
   - Default
   - TransparentFX
