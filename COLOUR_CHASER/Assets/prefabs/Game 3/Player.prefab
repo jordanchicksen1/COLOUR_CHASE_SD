@@ -38,6 +38,7 @@ Transform:
   - {fileID: 9194102386634417327}
   - {fileID: 4817086899993866130}
   - {fileID: 4463645743656953867}
+  - {fileID: 3928300729602781495}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1532506596850664173
@@ -187,10 +188,6 @@ MonoBehaviour:
     m_ActionName: Player/Rotate[/DualSenseGamepadHID/leftStick/left,/DualSenseGamepadHID/leftStick/right]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: a0852d4b-1a5d-4421-a6c3-637f76736b1f
-    m_ActionName: Player/Grab[/DualShock4GamepadHID/rightTrigger]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 796869d3-d0d2-47ef-96dd-c401d064f7fd
     m_ActionName: Player/LookAround[/DualShock4GamepadHID/rightStick/left,/DualShock4GamepadHID/rightStick/right]
   - m_PersistentCalls:
@@ -225,6 +222,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 407818ed-1ebd-44bf-b72a-74b2c349c2b4
     m_ActionName: Player/Ability[/DualSenseGamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c33329a1-3693-41a0-a0a4-d327fcb4bbcd
+    m_ActionName: Player/Grab
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -327,6 +328,7 @@ MonoBehaviour:
   tirePrefab: {fileID: 0}
   oilPrefab: {fileID: 0}
   shockwavePrefab: {fileID: 0}
+  abilityHolder: {fileID: 3928300729602781495}
 --- !u!1 &3960224521204575783
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +386,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.088, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2522521450817672359}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4328476833160912885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3928300729602781495}
+  m_Layer: 0
+  m_Name: AbilityHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3928300729602781495
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4328476833160912885}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.086, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

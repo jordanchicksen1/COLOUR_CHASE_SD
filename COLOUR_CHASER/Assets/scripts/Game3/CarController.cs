@@ -15,8 +15,8 @@ public class CarController : MonoBehaviour
     public float steering = 200f;
     public float drag = 3f;
 
-    public GameObject Position1; 
-    public GameObject Position2; 
+    public GameObject Position1;
+    public GameObject Position2;
 
     private float forwardInput;
     private float reverseInput;
@@ -29,11 +29,12 @@ public class CarController : MonoBehaviour
     public GameObject tirePrefab;
     public GameObject oilPrefab;
     public GameObject shockwavePrefab;
-    private string currentAbility = ""; 
-
-
-
+    private string currentAbility = "";
     private bool abilityReady = false;
+
+    [Header("Ability Visuals")]
+    public Transform abilityHolder;  
+    private GameObject abilityIconInstance;
 
     void Awake()
     {
@@ -89,11 +90,20 @@ public class CarController : MonoBehaviour
 
     public void GiveAbility(string abilityName)
     {
-        if (!abilityReady) 
+        if (!abilityReady)
         {
             currentAbility = abilityName;
             abilityReady = true;
             Debug.Log(gameObject.name + " got ability: " + abilityName);
+
+            if (abilityIconInstance != null)
+                Destroy(abilityIconInstance);
+
+            GameObject iconPrefab = Resources.Load<GameObject>("AbilityIcons/" + abilityName + "Icon");
+            if (iconPrefab != null && abilityHolder != null)
+            {
+                abilityIconInstance = Instantiate(iconPrefab, abilityHolder.position, Quaternion.identity, abilityHolder);
+            }
         }
     }
 
@@ -124,6 +134,12 @@ public class CarController : MonoBehaviour
                 if (prefab != null)
                     Instantiate(prefab, transform.position, Quaternion.identity);
                 break;
+        }
+
+        if (abilityIconInstance != null)
+        {
+            Destroy(abilityIconInstance);
+            abilityIconInstance = null;
         }
 
         currentAbility = "";
