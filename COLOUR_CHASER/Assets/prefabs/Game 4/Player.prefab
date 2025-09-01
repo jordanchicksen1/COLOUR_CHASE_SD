@@ -181,22 +181,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4758068340494581991}
         m_TargetAssemblyTypeName: FruitSortController, Assembly-CSharp
-        m_MethodName: OnGrab
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: a0852d4b-1a5d-4421-a6c3-637f76736b1f
-    m_ActionName: Player/Grab[/DualSenseGamepadHID/rightTrigger]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4758068340494581991}
-        m_TargetAssemblyTypeName: FruitSortController, Assembly-CSharp
         m_MethodName: OnRotate
         m_Mode: 0
         m_Arguments:
@@ -217,6 +201,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 407818ed-1ebd-44bf-b72a-74b2c349c2b4
     m_ActionName: Player/Ability[/DualShock4GamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4758068340494581991}
+        m_TargetAssemblyTypeName: FruitSortController, Assembly-CSharp
+        m_MethodName: OnGrab
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c33329a1-3693-41a0-a0a4-d327fcb4bbcd
+    m_ActionName: Player/Grab[/DualSenseGamepadHID/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -282,10 +282,10 @@ MonoBehaviour:
   speed: 5
   raycastDistance: 3
   rotateSpeed: 150
-  FruitLayer:
+  fruitLayer:
     serializedVersion: 2
     m_Bits: 64
-  Holder: {fileID: 8910798164344351600}
+  holder: {fileID: 8910798164344351600}
 --- !u!50 &2203122684390747023
 Rigidbody2D:
   serializedVersion: 4

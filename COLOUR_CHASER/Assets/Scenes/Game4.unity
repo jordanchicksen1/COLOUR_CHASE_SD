@@ -131,7 +131,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 423494519}
-  - component: {fileID: 423494518}
   m_Layer: 0
   m_Name: conveyor Belts Manager
   m_TagString: Untagged
@@ -139,21 +138,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &423494518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 423494517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a734827ddba751b48bf48bb1fa9cbd27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveUp: 0
-  MoveDown: 0
-  moveSpeed: 0
 --- !u!4 &423494519
 Transform:
   m_ObjectHideFlags: 0
@@ -163,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 423494517}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1861245, y: 0.47510266, z: -0.041790422}
+  m_LocalPosition: {x: 0, y: 0, z: -0.041790422}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -411,7 +395,7 @@ Transform:
   m_GameObject: {fileID: 781742940}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -3.97, z: -1}
+  m_LocalPosition: {x: 0, y: -3.97, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -486,7 +470,7 @@ Transform:
   m_GameObject: {fileID: 1000770342}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1861245, y: -1.6151026, z: 0.041790422}
+  m_LocalPosition: {x: 0, y: -1.13, z: 0.041790422}
   m_LocalScale: {x: 1.87, y: 7.72, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -4,76 +4,95 @@ using UnityEngine;
 
 public class FruitManager : MonoBehaviour
 {
-    [SerializeField]
-    private bool MoveUp, MoveDown;
+    [SerializeField] private int moveSpeed = 5;
+
     private Rigidbody2D rb;
-    [SerializeField]
-    private int moveSpeed;
+    private bool isOnConveyor;
+    private Vector2 conveyorDirection;
+    private float conveyorXPosition;
+    [SerializeField]private bool isHeld;
+    public Vector2 OGPosotion;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Up"))
         {
-            MoveUp = true;
+            SetConveyorMovement(Vector2.up, collision.transform.position.x);
         }
         else if (collision.CompareTag("Down"))
         {
-            MoveDown = true;
+            SetConveyorMovement(Vector2.down, collision.transform.position.x);
+        }
+        else if (collision.CompareTag("Holder"))
+        {
+            isHeld = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Up"))
+        if (collision.CompareTag("Up") || collision.CompareTag("Down"))
         {
-            MoveUp = false;
+            isOnConveyor = false;
         }
-        else if (collision.CompareTag("Down"))
+        else if (collision.CompareTag("Holder"))
         {
-            MoveDown = false;
+            isHeld = false;
         }
+    }
+
+    private void SetConveyorMovement(Vector2 direction, float xPosition)
+    {
+        isOnConveyor = true;
+        conveyorDirection = direction;
+        conveyorXPosition = xPosition;
+
+        Vector2 currentPos = transform.position;
+        transform.position = new Vector2(xPosition, currentPos.y);
     }
 
     private void Update()
     {
-        if (MoveUp)
-        {
-            if (transform.parent == null)
-            {
-                rb.velocity = Vector2.up * moveSpeed * Time.deltaTime;
-            }
-            else if (transform.parent.name == "Holder")
-            {
-                rb.velocity = Vector2.zero;
-                transform.position = transform.parent.transform.position;
-            }
-        }
-        else if (MoveDown)
-        {
-            if (transform.parent == null)
-            {
-                rb.velocity = Vector2.down * moveSpeed * Time.deltaTime;
-            }
-            else if (transform.parent.name == "Holder")
-            {
-                rb.velocity = Vector2.zero;
-                transform.position = transform.parent.transform.position;
-            }
-        }
-        else if (!MoveDown && !MoveUp)
-        {
-            if (transform.parent.gameObject.CompareTag("Holder"))
-            {
-                rb.velocity = Vector2.zero;
-                transform.position = transform.parent.transform.position;
-            }
-                rb.velocity = Vector2.zero;
+        HandleMovement();
 
+        if (!isOnConveyor && transform.parent == null)
+        {
+            transform.position = OGPosotion;
+        }
+    }
+
+    private void HandleMovement()
+    {
+        if (isHeld)
+        {
+            rb.velocity = Vector2.zero;
+            if (transform.parent != null)
+            {
+                transform.position = transform.parent.position;
+            }
+            return;
         }
 
+        if (isOnConveyor)
+        {
+            rb.velocity = conveyorDirection * moveSpeed * Time.deltaTime;
+
+            Vector2 currentPos = transform.position;
+            transform.position = new Vector2(conveyorXPosition, currentPos.y);
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
+    }
+
+    private void OnTransformParentChanged()
+    {
+        isHeld = transform.parent != null && transform.parent.CompareTag("Holder");
     }
 }

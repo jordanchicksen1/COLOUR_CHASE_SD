@@ -60,15 +60,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Grab",
-                    "type": "Button",
-                    "id": "a0852d4b-1a5d-4421-a6c3-637f76736b1f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "LookAround",
                     "type": "Value",
                     "id": "796869d3-d0d2-47ef-96dd-c401d064f7fd",
@@ -81,6 +72,15 @@
                     "name": "Ability",
                     "type": "Button",
                     "id": "407818ed-1ebd-44bf-b72a-74b2c349c2b4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Grab",
+                    "type": "Button",
+                    "id": "c33329a1-3693-41a0-a0a4-d327fcb4bbcd",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -166,17 +166,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "5f575fae-94f9-4a02-95d0-6a32c6113fbd",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Grab",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "1D Axis",
                     "id": "18c9c3b5-4af1-430a-8052-e20e4b556492",
                     "path": "1DAxis",
@@ -228,6 +217,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Ability",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "32f98e85-448b-4a4e-8cb4-c51bac260fc9",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
