@@ -7,11 +7,14 @@ public class FruitManager : MonoBehaviour
     [SerializeField] private int moveSpeed = 5;
 
     private Rigidbody2D rb;
+    [SerializeField]
     private bool isOnConveyor;
     private Vector2 conveyorDirection;
     private float conveyorXPosition;
     [SerializeField]private bool isHeld;
     public Vector2 OGPosotion;
+    [SerializeField]
+    private bool Grape, Apple, Mellon;
 
     private void Start()
     {
@@ -28,9 +31,19 @@ public class FruitManager : MonoBehaviour
         {
             SetConveyorMovement(Vector2.down, collision.transform.position.x);
         }
-        else if (collision.CompareTag("Holder"))
+        else if (collision.CompareTag("WatermellonBasket"))
         {
-            isHeld = true;
+            Destroy(gameObject);
+        }
+        else if (collision.CompareTag("GrapeBasket"))
+        {
+            Destroy(gameObject);
+
+        }
+        else if (collision.CompareTag("AppleBasket"))
+        {
+            Destroy(gameObject);
+
         }
     }
 
@@ -60,10 +73,7 @@ public class FruitManager : MonoBehaviour
     {
         HandleMovement();
 
-        if (!isOnConveyor && transform.parent == null)
-        {
-            transform.position = OGPosotion;
-        }
+       
     }
 
     private void HandleMovement()

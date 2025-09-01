@@ -22,6 +22,11 @@ TagManager:
   - Fruit
   - Apple
   - Holder
+  - Grape
+  - Watermellon
+  - WatermellonBasket
+  - AppleBasket
+  - GrapeBasket
   layers:
   - Default
   - TransparentFX
