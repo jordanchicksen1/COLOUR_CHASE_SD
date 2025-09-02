@@ -27,6 +27,8 @@ TagManager:
   - WatermellonBasket
   - AppleBasket
   - GrapeBasket
+  - Front
+  - Back
   layers:
   - Default
   - TransparentFX
