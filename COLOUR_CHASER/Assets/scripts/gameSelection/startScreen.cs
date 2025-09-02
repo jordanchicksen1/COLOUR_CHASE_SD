@@ -40,7 +40,7 @@ public class startScreen : MonoBehaviour
         sdsPresentsText.SetActive(false);
         yield return new WaitForSeconds(0f);
         title.SetActive(true);
-        sceneCam.backgroundColor = fifth;
+        //sceneCam.backgroundColor = fifth;
         yield return new WaitForSeconds(0.5f);
         sceneCam.backgroundColor = first;
         yield return new WaitForSeconds(0.5f);
