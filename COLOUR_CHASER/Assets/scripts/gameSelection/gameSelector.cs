@@ -12,6 +12,7 @@ public class gameSelector : MonoBehaviour
     public GameObject game4Page;
     public GameObject game5Page;
 
+    public AudioSource clickSFX;
     public void Game1()
     {
         gamesGroup.SetActive(false);
@@ -20,6 +21,7 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(false);
         game4Page.SetActive(false);
         game5Page.SetActive(false);
+        clickSFX.Play();
     }
     public void Game2() 
     {
@@ -29,6 +31,7 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(false);
         game4Page.SetActive(false);
         game5Page.SetActive(false);
+        clickSFX.Play();
     }
     public void Game3() 
     {
@@ -38,6 +41,7 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(true);
         game4Page.SetActive(false);
         game5Page.SetActive(false);
+        clickSFX.Play();
     }
     public void Game4() 
     {
@@ -47,6 +51,7 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(false);
         game4Page.SetActive(true);
         game5Page.SetActive(false);
+        clickSFX.Play();
     }
     public void Game5() 
     {
@@ -56,6 +61,7 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(false);
         game4Page.SetActive(false);
         game5Page.SetActive(true);
+        clickSFX.Play();
     }
 
     public void ExitPage()
@@ -66,6 +72,7 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(false);
         game4Page.SetActive(false);
         game5Page.SetActive(false);
+        clickSFX.Play();
     }
 
     public void nextGame1()
@@ -76,6 +83,7 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(false);
         game4Page.SetActive(false);
         game5Page.SetActive(false);
+        clickSFX.Play();
     }
     public void nextGame2() 
     {
@@ -85,6 +93,7 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(true);
         game4Page.SetActive(false);
         game5Page.SetActive(false);
+        clickSFX.Play();
     }
     public void nextGame3() 
     {
@@ -94,6 +103,7 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(false);
         game4Page.SetActive(true);
         game5Page.SetActive(false);
+        clickSFX.Play();
     }
     public void nextGame4() 
     {
@@ -103,6 +113,7 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(false);
         game4Page.SetActive(false);
         game5Page.SetActive(true);
+        clickSFX.Play();    
     }
     public void nextGame5() 
     {
@@ -112,6 +123,7 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(false);
         game4Page.SetActive(false);
         game5Page.SetActive(false);
+        clickSFX.Play();
     }
 
     public void prevGame1()
@@ -122,6 +134,7 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(false);
         game4Page.SetActive(false);
         game5Page.SetActive(true);
+        clickSFX.Play();
     }
     public void prevGame2() 
     {
@@ -131,6 +144,7 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(false);
         game4Page.SetActive(false);
         game5Page.SetActive(false);
+        clickSFX.Play();
     }
     public void prevGame3() 
     {
@@ -140,6 +154,7 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(false);
         game4Page.SetActive(false);
         game5Page.SetActive(false);
+        clickSFX.Play();
     }
     public void prevGame4() 
     {
@@ -149,6 +164,7 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(true);
         game4Page.SetActive(false);
         game5Page.SetActive(false);
+        clickSFX.Play();
     }
     public void prevGame5() 
     {
@@ -158,6 +174,7 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(false);
         game4Page.SetActive(true);
         game5Page.SetActive(false);
+        clickSFX.Play();
     }
 
     public void PlayGame1()
