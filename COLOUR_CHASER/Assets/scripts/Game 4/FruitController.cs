@@ -47,6 +47,7 @@ public class FruitManager : MonoBehaviour
         }
     }
 
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Up") || collision.CompareTag("Down"))
@@ -73,7 +74,6 @@ public class FruitManager : MonoBehaviour
     {
         HandleMovement();
 
-       
     }
 
     private void HandleMovement()
@@ -94,6 +94,15 @@ public class FruitManager : MonoBehaviour
 
             Vector2 currentPos = transform.position;
             transform.position = new Vector2(conveyorXPosition, currentPos.y);
+        }
+        else if (!isHeld)
+        {
+            //transform.position = OGPosotion;
+            if (!isOnConveyor)
+            {
+                rb.velocity = Vector2.zero;
+                rb.gravityScale = 1;
+            }
         }
         else
         {

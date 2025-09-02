@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8415456169676646814}
   - component: {fileID: 845650054344624151}
   - component: {fileID: 7367635034963992810}
-  - component: {fileID: -8731713295837060332}
+  - component: {fileID: 711598214413729205}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -115,8 +115,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerController2D, Assembly-CSharp
+      - m_Target: {fileID: 711598214413729205}
+        m_TargetAssemblyTypeName: PlatformCharacterController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -130,33 +130,49 @@ MonoBehaviour:
     m_ActionId: 2e41d68c-4b05-49c2-8c64-e9b93a8083b8
     m_ActionName: Player/Movement[/DualShock4GamepadHID/leftStick]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 711598214413729205}
+        m_TargetAssemblyTypeName: PlatformCharacterController, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9601ec2a-3ba5-4005-85ce-a84e2989cf08
     m_ActionName: Player/Jump[/DualShock4GamepadHID/buttonSouth]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: ee5dcffc-f473-4234-9fb8-730c71f31c1e
-    m_ActionName: Player/Dash[/DualShock4GamepadHID/buttonEast]
+    m_ActionName: Player/Dash[/DualSenseGamepadHID/buttonEast]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: c0aa90f6-9517-4f21-a7b7-a24fa49d4332
-    m_ActionName: Player/Drive[/DualShock4GamepadHID/rightTrigger]
+    m_ActionName: Player/Drive[/DualSenseGamepadHID/rightTrigger]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 4020df32-cd80-44b2-9e5d-043a03b3b89c
-    m_ActionName: Player/Reverse[/DualShock4GamepadHID/leftTrigger]
+    m_ActionName: Player/Reverse[/DualSenseGamepadHID/leftTrigger]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 70c6dbdd-41c8-4b5c-ae88-7e65b6fdd4da
-    m_ActionName: Player/Rotate[/DualShock4GamepadHID/leftStick/left,/DualShock4GamepadHID/leftStick/right]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a0852d4b-1a5d-4421-a6c3-637f76736b1f
-    m_ActionName: Player/Grab[/DualShock4GamepadHID/rightTrigger]
+    m_ActionName: Player/Rotate[/DualSenseGamepadHID/leftStick/left,/DualSenseGamepadHID/leftStick/right]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 796869d3-d0d2-47ef-96dd-c401d064f7fd
-    m_ActionName: Player/LookAround[/DualShock4GamepadHID/rightStick/left,/DualShock4GamepadHID/rightStick/right]
+    m_ActionName: Player/LookAround[/DualSenseGamepadHID/rightStick/left,/DualSenseGamepadHID/rightStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 407818ed-1ebd-44bf-b72a-74b2c349c2b4
+    m_ActionName: Player/Ability[/DualSenseGamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c33329a1-3693-41a0-a0a4-d327fcb4bbcd
+    m_ActionName: Player/Grab[/DualSenseGamepadHID/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -176,8 +192,8 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_AngularDrag: 0
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -234,7 +250,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 0.15}
   m_EdgeRadius: 0
---- !u!114 &-8731713295837060332
+--- !u!114 &711598214413729205
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,3 +263,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  jumpForce: 15
+  raycastDistance: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8

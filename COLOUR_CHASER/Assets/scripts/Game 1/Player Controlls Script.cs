@@ -19,6 +19,7 @@ public class PlayerController2D : MonoBehaviour
     private void Start()
     {
         BlockChecker = GameObject.FindGameObjectWithTag("BlockChecker");
+        playerBlockCheckerScript = BlockChecker.GetComponent<PlayerBlockChecker>();
     
     }
 
