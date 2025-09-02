@@ -166,12 +166,12 @@ public class gameSelector : MonoBehaviour
     }
     public void PlayGame2()
     {
-        SceneManager.LoadScene("Game2");
+        SceneManager.LoadScene("Game5");
     }
 
     public void PlayGame3()
     {
-        SceneManager.LoadScene("Game3");
+        SceneManager.LoadScene("Game2");
     }
 
     public void PlayGame4()
@@ -181,6 +181,6 @@ public class gameSelector : MonoBehaviour
 
     public void PlayGame5()
     {
-        SceneManager.LoadScene("Game5");
+        SceneManager.LoadScene("Game3");
     }
 }
