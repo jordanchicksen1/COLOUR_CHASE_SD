@@ -78,6 +78,8 @@ public class Ballscript : MonoBehaviour
         {
             spriteRnd.color = Color.white;
         }
+
+        
     }
     
     IEnumerator ShakeCamera()

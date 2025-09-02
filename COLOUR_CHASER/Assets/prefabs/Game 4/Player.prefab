@@ -281,7 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   raycastDistance: 3
-  rotateSpeed: 200
+  rotateSpeed: 250
   fruitLayer:
     serializedVersion: 2
     m_Bits: 64
