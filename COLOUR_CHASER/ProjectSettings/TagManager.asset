@@ -9,6 +9,24 @@ TagManager:
   - Block
   - BlockChecker
   - OnBlock
+  - Baloon
+  - Player1
+  - Player2
+  - Floor
+  - Wall
+  - Kill box
+  - Undefined
+  - Ball
+  - Up
+  - Down
+  - Fruit
+  - Apple
+  - Holder
+  - Grape
+  - Watermellon
+  - WatermellonBasket
+  - AppleBasket
+  - GrapeBasket
   layers:
   - Default
   - TransparentFX
@@ -16,7 +34,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - Fruit
   - 
   - 
   - 

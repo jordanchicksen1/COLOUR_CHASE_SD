@@ -1,8 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController2D : MonoBehaviour
+public class PlatformCharacterController : MonoBehaviour
 {
     private Vector2 moveInput;
     private Rigidbody2D rb;
@@ -19,7 +20,7 @@ public class PlayerController2D : MonoBehaviour
     private void Start()
     {
         BlockChecker = GameObject.FindGameObjectWithTag("BlockChecker");
-    
+        playerBlockCheckerScript = BlockChecker.GetComponent<PlayerBlockChecker>();
     }
 
     // Called by PlayerInput when "Move" action is triggered

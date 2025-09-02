@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &775188549532143513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8910798164344351600}
+  m_Layer: 0
+  m_Name: Holder
+  m_TagString: Holder
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8910798164344351600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775188549532143513}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0853, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2522521450817672359}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1990880792847609032
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,11 +42,11 @@ GameObject:
   - component: {fileID: 2522521450817672359}
   - component: {fileID: 1532506596850664173}
   - component: {fileID: 8415456169676646814}
-  - component: {fileID: 845650054344624151}
   - component: {fileID: 7367635034963992810}
-  - component: {fileID: -7112316424001330630}
+  - component: {fileID: 4758068340494581991}
+  - component: {fileID: 2203122684390747023}
   m_Layer: 0
-  m_Name: Game 2 Player prefab
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +64,8 @@ Transform:
   m_LocalPosition: {x: 0.32090178, y: -1.0393803, z: -1}
   m_LocalScale: {x: 12, y: 12, z: 12}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8910798164344351600}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1532506596850664173
@@ -78,7 +110,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a674720496c1ed248a5b7ea3e22a11fd, type: 3}
-  m_Color: {r: 1, g: 0.1805506, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.89324874, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -115,8 +147,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -7112316424001330630}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 4758068340494581991}
+        m_TargetAssemblyTypeName: FruitSortController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -130,10 +162,26 @@ MonoBehaviour:
     m_ActionId: 2e41d68c-4b05-49c2-8c64-e9b93a8083b8
     m_ActionName: Player/Movement[/DualShock4GamepadHID/leftStick]
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9601ec2a-3ba5-4005-85ce-a84e2989cf08
+    m_ActionName: Player/Jump[/DualShock4GamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ee5dcffc-f473-4234-9fb8-730c71f31c1e
+    m_ActionName: Player/Dash
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c0aa90f6-9517-4f21-a7b7-a24fa49d4332
+    m_ActionName: Player/Drive
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 70c6dbdd-41c8-4b5c-ae88-7e65b6fdd4da
+    m_ActionName: Player/Rotate
+  - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -7112316424001330630}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnJump
+      - m_Target: {fileID: 4758068340494581991}
+        m_TargetAssemblyTypeName: FruitSortController, Assembly-CSharp
+        m_MethodName: OnRotate
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -143,40 +191,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 9601ec2a-3ba5-4005-85ce-a84e2989cf08
-    m_ActionName: Player/Jump[/DualShock4GamepadHID/buttonSouth]
+    m_ActionId: 796869d3-d0d2-47ef-96dd-c401d064f7fd
+    m_ActionName: Player/LookAround[/DualSenseGamepadHID/rightStick/left,/DualSenseGamepadHID/rightStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4020df32-cd80-44b2-9e5d-043a03b3b89c
+    m_ActionName: Player/Reverse[/DualShock4GamepadHID/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 407818ed-1ebd-44bf-b72a-74b2c349c2b4
+    m_ActionName: Player/Ability[/DualShock4GamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4758068340494581991}
+        m_TargetAssemblyTypeName: FruitSortController, Assembly-CSharp
+        m_MethodName: OnGrab
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c33329a1-3693-41a0-a0a4-d327fcb4bbcd
+    m_ActionName: Player/Grab[/DualSenseGamepadHID/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!50 &845650054344624151
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990880792847609032}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &7367635034963992810
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -209,7 +254,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.0047748424}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -220,9 +265,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15, y: 0.15}
+  m_Size: {x: 0.09, y: 0.06171842}
   m_EdgeRadius: 0
---- !u!114 &-7112316424001330630
+--- !u!114 &4758068340494581991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,12 +276,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 1990880792847609032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb80d649f285bc46bd25b7376c4827c, type: 3}
+  m_Script: {fileID: 11500000, guid: ed85cdfe68588b54f90bb8a155072ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 10
-  raycastDistance: 1
-  groundLayer:
+  raycastDistance: 3
+  rotateSpeed: 150
+  fruitLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
+  holder: {fileID: 8910798164344351600}
+--- !u!50 &2203122684390747023
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990880792847609032}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
