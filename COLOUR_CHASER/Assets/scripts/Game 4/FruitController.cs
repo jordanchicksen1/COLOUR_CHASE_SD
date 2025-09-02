@@ -74,14 +74,6 @@ public class FruitManager : MonoBehaviour
     {
         HandleMovement();
 
-        if (!isOnConveyor && !isHeld)
-        {
-            transform.position = OGPosotion;
-        }
-        else if (isOnConveyor && transform.parent != null)
-        {
-            transform.position = transform.position;
-        }
     }
 
     private void HandleMovement()
@@ -102,6 +94,15 @@ public class FruitManager : MonoBehaviour
 
             Vector2 currentPos = transform.position;
             transform.position = new Vector2(conveyorXPosition, currentPos.y);
+        }
+        else if (!isHeld)
+        {
+            //transform.position = OGPosotion;
+            if (!isOnConveyor)
+            {
+                rb.velocity = Vector2.zero;
+                rb.gravityScale = 1;
+            }
         }
         else
         {
