@@ -317,7 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 80
   reverse: 80
-  steering: 150
+  steering: 250
   drag: 3
   Position1: {fileID: 4038449894274441155}
   Position2: {fileID: 3960224521204575783}
