@@ -29,6 +29,11 @@ public class PlatformCharacterController : MonoBehaviour
 
     private SpriteRenderer activeSpriteRend;
 
+    // 🔹 Editable spawn positions
+    [Header("Spawn Positions (Editable)")]
+    [SerializeField] private Vector2 player1Spawn = new Vector2(-5f, 0f);
+    [SerializeField] private Vector2 player2Spawn = new Vector2(5f, 0f);
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -41,22 +46,27 @@ public class PlatformCharacterController : MonoBehaviour
         player1SpriteChild.SetActive(false);
         player2SpriteChild.SetActive(false);
 
-        // Enable correct one based on player index
+        // Enable correct one based on player index + set spawn position
         if (playerInput.playerIndex == 0)
         {
             player1SpriteChild.SetActive(true);
             gameObject.tag = "Player1";
             activeSpriteRend = player1SpriteChild.GetComponent<SpriteRenderer>();
+
+            transform.position = player1Spawn;
+            OGposition = player1Spawn;
         }
         else if (playerInput.playerIndex == 1)
         {
             player2SpriteChild.SetActive(true);
             gameObject.tag = "Player2";
             activeSpriteRend = player2SpriteChild.GetComponent<SpriteRenderer>();
+
+            transform.position = player2Spawn;
+            OGposition = player2Spawn;
         }
 
         Boxc = GetComponent<BoxCollider2D>();
-        OGposition = transform.position;
     }
 
     public void OnMove(InputAction.CallbackContext context)
