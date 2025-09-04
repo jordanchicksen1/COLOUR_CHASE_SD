@@ -17,6 +17,7 @@ public class PlayerBlockChecker : MonoBehaviour
     public TextMeshProUGUI TimerText;
     private bool CanCheckForGame;
     public SpriteRenderer[] spriteRenderers;
+    public GameObject GameOverPanel, WinPanel;
     private void Update()
     {
         if (countdownTimer > 0)
@@ -54,6 +55,10 @@ public class PlayerBlockChecker : MonoBehaviour
                     {
                         Correctblock[i] = false;
                     }
+                }
+                else
+                {
+                   GameOverPanel.SetActive(true);
                 }
             }
         }
