@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,12 +15,24 @@ public class PlatformCharacterController : MonoBehaviour
     [Header("Ground Detection")]
     [SerializeField] private float raycastDistance = 1f;
     [SerializeField] private LayerMask groundLayer;
-    private PlayerInput playerInput;
 
+    private PlayerInput playerInput;
     private bool isGrounded;
     private BoxCollider2D Boxc;
     private bool isDashing;
     private Vector2 OGposition;
+
+    // 🔹 Children with different sprites
+    [Header("Sprite Children")]
+    [SerializeField] private GameObject player1SpriteChild;
+    [SerializeField] private GameObject player2SpriteChild;
+
+    private SpriteRenderer activeSpriteRend;
+
+    // 🔹 Editable spawn positions
+    [Header("Spawn Positions (Editable)")]
+    [SerializeField] private Vector2 player1Spawn = new Vector2(-5f, 0f);
+    [SerializeField] private Vector2 player2Spawn = new Vector2(5f, 0f);
 
     void Awake()
     {
@@ -30,24 +42,33 @@ public class PlatformCharacterController : MonoBehaviour
 
     private void Start()
     {
+        // Ensure both are disabled first
+        player1SpriteChild.SetActive(false);
+        player2SpriteChild.SetActive(false);
+
+        // Enable correct one based on player index + set spawn position
         if (playerInput.playerIndex == 0)
         {
-            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-            spriteRend.color = Color.blue;
+            player1SpriteChild.SetActive(true);
             gameObject.tag = "Player1";
+            activeSpriteRend = player1SpriteChild.GetComponent<SpriteRenderer>();
+
+            transform.position = player1Spawn;
+            OGposition = player1Spawn;
         }
         else if (playerInput.playerIndex == 1)
         {
-            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-            spriteRend.color = Color.red;
+            player2SpriteChild.SetActive(true);
             gameObject.tag = "Player2";
+            activeSpriteRend = player2SpriteChild.GetComponent<SpriteRenderer>();
 
+            transform.position = player2Spawn;
+            OGposition = player2Spawn;
         }
 
         Boxc = GetComponent<BoxCollider2D>();
-
-        OGposition = transform.position;
     }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
@@ -64,6 +85,16 @@ public class PlatformCharacterController : MonoBehaviour
     void Update()
     {
         CheckGrounded();
+
+        // 🔹 Flip the active sprite only
+        if (moveInput.x > 0.1f)
+        {
+            activeSpriteRend.flipX = false; // facing right
+        }
+        else if (moveInput.x < -0.1f)
+        {
+            activeSpriteRend.flipX = true; // facing left
+        }
     }
 
     void FixedUpdate()
@@ -77,79 +108,36 @@ public class PlatformCharacterController : MonoBehaviour
         isGrounded = hit.collider != null;
 
         if (isGrounded)
-        {
             Debug.DrawRay(transform.position, Vector2.down * hit.distance, Color.green);
-        }
         else
-        {
             Debug.DrawRay(transform.position, Vector2.down * raycastDistance, Color.red);
-        }
     }
 
     void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        Debug.Log("Jump!");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Baloon"))
-        {
-            if (playerInput.playerIndex == 0)
-            {
-                SpriteRenderer baloonSprite = collision.gameObject.GetComponent<SpriteRenderer>();
-                baloonSprite.color = Color.red;
-            }
-            else if (playerInput.playerIndex == 1)
-            {
-                SpriteRenderer baloonSprite = collision.gameObject.GetComponent<SpriteRenderer>();
-                baloonSprite.color = Color.blue;
-            }
-        }
-        else if (collision.collider.CompareTag("Kill box"))
+        if (collision.collider.CompareTag("Kill box"))
         {
             transform.position = OGposition;
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Wall"))
-        {
-            Boxc.isTrigger = false;
-        }
-        else if (collision.CompareTag("Floor"))
-        {
-            Boxc.isTrigger = false;
-        }
-        else if (collision.CompareTag("Baloon"))
-        {
-            Boxc.isTrigger = false;
-            if (playerInput.playerIndex == 0)
-            {
-                SpriteRenderer baloonSprite = collision.gameObject.GetComponent<SpriteRenderer>();
-                baloonSprite.color = Color.red;
-            }
-            else if (playerInput.playerIndex == 1)
-            {
-                SpriteRenderer baloonSprite = collision.gameObject.GetComponent<SpriteRenderer>();
-                baloonSprite.color = Color.blue;
-            }
-        }
-        else if (collision.CompareTag("Kill box"))
+        if (collision.CompareTag("Kill box"))
         {
             transform.position = OGposition;
         }
     }
-
 
     IEnumerator Dash()
     {
         isDashing = true;
         Boxc.isTrigger = true;
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
         speed += 5;
         yield return new WaitForSeconds(0.5f);
@@ -161,7 +149,7 @@ public class PlatformCharacterController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (!isDashing)
+        if (context.performed && !isDashing)
         {
             StartCoroutine(Dash());
         }
