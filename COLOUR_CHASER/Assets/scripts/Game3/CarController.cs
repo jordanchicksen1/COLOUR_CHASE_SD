@@ -35,7 +35,8 @@ public class CarController : MonoBehaviour
     [Header("Ability Visuals")]
     public Transform abilityHolder;  
     private GameObject abilityIconInstance;
-
+    [SerializeField]
+    private Sprite Player1, Player2;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -46,12 +47,12 @@ public class CarController : MonoBehaviour
     {
         if (playerInput.playerIndex == 0)
         {
-            GetComponent<SpriteRenderer>().color = Color.blue;
+            GetComponent<SpriteRenderer>().sprite = Player1;
             gameObject.tag = "Player1";
         }
         else if (playerInput.playerIndex == 1)
         {
-            GetComponent<SpriteRenderer>().color = Color.red;
+            GetComponent<SpriteRenderer>().sprite = Player2;
             gameObject.tag = "Player2";
         }
 
@@ -83,8 +84,15 @@ public class CarController : MonoBehaviour
     {
         foreach (var t in trail)
         {
-            t.startColor = spriteRnd.color;
-            t.endColor = spriteRnd.color;
+           if (playerInput.playerIndex == 0)
+            {
+                t.startColor = Color.blue;
+                t.endColor = Color.blue;
+            }else if (playerInput.playerIndex == 1)
+            {
+                t.startColor = Color.red;
+                t.endColor = Color.red;
+            }
         }
     }
 
