@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D Boxc;
     private bool isDashing;
     private Vector2 OGposition;
+    [SerializeField]
+    private Sprite player1, player2;
 
     void Awake()
     {
@@ -33,13 +35,13 @@ public class PlayerController : MonoBehaviour
         if (playerInput.playerIndex == 0)
         {
             SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-            spriteRend.color = Color.blue;
+            spriteRend.sprite = player1;
             gameObject.tag = "Player1";
         }
         else if (playerInput.playerIndex == 1)
         {
             SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-            spriteRend.color = Color.red;
+            spriteRend.sprite = player2;
             gameObject.tag = "Player2";
 
         }
