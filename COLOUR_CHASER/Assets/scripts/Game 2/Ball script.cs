@@ -18,6 +18,7 @@ public class Ballscript : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRnd;
     public Animator animator;
+    public GameObject Player1Wins, Player2Wins;
     private void Start()
     {
         OriginalPosition = transform.position;
@@ -79,7 +80,15 @@ public class Ballscript : MonoBehaviour
             spriteRnd.color = Color.white;
         }
 
-        
+        if (Player1Score == 0)
+        {
+            Player2Wins.SetActive(true);
+        }
+        else if (Player2Score == 0)
+        {
+            Player1Wins.SetActive(true);
+
+        }
     }
     
     IEnumerator ShakeCamera()

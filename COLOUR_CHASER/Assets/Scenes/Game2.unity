@@ -2031,6 +2031,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6323adf3b2a9be941b938006b7efda4f, type: 3}
+--- !u!1 &1258689279 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3731098056006071795, guid: 6323adf3b2a9be941b938006b7efda4f, type: 3}
+  m_PrefabInstance: {fileID: 1258689278}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1355551208 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1817123379127769988, guid: 2505407d354905643bbe78cf6d4105e1, type: 3}
@@ -2604,6 +2609,8 @@ MonoBehaviour:
   StartTimerText: {fileID: 374670884}
   inputManager: {fileID: 1355551208}
   animator: {fileID: 654824783}
+  Player1Wins: {fileID: 1765391611}
+  Player2Wins: {fileID: 1258689279}
 --- !u!1 &1753791771
 GameObject:
   m_ObjectHideFlags: 0
@@ -2769,6 +2776,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6323adf3b2a9be941b938006b7efda4f, type: 3}
+--- !u!1 &1765391611 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3731098056006071795, guid: 6323adf3b2a9be941b938006b7efda4f, type: 3}
+  m_PrefabInstance: {fileID: 1765391610}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2046590887 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2425178976215889608, guid: 6323adf3b2a9be941b938006b7efda4f, type: 3}
