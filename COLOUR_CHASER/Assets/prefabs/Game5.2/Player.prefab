@@ -356,8 +356,8 @@ MonoBehaviour:
     m_Bits: 8
   player1SpriteChild: {fileID: 1221944521074955424}
   player2SpriteChild: {fileID: 2842503846765727952}
-  player1Spawn: {x: -14, y: -4}
-  player2Spawn: {x: -14, y: -8}
+  player1Spawn: {x: -16.2, y: -8}
+  player2Spawn: {x: 11, y: -8}
 --- !u!1 &2842503846765727952
 GameObject:
   m_ObjectHideFlags: 0
