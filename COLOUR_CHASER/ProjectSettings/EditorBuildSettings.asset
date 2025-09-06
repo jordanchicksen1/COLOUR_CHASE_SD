@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlatformerEndScene.unity
     guid: 8c8022c4dd81b2e44b93cadcc9a2dc7b
+  - enabled: 1
+    path: Assets/Scenes/CarEndScene.unity
+    guid: 3ed573ba1f4856d41965941fc121c9f4
   m_configObjects: {}
