@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 #if UNITY_EDITOR
-using UnityEditor;
+
 #endif
 
 public class EndScene : MonoBehaviour
@@ -15,11 +15,11 @@ public class EndScene : MonoBehaviour
     [SerializeField] private GameObject openDoor;
 
     [Header("Assigned Player Tag")]
-    [SerializeField] private string assignedPlayerTag = "Player1"; // or "Player2"
+    [SerializeField] private string assignedPlayerTag = "Player1"; 
 
     [Header("Scene Settings")]
 #if UNITY_EDITOR
-    [SerializeField] private SceneAsset nextScene; // drag & drop in Inspector
+    [SerializeField] private SceneAsset nextScene; 
 #endif
     [SerializeField, HideInInspector] private string nextSceneName;
 
@@ -31,7 +31,6 @@ public class EndScene : MonoBehaviour
 
     private void Awake()
     {
-        // Reset static flags every time this scene is loaded
         player1Ready = false;
         player2Ready = false;
         sceneLoading = false;
