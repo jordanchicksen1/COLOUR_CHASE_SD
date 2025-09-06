@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class OilSlick : MonoBehaviour
 {
-    public float lifetime = 5f;
-    public float slowAmount = 0.5f;
-    public float slowDuration = 2f;
+    public float lifetime = 5f;       
+    public float slowAmount = 0.5f;    
+    public float slowDuration = 10f;  
 
     void Start()
     {
-        Destroy(gameObject, lifetime);
+        Destroy(gameObject, lifetime); 
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -22,11 +22,11 @@ public class OilSlick : MonoBehaviour
         }
     }
 
-    private System.Collections.IEnumerator SlowCar(CarController car)
+    private IEnumerator SlowCar(CarController car)
     {
         float originalAccel = car.acceleration;
-        car.acceleration *= slowAmount;
-        yield return new WaitForSeconds(slowDuration);
-        car.acceleration = originalAccel;
+        car.acceleration *= slowAmount;  
+        yield return new WaitForSeconds(slowDuration); 
+        car.acceleration = originalAccel; 
     }
 }
