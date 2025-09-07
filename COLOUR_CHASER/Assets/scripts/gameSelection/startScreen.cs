@@ -52,7 +52,7 @@ public class startScreen : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         sceneCam.backgroundColor = fifth;
         movingStuff.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         startButton.SetActive(true);
 
     }
