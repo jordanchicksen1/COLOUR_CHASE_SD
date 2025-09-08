@@ -20423,6 +20423,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4576908162484921387, guid: a5e68f54c561d8b468713564a5898045, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5301093808941333001, guid: a5e68f54c561d8b468713564a5898045, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6565794349570810484, guid: a5e68f54c561d8b468713564a5898045, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7675995278030333197, guid: a5e68f54c561d8b468713564a5898045, type: 3}
       propertyPath: m_Name
       value: soundEffects
