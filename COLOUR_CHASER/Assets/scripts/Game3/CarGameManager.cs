@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public enum GoalSide { GoalP1, GoalP2 }
@@ -20,13 +21,18 @@ public class CarGameManager : MonoBehaviour
     [SerializeField] private Vector2 kickoffPoint = Vector2.zero;
     [SerializeField] private float countdownTime = 3f;
 
+    [Header("Game Settings")]
+    [SerializeField] private int maxScore = 5;
+    [SerializeField] private string player1WinScene = "P1Car";
+    [SerializeField] private string player2WinScene = "P2Car";
+
     private bool roundActive = false;
     private int playersJoined = 0;
 
     private void Start()
     {
         if (ball) ball.simulated = false;
-        countdownText.text = "Waiting for Players...";
+        countdownText.text = "Waiting for Players";
     }
 
     public void RegisterPlayer()
@@ -45,6 +51,17 @@ public class CarGameManager : MonoBehaviour
 
         player1ScoreText.text = player1Score.ToString();
         player2ScoreText.text = player2Score.ToString();
+
+        if (player1Score >= maxScore)
+        {
+            SceneManager.LoadScene(player1WinScene);
+            return;
+        }
+        else if (player2Score >= maxScore)
+        {
+            SceneManager.LoadScene(player2WinScene);
+            return;
+        }
 
         StartCoroutine(StartCountdown());
     }
