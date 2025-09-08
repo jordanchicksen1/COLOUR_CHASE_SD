@@ -14,11 +14,15 @@ public class FruitManager : MonoBehaviour
     [SerializeField]private bool isHeld;
     public Vector2 OGPosotion;
     [SerializeField]
-    private bool Grape, Apple, Mellon;
+    private bool Pear, Apple, Banana;
+    private GameObject PointChekerGameObject;
+    private PointChecker PointCheckerScript;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        PointChekerGameObject = GameObject.FindGameObjectWithTag("PointManager");
+        PointCheckerScript = PointChekerGameObject.GetComponent<PointChecker>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,17 +35,29 @@ public class FruitManager : MonoBehaviour
         {
             SetConveyorMovement(Vector2.down, collision.transform.position.x);
         }
-        else if (collision.CompareTag("WatermellonBasket"))
+        else if (collision.CompareTag("PearBasket"))
         {
+            if (Pear)
+            {
+                PointCheckerScript.Points++;
+            }
             Destroy(gameObject);
         }
-        else if (collision.CompareTag("GrapeBasket"))
+        else if (collision.CompareTag("BananaBasket"))
         {
+            if (Banana)
+            {
+                PointCheckerScript.Points++;
+            }
             Destroy(gameObject);
 
         }
         else if (collision.CompareTag("AppleBasket"))
         {
+            if (Apple)
+            {
+                PointCheckerScript.Points++;
+            }
             Destroy(gameObject);
 
         }

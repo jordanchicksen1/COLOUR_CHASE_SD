@@ -138,9 +138,9 @@ MonoBehaviour:
   isOnConveyor: 0
   isHeld: 0
   OGPosotion: {x: 0, y: 0}
-  Grape: 0
+  Pear: 1
   Apple: 0
-  Mellon: 0
+  Banana: 0
 --- !u!50 &3650541474809335407
 Rigidbody2D:
   serializedVersion: 4

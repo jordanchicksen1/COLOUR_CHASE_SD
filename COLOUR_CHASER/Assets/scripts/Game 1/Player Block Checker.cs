@@ -11,7 +11,6 @@ public class PlayerBlockChecker : MonoBehaviour
     public RandomBlockAssigner assignerScript;
     [SerializeField]
     private float countdownTimer = 50;
-    float maxTime = 60;
     [SerializeField]
     private int TimeRemaining;
     public TextMeshProUGUI TimerText;

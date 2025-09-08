@@ -29,6 +29,9 @@ TagManager:
   - GrapeBasket
   - Front
   - Back
+  - PointManager
+  - PearBasket
+  - BananaBasket
   layers:
   - Default
   - TransparentFX
