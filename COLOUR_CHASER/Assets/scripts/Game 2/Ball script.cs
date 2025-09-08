@@ -19,12 +19,14 @@ public class Ballscript : MonoBehaviour
     private SpriteRenderer spriteRnd;
     public Animator animator;
     public GameObject Player1Wins, Player2Wins;
+    public GameObject MusicSource;
     private void Start()
     {
         OriginalPosition = transform.position;
         rb = GetComponent<Rigidbody2D>();
         spriteRnd = GetComponent<SpriteRenderer>();
         rb.isKinematic = true;
+        MusicSource.SetActive(true);
 
     }
 
@@ -83,10 +85,13 @@ public class Ballscript : MonoBehaviour
         if (Player1Score == 0)
         {
             Player2Wins.SetActive(true);
+            MusicSource.SetActive(false);
+
         }
         else if (Player2Score == 0)
         {
             Player1Wins.SetActive(true);
+            MusicSource.SetActive(false);
 
         }
     }
