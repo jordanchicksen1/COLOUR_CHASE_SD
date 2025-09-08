@@ -23,7 +23,21 @@ public class FruitSortController : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerInput playerInput;
     private GameObject currentlyHeldFruit;
+    private GameObject p1Position;
 
+    private void Start()
+    {
+        if (playerInput.playerIndex == 0)
+        {
+            p1Position = GameObject.FindGameObjectWithTag("p1");
+            transform.position = p1Position.transform.position;
+        }
+        else if (playerInput.playerIndex == 1)
+        {
+            p1Position = GameObject.FindGameObjectWithTag("p2");
+            transform.position = p1Position.transform.position;
+        }
+    }
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
