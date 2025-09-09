@@ -2078,7 +2078,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 30a5292752cfc944f9e37d1f07654278, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -7009,7 +7009,7 @@ GameObject:
   - component: {fileID: 1425588546}
   m_Layer: 0
   m_Name: scoreSound
-  m_TagString: Untagged
+  m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8051,7 +8051,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.73}
   m_EdgeRadius: 0
 --- !u!212 &1570558912
 SpriteRenderer:
@@ -9618,7 +9618,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.73}
   m_EdgeRadius: 0
 --- !u!212 &1805238358
 SpriteRenderer:
@@ -11402,7 +11402,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.73}
   m_EdgeRadius: 0
 --- !u!212 &2125614839
 SpriteRenderer:

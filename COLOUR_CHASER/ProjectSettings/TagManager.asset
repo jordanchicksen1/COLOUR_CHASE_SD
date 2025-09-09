@@ -37,6 +37,7 @@ TagManager:
   - p1
   - p2
   - GameOver
+  - Audio
   layers:
   - Default
   - TransparentFX

@@ -17,13 +17,17 @@ public class FruitManager : MonoBehaviour
     private bool Pear, Apple, Banana;
     private GameObject PointChekerGameObject;
     private PointChecker PointCheckerScript;
+    private GameObject Audio;
+    private AudioSource Basket;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         PointChekerGameObject = GameObject.FindGameObjectWithTag("PointManager");
         PointCheckerScript = PointChekerGameObject.GetComponent<PointChecker>();
-        
+        Audio = GameObject.FindGameObjectWithTag("Audio");
+        Basket = Audio.GetComponent<AudioSource>();
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -40,6 +44,7 @@ public class FruitManager : MonoBehaviour
         {
             if (Pear)
             {
+                Basket.Play();
                 PointCheckerScript.Points++;
             }
             Destroy(gameObject);
@@ -48,7 +53,9 @@ public class FruitManager : MonoBehaviour
         {
             if (Banana)
             {
+                Basket.Play();
                 PointCheckerScript.Points++;
+
             }
             Destroy(gameObject);
 
@@ -57,13 +64,16 @@ public class FruitManager : MonoBehaviour
         {
             if (Apple)
             {
+                Basket.Play();
                 PointCheckerScript.Points++;
+
             }
             Destroy(gameObject);
 
         }
     }
 
+    
 
     private void OnTriggerExit2D(Collider2D collision)
     {

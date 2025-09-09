@@ -49,7 +49,6 @@ public class PlayerController2D : MonoBehaviour
         {
             //  rb.AddForce(Vector2.up * 50f, ForceMode2D.Impulse);
             rb.velocity = new Vector2(rb.velocity.x, 5);
-            audioSource.Play();
             Debug.Log("Jump");
         }
     }
