@@ -876,7 +876,7 @@ MonoBehaviour:
 
     JUMP - BUTTON SOUTH
 
-    DASH - BUTTON EAST'
+    DASH - RIGHT TRIGGER'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d7af8747841c19045a70186f259456ff, type: 2}
   m_sharedMaterial: {fileID: 5641837869164296113, guid: d7af8747841c19045a70186f259456ff, type: 2}
