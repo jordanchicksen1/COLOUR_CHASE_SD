@@ -280,5 +280,5 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  player1: {fileID: 21300000, guid: 14a842398a806e04b9df550e5dd9e281, type: 3}
-  player2: {fileID: 21300000, guid: eba1514479deb8f4a92ac97ea6a17559, type: 3}
+  player1: {fileID: 21300000, guid: 7bcb048885509a448977610c641063ea, type: 3}
+  player2: {fileID: 21300000, guid: baf91bba324070c458c9732f447563f4, type: 3}
