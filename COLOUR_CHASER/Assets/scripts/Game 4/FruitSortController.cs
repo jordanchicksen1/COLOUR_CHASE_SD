@@ -24,6 +24,7 @@ public class FruitSortController : MonoBehaviour
     private PlayerInput playerInput;
     private GameObject currentlyHeldFruit;
     private GameObject p1Position;
+    public Sprite[] sprites;
 
     private void Start()
     {
@@ -31,11 +32,15 @@ public class FruitSortController : MonoBehaviour
         {
             p1Position = GameObject.FindGameObjectWithTag("p1");
             transform.position = p1Position.transform.position;
+            SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+            sprite.sprite = sprites[0];
         }
         else if (playerInput.playerIndex == 1)
         {
             p1Position = GameObject.FindGameObjectWithTag("p2");
             transform.position = p1Position.transform.position;
+            SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+            sprite.sprite = sprites[1];
         }
     }
     void Awake()

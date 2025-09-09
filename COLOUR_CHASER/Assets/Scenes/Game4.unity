@@ -1113,7 +1113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e7e5dccadac6ea45a6f65b87ada947c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTimer: 10
+  countdownTimer: 60
   TimeRemaining: 0
   TimerText: {fileID: 1875419672}
   Points: 0
