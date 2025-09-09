@@ -23,6 +23,7 @@ public class FruitManager : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         PointChekerGameObject = GameObject.FindGameObjectWithTag("PointManager");
         PointCheckerScript = PointChekerGameObject.GetComponent<PointChecker>();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -106,10 +107,12 @@ public class FruitManager : MonoBehaviour
 
         if (isOnConveyor)
         {
-            rb.velocity = conveyorDirection * moveSpeed * Time.deltaTime;
 
-            Vector2 currentPos = transform.position;
-            transform.position = new Vector2(conveyorXPosition, currentPos.y);
+                rb.velocity = conveyorDirection * moveSpeed * Time.deltaTime;
+
+                Vector2 currentPos = transform.position;
+                transform.position = new Vector2(conveyorXPosition, currentPos.y);
+            
         }
         else if (!isHeld)
         {

@@ -13,7 +13,11 @@ public class PointChecker : MonoBehaviour
     [SerializeField]
     public int Points;
     [SerializeField]
-    public TextMeshProUGUI PointText1, PointText2;
+    public TextMeshProUGUI PointText1, PointText2, FinalScore;
+    public GameObject GameOverPanel;
+    public GameObject FruitSpawner;
+    GameObject[] Fruit;
+
 
     public void Update()
     {
@@ -24,9 +28,19 @@ public class PointChecker : MonoBehaviour
             TimeRemaining = Mathf.CeilToInt(Mathf.Max(0f, countdownTimer));
             TimerText.text = TimeRemaining.ToString();
         }
+        else if (TimeRemaining == 0)
+        {
+            GameOverPanel.SetActive(true);
+            FruitSpawner.SetActive(false);
+            Fruit = GameObject.FindGameObjectsWithTag("Apple");
+            foreach (GameObject obj in Fruit)
+            {
+                Destroy(obj);
+            }
+        }
 
         PointText1.text = Points.ToString();
         PointText2.text = Points.ToString();
-
+        FinalScore.text = Points.ToString();
     }
 }
