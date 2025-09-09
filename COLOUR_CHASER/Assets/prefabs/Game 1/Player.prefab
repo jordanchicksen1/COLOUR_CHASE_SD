@@ -31,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.32090178, y: -1.0393803, z: -1}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a674720496c1ed248a5b7ea3e22a11fd, type: 3}
-  m_Color: {r: 0, g: 0.15686274, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 14a842398a806e04b9df550e5dd9e281, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -133,6 +133,34 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9601ec2a-3ba5-4005-85ce-a84e2989cf08
     m_ActionName: Player/Jump[/DualShock4GamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ee5dcffc-f473-4234-9fb8-730c71f31c1e
+    m_ActionName: Player/Dash[/DualSenseGamepadHID1/rightTrigger,/DualSenseGamepadHID/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c0aa90f6-9517-4f21-a7b7-a24fa49d4332
+    m_ActionName: Player/Drive[/DualSenseGamepadHID1/rightTrigger,/DualSenseGamepadHID/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4020df32-cd80-44b2-9e5d-043a03b3b89c
+    m_ActionName: Player/Reverse[/DualSenseGamepadHID1/leftTrigger,/DualSenseGamepadHID/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 70c6dbdd-41c8-4b5c-ae88-7e65b6fdd4da
+    m_ActionName: Player/Rotate[/DualSenseGamepadHID1/leftStick/left,/DualSenseGamepadHID/leftStick/left,/DualSenseGamepadHID1/leftStick/right,/DualSenseGamepadHID/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 796869d3-d0d2-47ef-96dd-c401d064f7fd
+    m_ActionName: Player/LookAround[/DualSenseGamepadHID1/rightStick/left,/DualSenseGamepadHID/rightStick/left,/DualSenseGamepadHID1/rightStick/right,/DualSenseGamepadHID/rightStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 407818ed-1ebd-44bf-b72a-74b2c349c2b4
+    m_ActionName: Player/Ability[/DualSenseGamepadHID1/buttonEast,/DualSenseGamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c33329a1-3693-41a0-a0a4-d327fcb4bbcd
+    m_ActionName: Player/Grab[/DualSenseGamepadHID1/rightTrigger,/DualSenseGamepadHID/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -151,6 +179,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  sprites:
+  - {fileID: 21300000, guid: 14a842398a806e04b9df550e5dd9e281, type: 3}
+  - {fileID: 21300000, guid: eba1514479deb8f4a92ac97ea6a17559, type: 3}
 --- !u!50 &845650054344624151
 Rigidbody2D:
   serializedVersion: 4
@@ -177,7 +208,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &7367635034963992810
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -210,16 +241,16 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.067338765}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.11, y: 0.11}
+    oldSize: {x: 2.5300422, y: 1.8962963}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15, y: 0.15}
+  m_Size: {x: 1, y: 1.6862146}
   m_EdgeRadius: 0

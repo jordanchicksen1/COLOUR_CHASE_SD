@@ -24,9 +24,8 @@ public class OilSlick : MonoBehaviour
 
     private IEnumerator SlowCar(CarController car)
     {
-        float originalAccel = car.acceleration;
         car.acceleration *= slowAmount;  
         yield return new WaitForSeconds(slowDuration); 
-        car.acceleration = originalAccel; 
+        car.acceleration /= slowAmount;
     }
 }

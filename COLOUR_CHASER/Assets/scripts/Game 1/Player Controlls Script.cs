@@ -10,6 +10,7 @@ public class PlayerController2D : MonoBehaviour
     private PlayerBlockChecker playerBlockCheckerScript;
     private GameObject BlockChecker;
     private PlayerInput playerInput;
+    public Sprite[] sprites;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,7 +21,18 @@ public class PlayerController2D : MonoBehaviour
     {
         BlockChecker = GameObject.FindGameObjectWithTag("BlockChecker");
         playerBlockCheckerScript = BlockChecker.GetComponent<PlayerBlockChecker>();
-    
+
+        if (playerInput.playerIndex == 0)
+        {
+            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+            spriteRend.sprite = sprites[playerInput.playerIndex];
+        }
+        else if (playerInput.playerIndex == 1)
+        {
+            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+            spriteRend.sprite = sprites[playerInput.playerIndex];
+        }
+
     }
 
     // Called by PlayerInput when "Move" action is triggered
