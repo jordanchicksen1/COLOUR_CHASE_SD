@@ -25,6 +25,7 @@ public class RandomBlockAssigner : MonoBehaviour
     public PlayerBlockChecker PlayerBlockCheckerScript;
     public PlayerInputManager playerInputManager;
     private bool GameStarted;
+    public AudioSource Counter, Colour;
     private void Start()
     {
         Blocks = GameObject.FindGameObjectsWithTag("Block");
@@ -94,17 +95,21 @@ public class RandomBlockAssigner : MonoBehaviour
 
         ChosenColour = RandomColour[Random.Range(0, RandomColour.Count)];
         ColourText.color = ChosenColour;
-
+        Colour.Play();
         yield return new WaitForSeconds(2);
         ChosenColourPanel.SetActive(false);
         TimerText.color = ChosenColour;
         TimerText.text = "3";
+        Counter.Play();
         yield return new WaitForSeconds(1);
         TimerText.text = "2";
+        Counter.Play();
         yield return new WaitForSeconds(1);
         TimerText.text = "1";
+        Counter.Play();
         yield return new WaitForSeconds(1);
         TimerText.text = "";
+        Counter.Play();
 
         AssignBlockCode();
         PlayerBlockCheckerScript.StartTimer();
