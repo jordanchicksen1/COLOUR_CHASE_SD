@@ -18,6 +18,7 @@ public class PlayerBlockChecker : MonoBehaviour
     public SpriteRenderer[] spriteRenderers;
     public GameObject GameOverPanel, WinPanel;
     public GameObject BGMusic;
+    private int Rounds;
     private void Update()
     {
         if (countdownTimer > 0)
@@ -55,6 +56,17 @@ public class PlayerBlockChecker : MonoBehaviour
                     {
                         Correctblock[i] = false;
                     }
+                   if (Rounds <5)
+                    {
+                        Rounds++;
+                    }
+                   else if (Rounds == 5)
+                    {
+                        WinPanel.SetActive(true);
+                        BGMusic.SetActive(false);
+
+                    }
+
                 }
                 else
                 {

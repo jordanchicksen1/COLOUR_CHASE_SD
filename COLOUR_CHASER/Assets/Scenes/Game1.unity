@@ -1806,7 +1806,7 @@ MonoBehaviour:
   - {fileID: 1127340100}
   - {fileID: 983738374}
   GameOverPanel: {fileID: 766944119}
-  WinPanel: {fileID: 0}
+  WinPanel: {fileID: 1023367423}
   BGMusic: {fileID: 441170040}
 --- !u!4 &412683468
 Transform:
@@ -5169,6 +5169,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1224396622}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1023367423 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3731098056006071795, guid: 6323adf3b2a9be941b938006b7efda4f, type: 3}
+  m_PrefabInstance: {fileID: 8842298652398954132}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1072699869
 GameObject:
   m_ObjectHideFlags: 0
@@ -9347,6 +9352,10 @@ PrefabInstance:
     - target: {fileID: 3731098056006071795, guid: 6323adf3b2a9be941b938006b7efda4f, type: 3}
       propertyPath: m_Name
       value: youWonScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 3731098056006071795, guid: 6323adf3b2a9be941b938006b7efda4f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
