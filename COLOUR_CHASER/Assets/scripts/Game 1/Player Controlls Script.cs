@@ -11,6 +11,8 @@ public class PlayerController2D : MonoBehaviour
     private GameObject BlockChecker;
     private PlayerInput playerInput;
     public Sprite[] sprites;
+    public AudioSource audioSource;
+    
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -21,7 +23,7 @@ public class PlayerController2D : MonoBehaviour
     {
         BlockChecker = GameObject.FindGameObjectWithTag("BlockChecker");
         playerBlockCheckerScript = BlockChecker.GetComponent<PlayerBlockChecker>();
-
+        audioSource = GetComponent<AudioSource>();
         if (playerInput.playerIndex == 0)
         {
             SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
@@ -47,8 +49,8 @@ public class PlayerController2D : MonoBehaviour
         {
             //  rb.AddForce(Vector2.up * 50f, ForceMode2D.Impulse);
             rb.velocity = new Vector2(rb.velocity.x, 5);
+            audioSource.Play();
             Debug.Log("Jump");
-
         }
     }
 

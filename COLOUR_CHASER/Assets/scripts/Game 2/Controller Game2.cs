@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 OGposition;
     [SerializeField]
     private Sprite player1, player2;
-
+    private AudioSource audioSource;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         Boxc = GetComponent<BoxCollider2D>();
 
         OGposition = transform.position;
+        audioSource = GetComponent<AudioSource>();
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -94,6 +95,8 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        audioSource.Play();
+
         Debug.Log("Jump!");
     }
 

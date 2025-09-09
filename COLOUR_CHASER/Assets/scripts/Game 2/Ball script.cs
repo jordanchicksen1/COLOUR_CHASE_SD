@@ -20,6 +20,7 @@ public class Ballscript : MonoBehaviour
     public Animator animator;
     public GameObject Player1Wins, Player2Wins;
     public GameObject MusicSource;
+    public AudioSource Score;
     private void Start()
     {
         OriginalPosition = transform.position;
@@ -51,7 +52,7 @@ public class Ballscript : MonoBehaviour
                 Debug.Log("Last player was player 1");
                 StartCoroutine(StartGame());
                 StartCoroutine(ShakeCamera());
-
+                Score.Play();
             }
             else if (spriteRnd.color == Color.blue)
             {
@@ -60,9 +61,10 @@ public class Ballscript : MonoBehaviour
 
                 StartCoroutine(StartGame());
                 StartCoroutine(ShakeCamera());
+                Score.Play();
 
             }
-            
+
         }
     }
 
