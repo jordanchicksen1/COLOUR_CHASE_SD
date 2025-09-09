@@ -37,6 +37,15 @@ public class CarController : MonoBehaviour
     private GameObject abilityIconInstance;
     [SerializeField]
     private Sprite Player1, Player2;
+
+
+    [Header("Ability Audio")]
+    [SerializeField] private AudioClip tireSound;
+    [SerializeField] private AudioClip oilSound;
+    [SerializeField] private AudioClip shockwaveSound;
+    [SerializeField] private float abilityVolume = 1f;
+    [SerializeField] private AudioClip speedSound;
+    private bool isDrivingSoundPlaying = false;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -45,6 +54,7 @@ public class CarController : MonoBehaviour
 
     private void Start()
     {
+         
         if (playerInput.playerIndex == 0)
         {
             GetComponent<SpriteRenderer>().sprite = Player1;
@@ -78,6 +88,15 @@ public class CarController : MonoBehaviour
         rb.MoveRotation(rb.rotation + rotationAmount);
 
         rb.velocity = rb.velocity * (1 - drag * Time.fixedDeltaTime);
+
+        if (Mathf.Abs(moveValue) > 0.1f) 
+        {
+           
+        }
+        else
+        {
+           
+        }
     }
 
     private void Update()
@@ -125,22 +144,35 @@ public class CarController : MonoBehaviour
                 prefab = Resources.Load<GameObject>("Abilities/TirePrefab");
                 if (prefab != null)
                     Instantiate(prefab, Position1.transform.position, transform.rotation);
+
+                if (tireSound != null)
+                    AudioSource.PlayClipAtPoint(tireSound, transform.position, abilityVolume);
                 break;
 
             case "Oil":
                 prefab = Resources.Load<GameObject>("Abilities/OilPrefab");
                 if (prefab != null)
                     Instantiate(prefab, Position2.transform.position, Quaternion.identity);
+
+                if (oilSound != null)
+                    AudioSource.PlayClipAtPoint(oilSound, transform.position, abilityVolume);
                 break;
+
 
             case "Speed":
                 StartCoroutine(SpeedBoost());
+
+                if (speedSound != null)
+                    AudioSource.PlayClipAtPoint(speedSound, transform.position, abilityVolume);
                 break;
 
             case "Shockwave":
                 prefab = Resources.Load<GameObject>("Abilities/ShockwavePrefab");
                 if (prefab != null)
                     Instantiate(prefab, transform.position, Quaternion.identity);
+
+                if (shockwaveSound != null)
+                    AudioSource.PlayClipAtPoint(shockwaveSound, transform.position, abilityVolume);
                 break;
         }
 
@@ -153,6 +185,7 @@ public class CarController : MonoBehaviour
         currentAbility = "";
         abilityReady = false;
     }
+
 
     private IEnumerator SpeedBoost()
     {

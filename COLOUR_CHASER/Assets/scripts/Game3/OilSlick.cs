@@ -6,7 +6,11 @@ public class OilSlick : MonoBehaviour
 {
     public float lifetime = 5f;       
     public float slowAmount = 0.5f;    
-    public float slowDuration = 10f;  
+    public float slowDuration = 10f;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip oilSound;
+    [SerializeField] private float volume = 10f;
 
     void Start()
     {
