@@ -22,31 +22,33 @@ public class PlatformCharacterController : MonoBehaviour
     private bool isDashing;
     private Vector2 OGposition;
 
-    // 🔹 Children with different sprites
     [Header("Sprite Children")]
     [SerializeField] private GameObject player1SpriteChild;
     [SerializeField] private GameObject player2SpriteChild;
 
     private SpriteRenderer activeSpriteRend;
 
-    // 🔹 Editable spawn positions
     [Header("Spawn Positions (Editable)")]
     [SerializeField] private Vector2 player1Spawn = new Vector2(-5f, 0f);
     [SerializeField] private Vector2 player2Spawn = new Vector2(5f, 0f);
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private float jumpVolume = 1f;
+    private AudioSource audioSource;   
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
     {
-        // Ensure both are disabled first
         player1SpriteChild.SetActive(false);
         player2SpriteChild.SetActive(false);
 
-        // Enable correct one based on player index + set spawn position
         if (playerInput.playerIndex == 0)
         {
             player1SpriteChild.SetActive(true);
@@ -86,14 +88,13 @@ public class PlatformCharacterController : MonoBehaviour
     {
         CheckGrounded();
 
-        // 🔹 Flip the active sprite only
         if (moveInput.x > 0.1f)
         {
-            activeSpriteRend.flipX = false; // facing right
+            activeSpriteRend.flipX = false; 
         }
         else if (moveInput.x < -0.1f)
         {
-            activeSpriteRend.flipX = true; // facing left
+            activeSpriteRend.flipX = true;
         }
     }
 
@@ -116,6 +117,11 @@ public class PlatformCharacterController : MonoBehaviour
     void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+
+        if (jumpSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(jumpSound, jumpVolume);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

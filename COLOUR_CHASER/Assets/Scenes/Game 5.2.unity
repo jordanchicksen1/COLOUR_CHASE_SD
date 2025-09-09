@@ -201,6 +201,8 @@ MonoBehaviour:
   reactsToPlayer1: 1
   reactsToPlayer2: 1
   targetPlatform: {fileID: 2097538190}
+  triggerSound: {fileID: 8300000, guid: 4404775ff658ea84b9168a97a09d6ea0, type: 3}
+  soundVolume: 1
 --- !u!212 &32616291
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -359,6 +361,8 @@ MonoBehaviour:
   reactsToPlayer1: 1
   reactsToPlayer2: 0
   objectToDelete: {fileID: 528167761}
+  triggerSound: {fileID: 8300000, guid: 4404775ff658ea84b9168a97a09d6ea0, type: 3}
+  soundVolume: 1
 --- !u!61 &251495687
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20478,6 +20482,8 @@ MonoBehaviour:
   reactsToPlayer1: 1
   reactsToPlayer2: 0
   objectToDelete: {fileID: 1813504075}
+  triggerSound: {fileID: 8300000, guid: 4404775ff658ea84b9168a97a09d6ea0, type: 3}
+  soundVolume: 1
 --- !u!61 &765464620
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20708,6 +20714,8 @@ MonoBehaviour:
   reactsToPlayer1: 1
   reactsToPlayer2: 1
   targetPlatform: {fileID: 1048869265}
+  triggerSound: {fileID: 8300000, guid: 4404775ff658ea84b9168a97a09d6ea0, type: 3}
+  soundVolume: 1
 --- !u!212 &846277251
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20854,6 +20862,8 @@ MonoBehaviour:
   reactsToPlayer1: 1
   reactsToPlayer2: 1
   targetPlatform: {fileID: 2097538190}
+  triggerSound: {fileID: 8300000, guid: 4404775ff658ea84b9168a97a09d6ea0, type: 3}
+  soundVolume: 1
 --- !u!212 &905751289
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21742,6 +21752,8 @@ MonoBehaviour:
   reactsToPlayer1: 0
   reactsToPlayer2: 1
   objectToDelete: {fileID: 1048712498}
+  triggerSound: {fileID: 8300000, guid: 4404775ff658ea84b9168a97a09d6ea0, type: 3}
+  soundVolume: 1
 --- !u!212 &1555397198
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21940,6 +21952,8 @@ MonoBehaviour:
   reactsToPlayer1: 0
   reactsToPlayer2: 1
   objectToDelete: {fileID: 646137965}
+  triggerSound: {fileID: 8300000, guid: 4404775ff658ea84b9168a97a09d6ea0, type: 3}
+  soundVolume: 1
 --- !u!4 &1570483006 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 853641582878187577, guid: 054668a91d4febb4f82887c14762dc60, type: 3}
@@ -22410,6 +22424,8 @@ MonoBehaviour:
   reactsToPlayer1: 1
   reactsToPlayer2: 1
   targetPlatform: {fileID: 1048869265}
+  triggerSound: {fileID: 8300000, guid: 4404775ff658ea84b9168a97a09d6ea0, type: 3}
+  soundVolume: 1
 --- !u!212 &1961210268
 SpriteRenderer:
   m_ObjectHideFlags: 0

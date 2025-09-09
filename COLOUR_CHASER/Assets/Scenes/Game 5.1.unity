@@ -23259,6 +23259,8 @@ MonoBehaviour:
   reactsToPlayer1: 1
   reactsToPlayer2: 1
   objectToDelete: {fileID: 252019009}
+  triggerSound: {fileID: 8300000, guid: 4404775ff658ea84b9168a97a09d6ea0, type: 3}
+  soundVolume: 1
 --- !u!212 &1619893281
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23391,6 +23393,8 @@ MonoBehaviour:
   reactsToPlayer1: 1
   reactsToPlayer2: 1
   targetPlatform: {fileID: 1049224582}
+  triggerSound: {fileID: 8300000, guid: 4404775ff658ea84b9168a97a09d6ea0, type: 3}
+  soundVolume: 1
 --- !u!61 &1694148846
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23598,6 +23602,8 @@ MonoBehaviour:
   reactsToPlayer1: 1
   reactsToPlayer2: 1
   targetPlatform: {fileID: 1049224582}
+  triggerSound: {fileID: 8300000, guid: 4404775ff658ea84b9168a97a09d6ea0, type: 3}
+  soundVolume: 1
 --- !u!61 &1809456574
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24017,6 +24023,8 @@ MonoBehaviour:
   reactsToPlayer1: 0
   reactsToPlayer2: 1
   objectToDelete: {fileID: 678689635}
+  triggerSound: {fileID: 8300000, guid: 4404775ff658ea84b9168a97a09d6ea0, type: 3}
+  soundVolume: 1
 --- !u!61 &2094704574
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24164,6 +24172,8 @@ MonoBehaviour:
   reactsToPlayer1: 1
   reactsToPlayer2: 1
   targetPlatform: {fileID: 1408296438}
+  triggerSound: {fileID: 8300000, guid: 4404775ff658ea84b9168a97a09d6ea0, type: 3}
+  soundVolume: 1
 --- !u!114 &2097733002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24447,6 +24457,8 @@ MonoBehaviour:
   reactsToPlayer1: 1
   reactsToPlayer2: 1
   targetPlatform: {fileID: 1408296438}
+  triggerSound: {fileID: 8300000, guid: 4404775ff658ea84b9168a97a09d6ea0, type: 3}
+  soundVolume: 1
 --- !u!1001 &1613499652618783235
 PrefabInstance:
   m_ObjectHideFlags: 0
