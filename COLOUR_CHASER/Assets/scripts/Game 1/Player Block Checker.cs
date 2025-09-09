@@ -17,6 +17,7 @@ public class PlayerBlockChecker : MonoBehaviour
     private bool CanCheckForGame;
     public SpriteRenderer[] spriteRenderers;
     public GameObject GameOverPanel, WinPanel;
+    public GameObject BGMusic;
     private void Update()
     {
         if (countdownTimer > 0)
@@ -58,6 +59,7 @@ public class PlayerBlockChecker : MonoBehaviour
                 else
                 {
                    GameOverPanel.SetActive(true);
+                    BGMusic.SetActive(false);
                 }
             }
         }

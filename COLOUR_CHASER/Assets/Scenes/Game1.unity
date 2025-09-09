@@ -1807,6 +1807,7 @@ MonoBehaviour:
   - {fileID: 983738374}
   GameOverPanel: {fileID: 766944119}
   WinPanel: {fileID: 0}
+  BGMusic: {fileID: 441170040}
 --- !u!4 &412683468
 Transform:
   m_ObjectHideFlags: 0

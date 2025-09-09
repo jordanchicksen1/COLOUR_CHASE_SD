@@ -17,7 +17,7 @@ public class PointChecker : MonoBehaviour
     public GameObject GameOverPanel;
     public GameObject FruitSpawner;
     GameObject[] Fruit;
-
+    public GameObject BGMusic;
 
     public void Update()
     {
@@ -37,6 +37,7 @@ public class PointChecker : MonoBehaviour
             {
                 Destroy(obj);
             }
+            BGMusic.SetActive(false);
         }
 
         PointText1.text = Points.ToString();

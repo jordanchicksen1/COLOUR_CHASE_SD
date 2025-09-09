@@ -1122,6 +1122,7 @@ MonoBehaviour:
   FinalScore: {fileID: 1613411646}
   GameOverPanel: {fileID: 1785946588}
   FruitSpawner: {fileID: 693347914}
+  BGMusic: {fileID: 393991534}
 --- !u!4 &246594479
 Transform:
   m_ObjectHideFlags: 0
