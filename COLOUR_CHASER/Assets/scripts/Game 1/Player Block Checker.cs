@@ -51,7 +51,6 @@ public class PlayerBlockChecker : MonoBehaviour
                 CanCheckForGame = false;
                 if (Correctblock.All(x => x))
                 {
-                    StartCoroutine(assignerScript.AssignBlocks());
                     for (int i = 0; i < 2; i++)
                     {
                         Correctblock[i] = false;
@@ -59,8 +58,10 @@ public class PlayerBlockChecker : MonoBehaviour
                    if (Rounds <5)
                     {
                         Rounds++;
+                        StartCoroutine(assignerScript.AssignBlocks());
+
                     }
-                   else if (Rounds == 5)
+                    else if (Rounds == 5)
                     {
                         WinPanel.SetActive(true);
                         BGMusic.SetActive(false);
