@@ -177,6 +177,11 @@ public class gameSelector : MonoBehaviour
         clickSFX.Play();
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     public void PlayGame1()
     {
         SceneManager.LoadScene("Game1");
