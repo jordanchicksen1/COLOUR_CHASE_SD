@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBlockChecker : MonoBehaviour
 {
@@ -63,16 +64,14 @@ public class PlayerBlockChecker : MonoBehaviour
                     }
                     else if (Rounds == 5)
                     {
-                        WinPanel.SetActive(true);
-                        BGMusic.SetActive(false);
 
+                        SceneManager.LoadScene("WonGame1");
                     }
 
                 }
                 else
                 {
-                   GameOverPanel.SetActive(true);
-                    BGMusic.SetActive(false);
+                    SceneManager.LoadScene("LostGame1");
                 }
             }
         }

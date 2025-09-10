@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 public class uiButtons : MonoBehaviour
 {
     public AudioSource buttonSound;
+
+    public void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     public void BackToGameSelection()
     {
         StartCoroutine(GameSelection());
@@ -14,6 +21,11 @@ public class uiButtons : MonoBehaviour
     public void Retry()
     {
         StartCoroutine(RetryGame());
+    }
+    
+    public void RetryGame1()
+    {
+        StartCoroutine(RedoGame1());
     }
 
    public IEnumerator GameSelection()
@@ -31,6 +43,14 @@ public class uiButtons : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         string GameScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(GameScene);
+    }
+
+    public IEnumerator RedoGame1()
+    {
+        yield return new WaitForSeconds(0f);
+        buttonSound.Play();
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene("Game1");
     }
 
 

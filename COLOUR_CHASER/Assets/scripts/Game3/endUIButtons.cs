@@ -6,6 +6,12 @@ using UnityEngine.SceneManagement;
 public class endUIButtons : MonoBehaviour
 {
     public AudioSource buttonSound;
+
+    public void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     public void BackToGameSelection()
     {
         StartCoroutine(GameSelection());

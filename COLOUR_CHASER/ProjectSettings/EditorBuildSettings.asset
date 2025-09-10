@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Game1.unity
     guid: 22c67c4fdd3949349a9a8db8bc62c5ed
   - enabled: 1
+    path: Assets/Scenes/WonGame1.unity
+    guid: fc49ce6eb6c79f348a95a46dc9b990d3
+  - enabled: 1
+    path: Assets/Scenes/LostGame1.unity
+    guid: aba337249081e4640826ff4a657e338e
+  - enabled: 1
     path: Assets/Scenes/Game2.unity
     guid: 0a7de8ebbcebf73428889165b2f5d477
   - enabled: 1
