@@ -36,6 +36,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Game4.unity
     guid: 303b0bccd819f3a47ae654300580bdcb
   - enabled: 1
+    path: Assets/Scenes/FruitGameEnd.unity
+    guid: 34e92bdc4a8aa8643916874bfae3d3d5
+  - enabled: 1
     path: Assets/Scenes/Game5.unity
     guid: 2c99905c8b7297a46bf0449fc138fb14
   - enabled: 1

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PointChecker : MonoBehaviour
 {
@@ -31,7 +32,8 @@ public class PointChecker : MonoBehaviour
         else if (TimeRemaining == 0)
         {
             //here
-            GameOverPanel.SetActive(true);
+            GameData.playerScore = Points;
+
             FruitSpawner.SetActive(false);
             Fruit = GameObject.FindGameObjectsWithTag("Apple");
             foreach (GameObject obj in Fruit)
@@ -39,6 +41,7 @@ public class PointChecker : MonoBehaviour
                 Destroy(obj);
             }
             BGMusic.SetActive(false);
+            SceneManager.LoadScene("FruitGameEnd");
         }
 
         PointText1.text = Points.ToString();
