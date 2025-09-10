@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class startScreen : MonoBehaviour
 {
@@ -23,6 +24,14 @@ public class startScreen : MonoBehaviour
     public void Start()
     {
         StartCoroutine(StartColours());
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void SetSelected(GameObject newSelected)
+    {
+        EventSystem.current.SetSelectedGameObject(null); // clear old selection
+        EventSystem.current.SetSelectedGameObject(newSelected); // set new one
     }
 
     public void StartButton()
@@ -53,6 +62,7 @@ public class startScreen : MonoBehaviour
         sceneCam.backgroundColor = fifth;
         movingStuff.SetActive(true);
         yield return new WaitForSeconds(1f);
+        SetSelected(startButton);
         startButton.SetActive(true);
 
     }
