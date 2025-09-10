@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class gameSelector : MonoBehaviour
 {
@@ -12,7 +13,26 @@ public class gameSelector : MonoBehaviour
     public GameObject game4Page;
     public GameObject game5Page;
 
+    //button selection stuff
+    public GameObject defaultGamesGroupButton;
+    public GameObject defaultGame1Button;
+    public GameObject defaultGame2Button;
+    public GameObject defaultGame3Button;
+    public GameObject defaultGame4Button;
+    public GameObject defaultGame5Button;
+
     public AudioSource clickSFX;
+
+    public void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+    private void SetSelected(GameObject newSelected)
+    {
+        EventSystem.current.SetSelectedGameObject(null); // clear old selection
+        EventSystem.current.SetSelectedGameObject(newSelected); // set new one
+    }
     public void Game1()
     {
         gamesGroup.SetActive(false);
@@ -22,6 +42,8 @@ public class gameSelector : MonoBehaviour
         game4Page.SetActive(false);
         game5Page.SetActive(false);
         clickSFX.Play();
+
+        SetSelected(defaultGame1Button);
     }
     public void Game2() 
     {
@@ -32,6 +54,8 @@ public class gameSelector : MonoBehaviour
         game4Page.SetActive(false);
         game5Page.SetActive(false);
         clickSFX.Play();
+
+        SetSelected(defaultGame2Button);
     }
     public void Game3() 
     {
@@ -42,6 +66,8 @@ public class gameSelector : MonoBehaviour
         game4Page.SetActive(false);
         game5Page.SetActive(false);
         clickSFX.Play();
+
+        SetSelected(defaultGame3Button);
     }
     public void Game4() 
     {
@@ -52,6 +78,8 @@ public class gameSelector : MonoBehaviour
         game4Page.SetActive(true);
         game5Page.SetActive(false);
         clickSFX.Play();
+
+        SetSelected(defaultGame4Button);
     }
     public void Game5() 
     {
@@ -62,6 +90,8 @@ public class gameSelector : MonoBehaviour
         game4Page.SetActive(false);
         game5Page.SetActive(true);
         clickSFX.Play();
+
+        SetSelected(defaultGame5Button);
     }
 
     public void ExitPage()
@@ -73,6 +103,8 @@ public class gameSelector : MonoBehaviour
         game4Page.SetActive(false);
         game5Page.SetActive(false);
         clickSFX.Play();
+        
+        SetSelected(defaultGamesGroupButton);
     }
 
     public void nextGame1()
@@ -84,6 +116,7 @@ public class gameSelector : MonoBehaviour
         game4Page.SetActive(false);
         game5Page.SetActive(false);
         clickSFX.Play();
+        SetSelected(defaultGame2Button);
     }
     public void nextGame2() 
     {
@@ -94,6 +127,7 @@ public class gameSelector : MonoBehaviour
         game4Page.SetActive(false);
         game5Page.SetActive(false);
         clickSFX.Play();
+        SetSelected(defaultGame3Button);
     }
     public void nextGame3() 
     {
@@ -104,6 +138,7 @@ public class gameSelector : MonoBehaviour
         game4Page.SetActive(true);
         game5Page.SetActive(false);
         clickSFX.Play();
+        SetSelected(defaultGame4Button);
     }
     public void nextGame4() 
     {
@@ -113,7 +148,8 @@ public class gameSelector : MonoBehaviour
         game3Page.SetActive(false);
         game4Page.SetActive(false);
         game5Page.SetActive(true);
-        clickSFX.Play();    
+        clickSFX.Play();   
+        SetSelected(defaultGame5Button);
     }
     public void nextGame5() 
     {
@@ -124,6 +160,7 @@ public class gameSelector : MonoBehaviour
         game4Page.SetActive(false);
         game5Page.SetActive(false);
         clickSFX.Play();
+        SetSelected(defaultGame1Button);
     }
 
     public void prevGame1()
@@ -135,6 +172,7 @@ public class gameSelector : MonoBehaviour
         game4Page.SetActive(false);
         game5Page.SetActive(true);
         clickSFX.Play();
+        SetSelected(defaultGame5Button);
     }
     public void prevGame2() 
     {
@@ -145,6 +183,7 @@ public class gameSelector : MonoBehaviour
         game4Page.SetActive(false);
         game5Page.SetActive(false);
         clickSFX.Play();
+        SetSelected(defaultGame1Button);
     }
     public void prevGame3() 
     {
@@ -155,6 +194,7 @@ public class gameSelector : MonoBehaviour
         game4Page.SetActive(false);
         game5Page.SetActive(false);
         clickSFX.Play();
+        SetSelected(defaultGame2Button);
     }
     public void prevGame4() 
     {
@@ -165,6 +205,7 @@ public class gameSelector : MonoBehaviour
         game4Page.SetActive(false);
         game5Page.SetActive(false);
         clickSFX.Play();
+        SetSelected(defaultGame3Button);
     }
     public void prevGame5() 
     {
@@ -175,6 +216,7 @@ public class gameSelector : MonoBehaviour
         game4Page.SetActive(true);
         game5Page.SetActive(false);
         clickSFX.Play();
+        SetSelected(defaultGame4Button);
     }
 
     public void QuitGame()
