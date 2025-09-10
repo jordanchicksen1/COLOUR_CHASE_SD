@@ -29,6 +29,8 @@ public class CarGameManager : MonoBehaviour
     private bool roundActive = false;
     private int playersJoined = 0;
 
+    public AudioSource goalSound;
+
     private void Start()
     {
         if (ball) ball.simulated = false;
@@ -48,7 +50,7 @@ public class CarGameManager : MonoBehaviour
     {
         if (side == GoalSide.GoalP1) player2Score++;
         else player1Score++;
-
+        goalSound.Play();
         player1ScoreText.text = player1Score.ToString();
         player2ScoreText.text = player2Score.ToString();
 

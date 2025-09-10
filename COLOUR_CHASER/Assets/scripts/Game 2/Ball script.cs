@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Ballscript : MonoBehaviour
 {
@@ -86,14 +87,12 @@ public class Ballscript : MonoBehaviour
 
         if (Player1Score == 0)
         {
-            Player2Wins.SetActive(true);
-            MusicSource.SetActive(false);
+            StartCoroutine(Player2Won());
 
         }
         else if (Player2Score == 0)
         {
-            Player1Wins.SetActive(true);
-            MusicSource.SetActive(false);
+            StartCoroutine(Player1Won());
 
         }
     }
@@ -124,6 +123,22 @@ public class Ballscript : MonoBehaviour
         yield return new WaitForSeconds(1);
         StartTimerText.text = "";
         rb.isKinematic = false;
+    }
+
+    public IEnumerator Player1Won()
+    {
+        yield return new WaitForSeconds(0.5f);
+        
+        SceneManager.LoadScene("P1Balloon");
+       
+    }
+
+    public IEnumerator Player2Won()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        SceneManager.LoadScene("P2Balloon");
+
     }
 
 }

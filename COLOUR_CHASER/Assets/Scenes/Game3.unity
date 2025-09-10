@@ -226,7 +226,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!1 &133265509
 GameObject:
@@ -2190,7 +2190,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: aa26720dae272b7459342da51cfb70a7, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.015
+  m_Volume: 0.025
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3971,6 +3971,7 @@ MonoBehaviour:
   maxScore: 5
   player1WinScene: P1Car
   player2WinScene: P2Car
+  goalSound: {fileID: 2090447919}
 --- !u!4 &2055612543
 Transform:
   m_ObjectHideFlags: 0

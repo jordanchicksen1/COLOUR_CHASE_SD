@@ -30,6 +30,7 @@ public class PointChecker : MonoBehaviour
         }
         else if (TimeRemaining == 0)
         {
+            //here
             GameOverPanel.SetActive(true);
             FruitSpawner.SetActive(false);
             Fruit = GameObject.FindGameObjectsWithTag("Apple");
