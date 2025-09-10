@@ -192,6 +192,6 @@ public class CarController : MonoBehaviour
         float originalAccel = acceleration;
         acceleration *= 2f;
         yield return new WaitForSeconds(3f);
-        acceleration = originalAccel;
+        acceleration /= 2f;
     }
 }
