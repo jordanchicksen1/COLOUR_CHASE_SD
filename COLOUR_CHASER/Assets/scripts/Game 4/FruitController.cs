@@ -129,8 +129,6 @@ public class FruitManager : MonoBehaviour
             //transform.position = OGPosotion;
             if (!isOnConveyor)
             {
-                rb.velocity = Vector2.zero;
-                rb.gravityScale = 1;
             }
         }
         else
