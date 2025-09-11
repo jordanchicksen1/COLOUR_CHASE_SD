@@ -76,24 +76,50 @@ public class PlayerController : MonoBehaviour
         // Movement
         rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
 
-        if (moveInput.x > 0)
+        if (playerInput.playerIndex == 0)
         {
-            animator.SetBool("Walk", true);
-            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-            spriteRend.flipX = false;
+            animator.SetBool("P2", true);
+            if (moveInput.x > 0)
+            {
+                animator.SetBool("Walk2", true);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = true;
 
+            }
+            else if (moveInput.x < 0)
+            {
+                animator.SetBool("Walk2", true);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = false;
+            }
+            else if (moveInput.x == 0)
+            {
+                animator.SetBool("Walk2", false);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = true;
+            }
         }
-        else if (moveInput.x < 0)
+        else if (playerInput.playerIndex == 1)
         {
-            animator.SetBool("Walk", true);
-            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-            spriteRend.flipX = true;
-        }
-        else if (moveInput.x == 0)
-        {
-            animator.SetBool("Walk", false);
-            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-            spriteRend.flipX = false;
+            if (moveInput.x > 0)
+            {
+                animator.SetBool("Walk", true);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = false;
+
+            }
+            else if (moveInput.x < 0)
+            {
+                animator.SetBool("Walk", true);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = true;
+            }
+            else if (moveInput.x == 0)
+            {
+                animator.SetBool("Walk", false);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = false;
+            }
         }
     }
 

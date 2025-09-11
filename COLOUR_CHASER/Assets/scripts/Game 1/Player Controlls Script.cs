@@ -62,24 +62,50 @@ public class PlayerController2D : MonoBehaviour
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveInput * speed * Time.fixedDeltaTime);
-        if (moveInput.x > 0)
+        if (playerInput.playerIndex == 0)
         {
-            animator.SetBool("Walk", true);
-            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-            spriteRend.flipX = false;
+            animator.SetBool("P2", true);
+            if (moveInput.x > 0)
+            {
+                animator.SetBool("Walk2", true);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = true;
 
+            }
+            else if (moveInput.x < 0)
+            {
+                animator.SetBool("Walk2", true);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = false;
+            }
+            else if (moveInput.x == 0)
+            {
+                animator.SetBool("Walk2", false);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = true;
+            }
         }
-        else if (moveInput.x < 0)
+        else if (playerInput.playerIndex == 1)
         {
-            animator.SetBool("Walk", true);
-            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-            spriteRend.flipX = true;
-        }
-        else if ( moveInput.x == 0)
-        {
-            animator.SetBool("Walk", false);
-            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-            spriteRend.flipX = false;
+            if (moveInput.x > 0)
+            {
+                animator.SetBool("Walk", true);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = false;
+
+            }
+            else if (moveInput.x < 0)
+            {
+                animator.SetBool("Walk", true);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = true;
+            }
+            else if (moveInput.x == 0)
+            {
+                animator.SetBool("Walk", false);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = false;
+            }
         }
     }
 

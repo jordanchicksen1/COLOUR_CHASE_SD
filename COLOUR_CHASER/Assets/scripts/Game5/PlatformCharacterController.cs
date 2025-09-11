@@ -26,8 +26,8 @@ public class PlatformCharacterController : MonoBehaviour
 
 
     [Header("Spawn Positions (Editable)")]
-    [SerializeField] private Vector2 player1Spawn = new Vector2(-5f, 0f);
-    [SerializeField] private Vector2 player2Spawn = new Vector2(5f, 0f);
+    [SerializeField] private GameObject player1Spawn;
+    [SerializeField] private GameObject player2Spawn;
 
     [Header("Audio")]
     [SerializeField] private AudioClip jumpSound;
@@ -48,16 +48,15 @@ public class PlatformCharacterController : MonoBehaviour
         if (playerInput.playerIndex == 0)
         {
             gameObject.tag = "Player1";
-
-            transform.position = player1Spawn;
-            OGposition = player1Spawn;
+            player1Spawn = GameObject.FindGameObjectWithTag("p1");
+            transform.position = player1Spawn.transform.position;
         }
         else if (playerInput.playerIndex == 1)
         {
             gameObject.tag = "Player2";
+            player2Spawn = GameObject.FindGameObjectWithTag("p2");
 
-            transform.position = player2Spawn;
-            OGposition = player2Spawn;
+            transform.position = player2Spawn.transform.position;
         }
 
         Boxc = GetComponent<BoxCollider2D>();
@@ -86,24 +85,50 @@ public class PlatformCharacterController : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
-        if (moveInput.x > 0)
+        if (playerInput.playerIndex == 0)
         {
-            animator.SetBool("Walk", true);
-            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-            spriteRend.flipX = false;
+            animator.SetBool("P2", true);
+            if (moveInput.x > 0)
+            {
+                animator.SetBool("Walk2", true);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = true;
 
+            }
+            else if (moveInput.x < 0)
+            {
+                animator.SetBool("Walk2", true);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = false;
+            }
+            else if (moveInput.x == 0)
+            {
+                animator.SetBool("Walk2", false);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = true;
+            }
         }
-        else if (moveInput.x < 0)
+        else if (playerInput.playerIndex == 1)
         {
-            animator.SetBool("Walk", true);
-            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-            spriteRend.flipX = true;
-        }
-        else if (moveInput.x == 0)
-        {
-            animator.SetBool("Walk", false);
-            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-            spriteRend.flipX = false;
+            if (moveInput.x > 0)
+            {
+                animator.SetBool("Walk", true);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = false;
+
+            }
+            else if (moveInput.x < 0)
+            {
+                animator.SetBool("Walk", true);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = true;
+            }
+            else if (moveInput.x == 0)
+            {
+                animator.SetBool("Walk", false);
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.flipX = false;
+            }
         }
     }
 
