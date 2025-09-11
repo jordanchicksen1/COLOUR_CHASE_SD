@@ -20048,7 +20048,7 @@ GameObject:
   - component: {fileID: 528167764}
   - component: {fileID: 528167763}
   - component: {fileID: 528167762}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BlueBarrier (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20067,7 +20067,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -20193,7 +20193,7 @@ GameObject:
   - component: {fileID: 646137967}
   - component: {fileID: 646137968}
   - component: {fileID: 646137969}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RedBarrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20293,7 +20293,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -21008,7 +21008,7 @@ GameObject:
   - component: {fileID: 1048712502}
   - component: {fileID: 1048712501}
   - component: {fileID: 1048712500}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RedBarrier (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21042,7 +21042,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -22132,7 +22132,7 @@ GameObject:
   - component: {fileID: 1813504078}
   - component: {fileID: 1813504077}
   - component: {fileID: 1813504076}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BlueBarrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22151,7 +22151,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

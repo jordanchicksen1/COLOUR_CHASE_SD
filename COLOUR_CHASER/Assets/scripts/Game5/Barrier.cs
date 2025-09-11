@@ -17,23 +17,27 @@ public class Barrier : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        ToggleBarrier(collision.collider.tag);
+        HandleCollision(collision.collider);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        ToggleBarrier(collision.collider.tag);
+        HandleCollision(collision.collider);
     }
 
-    private void ToggleBarrier(string tag)
+    private void HandleCollision(Collider2D other)
     {
-        if ((blocksPlayer1 && tag == "Player1") || (blocksPlayer2 && tag == "Player2"))
+        if (other.CompareTag("Player1") && !blocksPlayer1)
         {
-            col.isTrigger = false; // block this player
+            Physics2D.IgnoreCollision(other, col, true);
+        }
+        else if (other.CompareTag("Player2") && !blocksPlayer2)
+        {
+            Physics2D.IgnoreCollision(other, col, true);
         }
         else
         {
-            col.isTrigger = true; // let other player pass
+            Physics2D.IgnoreCollision(other, col, false);
         }
     }
 }
