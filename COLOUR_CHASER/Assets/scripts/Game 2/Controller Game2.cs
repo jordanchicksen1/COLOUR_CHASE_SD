@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Sprite player1, player2;
     private AudioSource audioSource;
+    private Animator animator;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         if (playerInput.playerIndex == 0)
         {
             SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
@@ -73,6 +75,26 @@ public class PlayerController : MonoBehaviour
     {
         // Movement
         rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
+
+        if (moveInput.x > 0)
+        {
+            animator.SetBool("Walk", true);
+            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+            spriteRend.flipX = false;
+
+        }
+        else if (moveInput.x < 0)
+        {
+            animator.SetBool("Walk", true);
+            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+            spriteRend.flipX = true;
+        }
+        else if (moveInput.x == 0)
+        {
+            animator.SetBool("Walk", false);
+            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+            spriteRend.flipX = false;
+        }
     }
 
     void CheckGrounded()

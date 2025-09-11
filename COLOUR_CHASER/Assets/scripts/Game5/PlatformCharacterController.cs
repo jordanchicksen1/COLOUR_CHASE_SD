@@ -23,10 +23,7 @@ public class PlatformCharacterController : MonoBehaviour
     private Vector2 OGposition;
 
     [Header("Sprite Children")]
-    [SerializeField] private GameObject player1SpriteChild;
-    [SerializeField] private GameObject player2SpriteChild;
 
-    private SpriteRenderer activeSpriteRend;
 
     [Header("Spawn Positions (Editable)")]
     [SerializeField] private Vector2 player1Spawn = new Vector2(-5f, 0f);
@@ -36,7 +33,7 @@ public class PlatformCharacterController : MonoBehaviour
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private float jumpVolume = 1f;
     private AudioSource audioSource;   
-
+    private Animator animator;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -46,23 +43,18 @@ public class PlatformCharacterController : MonoBehaviour
 
     private void Start()
     {
-        player1SpriteChild.SetActive(false);
-        player2SpriteChild.SetActive(false);
+        animator = GetComponent<Animator>();
 
         if (playerInput.playerIndex == 0)
         {
-            player1SpriteChild.SetActive(true);
             gameObject.tag = "Player1";
-            activeSpriteRend = player1SpriteChild.GetComponent<SpriteRenderer>();
 
             transform.position = player1Spawn;
             OGposition = player1Spawn;
         }
         else if (playerInput.playerIndex == 1)
         {
-            player2SpriteChild.SetActive(true);
             gameObject.tag = "Player2";
-            activeSpriteRend = player2SpriteChild.GetComponent<SpriteRenderer>();
 
             transform.position = player2Spawn;
             OGposition = player2Spawn;
@@ -88,19 +80,31 @@ public class PlatformCharacterController : MonoBehaviour
     {
         CheckGrounded();
 
-        if (moveInput.x > 0.1f)
-        {
-            activeSpriteRend.flipX = false; 
-        }
-        else if (moveInput.x < -0.1f)
-        {
-            activeSpriteRend.flipX = true;
-        }
+      
     }
 
     void FixedUpdate()
     {
         rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
+        if (moveInput.x > 0)
+        {
+            animator.SetBool("Walk", true);
+            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+            spriteRend.flipX = false;
+
+        }
+        else if (moveInput.x < 0)
+        {
+            animator.SetBool("Walk", true);
+            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+            spriteRend.flipX = true;
+        }
+        else if (moveInput.x == 0)
+        {
+            animator.SetBool("Walk", false);
+            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+            spriteRend.flipX = false;
+        }
     }
 
     void CheckGrounded()

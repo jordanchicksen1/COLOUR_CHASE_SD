@@ -1,9 +1,11 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController2D : MonoBehaviour
 {
+    [SerializeField]
     private Vector2 moveInput;
     private Rigidbody2D rb;
     public float speed = 5f;
@@ -12,7 +14,8 @@ public class PlayerController2D : MonoBehaviour
     private PlayerInput playerInput;
     public Sprite[] sprites;
     public AudioSource audioSource;
-    
+    private Animator animator;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -24,6 +27,7 @@ public class PlayerController2D : MonoBehaviour
         BlockChecker = GameObject.FindGameObjectWithTag("BlockChecker");
         playerBlockCheckerScript = BlockChecker.GetComponent<PlayerBlockChecker>();
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
         if (playerInput.playerIndex == 0)
         {
             SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
@@ -58,6 +62,25 @@ public class PlayerController2D : MonoBehaviour
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveInput * speed * Time.fixedDeltaTime);
+        if (moveInput.x > 0)
+        {
+            animator.SetBool("Walk", true);
+            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+            spriteRend.flipX = false;
+
+        }
+        else if (moveInput.x < 0)
+        {
+            animator.SetBool("Walk", true);
+            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+            spriteRend.flipX = true;
+        }
+        else if ( moveInput.x == 0)
+        {
+            animator.SetBool("Walk", false);
+            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+            spriteRend.flipX = false;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
