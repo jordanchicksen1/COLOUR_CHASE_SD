@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a734827ddba751b48bf48bb1fa9cbd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 60
+  moveSpeed: 100
   isOnConveyor: 0
   isHeld: 0
   OGPosotion: {x: 0, y: 0}
