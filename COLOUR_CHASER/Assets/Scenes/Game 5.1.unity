@@ -315,6 +315,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4338303900636909490, guid: 054668a91d4febb4f82887c14762dc60, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6950623759683460102, guid: 054668a91d4febb4f82887c14762dc60, type: 3}
       propertyPath: m_Name
       value: yellowSquare2
@@ -590,7 +594,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1049224581}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 44278e8d609390a46a7fd072ed008399, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -22814,6 +22818,10 @@ PrefabInstance:
       propertyPath: m_ChunkCullingBounds.y
       value: 0.04000002
       objectReference: {fileID: 0}
+    - target: {fileID: 7686942553896023755, guid: f133c7d730e19484aad1619094179c9d, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 44278e8d609390a46a7fd072ed008399, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22848,7 +22856,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1408296433}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 44278e8d609390a46a7fd072ed008399, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
