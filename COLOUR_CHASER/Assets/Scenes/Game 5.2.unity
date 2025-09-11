@@ -21588,8 +21588,7 @@ MonoBehaviour:
   closedDoor: {fileID: 1143955798}
   openDoor: {fileID: 1178585643}
   assignedPlayerTag: Player1
-  nextScene: {fileID: 102900000, guid: e63f532bcc10f414ebbd272b46e0dd8b, type: 3}
-  nextSceneName: 
+  nextSceneName: Game 5.1
 --- !u!61 &1497346777
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22046,8 +22045,7 @@ MonoBehaviour:
   closedDoor: {fileID: 1373272347}
   openDoor: {fileID: 1937435430}
   assignedPlayerTag: Player2
-  nextScene: {fileID: 102900000, guid: e63f532bcc10f414ebbd272b46e0dd8b, type: 3}
-  nextSceneName: 
+  nextSceneName: Game 5.1
 --- !u!61 &1736400454
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -18,10 +18,7 @@ public class EndScene : MonoBehaviour
     [SerializeField] private string assignedPlayerTag = "Player1"; 
 
     [Header("Scene Settings")]
-#if UNITY_EDITOR
-    [SerializeField] private SceneAsset nextScene; 
-#endif
-    [SerializeField, HideInInspector] private string nextSceneName;
+    [SerializeField] private string nextSceneName;
 
     private readonly HashSet<Collider2D> overlaps = new HashSet<Collider2D>();
 
@@ -37,12 +34,7 @@ public class EndScene : MonoBehaviour
 
         ShowClosed();
 
-#if UNITY_EDITOR
-        if (nextScene != null)
-        {
-            nextSceneName = nextScene.name;
-        }
-#endif
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
