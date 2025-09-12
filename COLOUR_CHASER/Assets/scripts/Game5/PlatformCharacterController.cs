@@ -39,11 +39,11 @@ public class PlatformCharacterController : MonoBehaviour
 
     [Header("Pull Settings")]
     [SerializeField] private float pullRange = 1.5f;
-    [SerializeField] private float pullSpeed = 3f;   // Adjust for smoothness
+    [SerializeField] private float pullSpeed = 3f; 
     [SerializeField] private LayerMask pullableLayer;
     private GameObject objectBeingPulled;
     private bool isPulling;
-    private FixedJoint2D pullJoint;  // NEW: Physics joint for natural pulling
+    private FixedJoint2D pullJoint;
 
     void Awake()
     {
@@ -106,7 +106,6 @@ public class PlatformCharacterController : MonoBehaviour
     {
         CheckGrounded();
 
-        // Actively pull the object if one is attached
         if (isPulling && objectBeingPulled != null)
         {
             Vector2 pullDirection = (transform.position - objectBeingPulled.transform.position).normalized;
@@ -158,7 +157,7 @@ public class PlatformCharacterController : MonoBehaviour
     }
 
     void CheckGrounded()
-    { // Combine ground and pullable layers
+    {
         int combinedLayers = groundLayer | pullableLayer;
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, raycastDistance, combinedLayers);
@@ -172,7 +171,6 @@ public class PlatformCharacterController : MonoBehaviour
             isGrounded = false;
         }
 
-        // Debug visuals
         Debug.DrawRay(transform.position, Vector2.down * (hit.collider ? hit.distance : raycastDistance),
                       isGrounded ? Color.green : Color.red);
     }
@@ -233,13 +231,11 @@ public class PlatformCharacterController : MonoBehaviour
             objectBeingPulled = hit.gameObject;
             isPulling = true;
 
-            // Add a joint dynamically to "attach" player to object
             pullJoint = gameObject.AddComponent<FixedJoint2D>();
             pullJoint.connectedBody = objectBeingPulled.GetComponent<Rigidbody2D>();
-            pullJoint.enableCollision = true; // so you can still collide with it
+            pullJoint.enableCollision = true; 
             pullJoint.autoConfigureConnectedAnchor = false;
 
-            // Anchor at player's position
             pullJoint.connectedAnchor = objectBeingPulled.transform.InverseTransformPoint(objectBeingPulled.transform.position);
         }
     }
@@ -249,7 +245,6 @@ public class PlatformCharacterController : MonoBehaviour
         isPulling = false;
         objectBeingPulled = null;
 
-        // Remove the joint safely
         if (pullJoint != null)
         {
             Destroy(pullJoint);
