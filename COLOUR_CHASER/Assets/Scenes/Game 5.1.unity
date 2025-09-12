@@ -25141,6 +25141,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4957894934627262621, guid: a59cf7593be5fd74c84d9f41ecc07b45, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cdee1171ce0b01941949387152563feb, type: 3}
+    - target: {fileID: 4957894934627262621, guid: a59cf7593be5fd74c84d9f41ecc07b45, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957894934627262621, guid: a59cf7593be5fd74c84d9f41ecc07b45, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957894934627262621, guid: a59cf7593be5fd74c84d9f41ecc07b45, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8473765264335644619, guid: a59cf7593be5fd74c84d9f41ecc07b45, type: 3}
       propertyPath: m_Name
       value: PullPromptImage
