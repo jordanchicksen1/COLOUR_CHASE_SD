@@ -26,14 +26,21 @@ public class CarGameManager : MonoBehaviour
     [SerializeField] private string player1WinScene = "P1Car";
     [SerializeField] private string player2WinScene = "P2Car";
 
+
     private bool roundActive = false;
     private int playersJoined = 0;
+    private SpriteRenderer ballRenderer;
 
     public AudioSource goalSound;
 
     private void Start()
     {
-        if (ball) ball.simulated = false;
+        if (ball)
+        {
+            ball.simulated = false;
+            ballRenderer = ball.GetComponent<SpriteRenderer>(); 
+        }
+
         countdownText.text = "Waiting for Players";
     }
 
@@ -51,6 +58,7 @@ public class CarGameManager : MonoBehaviour
         if (side == GoalSide.GoalP1) player2Score++;
         else player1Score++;
         goalSound.Play();
+
         player1ScoreText.text = player1Score.ToString();
         player2ScoreText.text = player2Score.ToString();
 
@@ -77,6 +85,8 @@ public class CarGameManager : MonoBehaviour
         ball.simulated = false;
         ball.transform.position = kickoffPoint;
 
+        SetBallTransparency(0.3f);
+
         for (int i = (int)countdownTime; i > 0; i--)
         {
             countdownText.text = i.ToString();
@@ -87,7 +97,17 @@ public class CarGameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         countdownText.text = "";
 
+        SetBallTransparency(1f);
         ball.simulated = true;
         roundActive = true;
+    }
+
+    private void SetBallTransparency(float alpha)
+    {
+        if (!ballRenderer) return;
+
+        Color c = ballRenderer.color;
+        c.a = alpha;
+        ballRenderer.color = c;
     }
 }

@@ -47,6 +47,10 @@ public class CarController : MonoBehaviour
     [SerializeField] private float abilityVolume = 1f;
     [SerializeField] private AudioClip speedSound;
     private bool isDrivingSoundPlaying = false;
+
+    [Header("Spawn Positions (Editable)")]
+    [SerializeField] private GameObject player1Spawn;
+    [SerializeField] private GameObject player2Spawn;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -60,11 +64,16 @@ public class CarController : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().sprite = Player1;
             gameObject.tag = "Player1";
+            
+            player1Spawn = GameObject.FindGameObjectWithTag("p1");
+            transform.position = player1Spawn.transform.position;
         }
         else if (playerInput.playerIndex == 1)
         {
             GetComponent<SpriteRenderer>().sprite = Player2;
             gameObject.tag = "Player2";
+            player2Spawn = GameObject.FindGameObjectWithTag("p2");
+            transform.position = player2Spawn.transform.position;
         }
 
         spriteRnd = GetComponent<SpriteRenderer>();
