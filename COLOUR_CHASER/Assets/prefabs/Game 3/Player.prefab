@@ -353,6 +353,10 @@ MonoBehaviour:
   shockwaveSound: {fileID: 8300000, guid: 1645153ddbe2e7149944fe19025ce297, type: 3}
   abilityVolume: 10
   speedSound: {fileID: 8300000, guid: 3ab3370eb6dc7da41ad6b4c987c92179, type: 3}
+  player1Spawn: {fileID: 0}
+  player2Spawn: {fileID: 0}
+  spawnRotationPlayer1: {x: 0, y: 0, z: 0}
+  spawnRotationPlayer2: {x: 0, y: 0, z: 180}
 --- !u!82 &1363068117351680754
 AudioSource:
   m_ObjectHideFlags: 0

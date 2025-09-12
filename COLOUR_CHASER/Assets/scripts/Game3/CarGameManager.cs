@@ -57,10 +57,13 @@ public class CarGameManager : MonoBehaviour
     {
         if (side == GoalSide.GoalP1) player2Score++;
         else player1Score++;
+
         goalSound.Play();
 
         player1ScoreText.text = player1Score.ToString();
         player2ScoreText.text = player2Score.ToString();
+
+        ResetPlayers(); 
 
         if (player1Score >= maxScore)
         {
@@ -74,6 +77,14 @@ public class CarGameManager : MonoBehaviour
         }
 
         StartCoroutine(StartCountdown());
+    }
+    private void ResetPlayers()
+    {
+        CarController[] players = FindObjectsOfType<CarController>();
+        foreach (var player in players)
+        {
+            player.ResetToSpawn();
+        }
     }
 
     private IEnumerator StartCountdown()

@@ -51,6 +51,8 @@ public class CarController : MonoBehaviour
     [Header("Spawn Positions (Editable)")]
     [SerializeField] private GameObject player1Spawn;
     [SerializeField] private GameObject player2Spawn;
+
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -199,6 +201,24 @@ public class CarController : MonoBehaviour
     public void OnGameSelection(InputAction.CallbackContext context)
     {
         SceneManager.LoadScene("GameSelect");
+    }
+
+    public void ResetToSpawn()
+    {
+        if (playerInput.playerIndex == 0 && player1Spawn != null)
+        {
+            transform.position = player1Spawn.transform.position;
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.rotation = 0f;
+        }
+        else if (playerInput.playerIndex == 1 && player2Spawn != null)
+        {
+            transform.position = player2Spawn.transform.position;
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.rotation = 0f;
+        }
     }
     private IEnumerator SpeedBoost()
     {
