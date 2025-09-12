@@ -967,8 +967,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveUpDistance: 2
-  moveSpeed: 3
-  stayUpTime: 2
+  moveSpeed: 1
+  stayUpTime: 1
 --- !u!114 &1049224583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23892,8 +23892,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveUpDistance: 4
-  moveSpeed: 3
-  stayUpTime: 2
+  moveSpeed: 1
+  stayUpTime: 1
 --- !u!1 &1457771827
 GameObject:
   m_ObjectHideFlags: 0
