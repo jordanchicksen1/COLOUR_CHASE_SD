@@ -227,6 +227,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c33329a1-3693-41a0-a0a4-d327fcb4bbcd
     m_ActionName: Player/Grab
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7849943789783124951}
+        m_TargetAssemblyTypeName: CarController, Assembly-CSharp
+        m_MethodName: OnGameSelection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8e088617-08a4-4ead-8571-64db2db6fb50
+    m_ActionName: Player/GameSelection[/DualSenseGamepadHID1/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

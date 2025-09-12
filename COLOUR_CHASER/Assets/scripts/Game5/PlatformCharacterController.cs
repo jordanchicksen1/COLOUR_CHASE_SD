@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlatformCharacterController : MonoBehaviour
 {
@@ -60,6 +61,11 @@ public class PlatformCharacterController : MonoBehaviour
         }
 
         Boxc = GetComponent<BoxCollider2D>();
+    }
+
+    public void OnGameSelection(InputAction.CallbackContext context)
+    {
+        SceneManager.LoadScene("GameSelect");
     }
 
     public void OnMove(InputAction.CallbackContext context)

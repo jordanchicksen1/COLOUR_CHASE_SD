@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -58,6 +59,10 @@ public class PlayerController : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
     }
 
+    public void OnGameSelection(InputAction.CallbackContext context)
+    {
+        SceneManager.LoadScene("GameSelect");
+    }
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed && isGrounded)

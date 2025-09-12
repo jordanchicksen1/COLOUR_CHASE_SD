@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerInput))]
@@ -43,6 +44,12 @@ public class FruitSortController : MonoBehaviour
             sprite.sprite = sprites[1];
         }
     }
+
+    public void OnGameSelection(InputAction.CallbackContext context)
+    {
+        SceneManager.LoadScene("GameSelect");
+    }
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
