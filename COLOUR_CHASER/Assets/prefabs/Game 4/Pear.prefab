@@ -142,6 +142,9 @@ MonoBehaviour:
   Pear: 1
   Apple: 0
   Banana: 0
+  pearParticle: {fileID: 3280610238005418749, guid: 4073f69446433aa42964046dacdaaae1, type: 3}
+  appleParticle: {fileID: 4793272408624136075, guid: c312339c49ad509479c1e31fa35c4a30, type: 3}
+  bananaParticle: {fileID: 4609105573411432390, guid: c885164d02f00d64eb258053678d9ae9, type: 3}
 --- !u!50 &3650541474809335407
 Rigidbody2D:
   serializedVersion: 4

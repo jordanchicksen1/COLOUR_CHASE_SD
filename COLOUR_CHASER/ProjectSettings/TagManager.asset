@@ -39,6 +39,9 @@ TagManager:
   - GameOver
   - Audio
   - PullPromptUI
+  - PearParticle
+  - BananaParticle
+  - AppleParticle
   layers:
   - Default
   - TransparentFX
