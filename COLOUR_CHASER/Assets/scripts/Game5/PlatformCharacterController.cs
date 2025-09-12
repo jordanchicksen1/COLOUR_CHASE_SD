@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class PlatformCharacterController : MonoBehaviour
 {
@@ -45,6 +46,10 @@ public class PlatformCharacterController : MonoBehaviour
     private bool isPulling;
     private FixedJoint2D pullJoint;
 
+    [Header("UI")]
+    [SerializeField] private Image pullPromptImage; 
+    private bool canPull = false;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -70,6 +75,10 @@ public class PlatformCharacterController : MonoBehaviour
         }
 
         Boxc = GetComponent<BoxCollider2D>();
+
+        GameObject uiObject = GameObject.FindGameObjectWithTag("PullPromptUI");
+        if (uiObject != null)
+            pullPromptImage = uiObject.GetComponent<Image>();
     }
 
     public void OnGameSelection(InputAction.CallbackContext context)
@@ -106,13 +115,30 @@ public class PlatformCharacterController : MonoBehaviour
     {
         CheckGrounded();
 
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, pullRange, pullableLayer);
+        if (hit != null)
+        {
+            if (pullPromptImage != null) pullPromptImage.gameObject.SetActive(true);
+        }
+        else
+        {
+            if (pullPromptImage != null) pullPromptImage.gameObject.SetActive(false);
+        }
+
         if (isPulling && objectBeingPulled != null)
         {
             Vector2 pullDirection = (transform.position - objectBeingPulled.transform.position).normalized;
             objectBeingPulled.GetComponent<Rigidbody2D>().velocity = pullDirection * pullSpeed;
         }
     }
-
+    void LateUpdate()
+    {
+        if (pullPromptImage != null && pullPromptImage.gameObject.activeSelf)
+        {
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 1.5f);
+            pullPromptImage.transform.position = screenPos;
+        }
+    }
     void FixedUpdate()
     {
         rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);

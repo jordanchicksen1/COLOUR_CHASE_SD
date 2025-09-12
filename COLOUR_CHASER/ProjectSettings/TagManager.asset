@@ -38,6 +38,7 @@ TagManager:
   - p2
   - GameOver
   - Audio
+  - PullPromptUI
   layers:
   - Default
   - TransparentFX
