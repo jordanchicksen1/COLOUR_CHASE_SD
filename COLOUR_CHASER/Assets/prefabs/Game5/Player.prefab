@@ -168,7 +168,19 @@ MonoBehaviour:
     m_ActionId: 796869d3-d0d2-47ef-96dd-c401d064f7fd
     m_ActionName: Player/LookAround[/DualSenseGamepadHID/rightStick/left,/DualSenseGamepadHID/rightStick/right]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 711598214413729205}
+        m_TargetAssemblyTypeName: PlatformCharacterController, Assembly-CSharp
+        m_MethodName: OnAbility
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 407818ed-1ebd-44bf-b72a-74b2c349c2b4
     m_ActionName: Player/Ability[/DualSenseGamepadHID/buttonEast]
   - m_PersistentCalls:
@@ -290,6 +302,11 @@ MonoBehaviour:
   player2Spawn: {fileID: 0}
   jumpSound: {fileID: 8300000, guid: 524fca7c2e54fb146beb8f196dc05305, type: 3}
   jumpVolume: 1
+  pullRange: 1.5
+  pullForce: 5
+  pullableLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!82 &2243420777990557054
 AudioSource:
   m_ObjectHideFlags: 0

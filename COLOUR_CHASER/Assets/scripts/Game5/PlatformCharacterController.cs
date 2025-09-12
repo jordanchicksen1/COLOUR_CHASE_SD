@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class PlatformCharacterController : MonoBehaviour
 {
@@ -35,6 +36,15 @@ public class PlatformCharacterController : MonoBehaviour
     [SerializeField] private float jumpVolume = 1f;
     private AudioSource audioSource;   
     private Animator animator;
+
+    [Header("Pull Settings")]
+    [SerializeField] private float pullRange = 1.5f;
+    [SerializeField] private float pullSpeed = 3f;   // Adjust for smoothness
+    [SerializeField] private LayerMask pullableLayer;
+    private GameObject objectBeingPulled;
+    private bool isPulling;
+    private FixedJoint2D pullJoint;  // NEW: Physics joint for natural pulling
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -56,7 +66,6 @@ public class PlatformCharacterController : MonoBehaviour
         {
             gameObject.tag = "Player2";
             player2Spawn = GameObject.FindGameObjectWithTag("p2");
-
             transform.position = player2Spawn.transform.position;
         }
 
@@ -81,37 +90,51 @@ public class PlatformCharacterController : MonoBehaviour
         }
     }
 
+    public void OnAbility(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            TryStartPull();
+        }
+        else if (context.canceled)
+        {
+            StopPull();
+        }
+    }
+
     void Update()
     {
         CheckGrounded();
 
-      
+        // Actively pull the object if one is attached
+        if (isPulling && objectBeingPulled != null)
+        {
+            Vector2 pullDirection = (transform.position - objectBeingPulled.transform.position).normalized;
+            objectBeingPulled.GetComponent<Rigidbody2D>().velocity = pullDirection * pullSpeed;
+        }
     }
 
     void FixedUpdate()
     {
         rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
+
         if (playerInput.playerIndex == 0)
         {
             animator.SetBool("P2", true);
             if (moveInput.x > 0)
             {
                 animator.SetBool("Walk2", true);
-                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-                spriteRend.flipX = true;
-
+                GetComponent<SpriteRenderer>().flipX = true;
             }
             else if (moveInput.x < 0)
             {
                 animator.SetBool("Walk2", true);
-                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-                spriteRend.flipX = false;
+                GetComponent<SpriteRenderer>().flipX = false;
             }
-            else if (moveInput.x == 0)
+            else
             {
                 animator.SetBool("Walk2", false);
-                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-                spriteRend.flipX = true;
+                GetComponent<SpriteRenderer>().flipX = true;
             }
         }
         else if (playerInput.playerIndex == 1)
@@ -119,34 +142,39 @@ public class PlatformCharacterController : MonoBehaviour
             if (moveInput.x > 0)
             {
                 animator.SetBool("Walk", true);
-                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-                spriteRend.flipX = false;
-
+                GetComponent<SpriteRenderer>().flipX = false;
             }
             else if (moveInput.x < 0)
             {
                 animator.SetBool("Walk", true);
-                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-                spriteRend.flipX = true;
+                GetComponent<SpriteRenderer>().flipX = true;
             }
-            else if (moveInput.x == 0)
+            else
             {
                 animator.SetBool("Walk", false);
-                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-                spriteRend.flipX = false;
+                GetComponent<SpriteRenderer>().flipX = false;
             }
         }
     }
 
     void CheckGrounded()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, raycastDistance, groundLayer);
-        isGrounded = hit.collider != null;
+    { // Combine ground and pullable layers
+        int combinedLayers = groundLayer | pullableLayer;
 
-        if (isGrounded)
-            Debug.DrawRay(transform.position, Vector2.down * hit.distance, Color.green);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, raycastDistance, combinedLayers);
+
+        if (hit.collider != null)
+        {
+            isGrounded = true;
+        }
         else
-            Debug.DrawRay(transform.position, Vector2.down * raycastDistance, Color.red);
+        {
+            isGrounded = false;
+        }
+
+        // Debug visuals
+        Debug.DrawRay(transform.position, Vector2.down * (hit.collider ? hit.distance : raycastDistance),
+                      isGrounded ? Color.green : Color.red);
     }
 
     void Jump()
@@ -194,5 +222,43 @@ public class PlatformCharacterController : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
+    }
+
+    void TryStartPull()
+    {
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, pullRange, pullableLayer);
+
+        if (hit != null && hit.attachedRigidbody != null)
+        {
+            objectBeingPulled = hit.gameObject;
+            isPulling = true;
+
+            // Add a joint dynamically to "attach" player to object
+            pullJoint = gameObject.AddComponent<FixedJoint2D>();
+            pullJoint.connectedBody = objectBeingPulled.GetComponent<Rigidbody2D>();
+            pullJoint.enableCollision = true; // so you can still collide with it
+            pullJoint.autoConfigureConnectedAnchor = false;
+
+            // Anchor at player's position
+            pullJoint.connectedAnchor = objectBeingPulled.transform.InverseTransformPoint(objectBeingPulled.transform.position);
+        }
+    }
+
+    void StopPull()
+    {
+        isPulling = false;
+        objectBeingPulled = null;
+
+        // Remove the joint safely
+        if (pullJoint != null)
+        {
+            Destroy(pullJoint);
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, pullRange);
     }
 }
