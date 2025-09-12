@@ -8,12 +8,18 @@ public class QuestionBox : MonoBehaviour
     private SpriteRenderer sr;
     private Collider2D col;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource boxSound;
+
     private string[] abilities = { "Tire", "Oil", "Speed", "Shockwave" };
 
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
+
+        if (boxSound == null)
+            boxSound = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -23,6 +29,9 @@ public class QuestionBox : MonoBehaviour
         {
             string randomAbility = abilities[Random.Range(0, abilities.Length)];
             car.GiveAbility(randomAbility);
+
+            if (boxSound != null)
+                boxSound.Play();
 
             sr.enabled = false;
             col.enabled = false;
@@ -36,4 +45,5 @@ public class QuestionBox : MonoBehaviour
         sr.enabled = true;
         col.enabled = true;
     }
+
 }

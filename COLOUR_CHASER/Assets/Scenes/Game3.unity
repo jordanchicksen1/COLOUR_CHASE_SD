@@ -422,6 +422,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 229310150}
+  - component: {fileID: 229310151}
   m_Layer: 0
   m_Name: soundEffects
   m_TagString: Untagged
@@ -450,6 +451,22 @@ Transform:
   - {fileID: 2090447918}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &229310151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229310149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e89455706895584b97aef1535bd39e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tireSource: {fileID: 1332787422}
+  oilSource: {fileID: 2121876452}
+  shockwaveSource: {fileID: 612359552}
+  speedSource: {fileID: 133265511}
 --- !u!1 &304694781
 GameObject:
   m_ObjectHideFlags: 0
@@ -5844,6 +5861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnTime: 5
+  boxSound: {fileID: 890218697}
 --- !u!212 &660943593
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11998,7 +12016,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: aa26720dae272b7459342da51cfb70a7, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.025
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -13689,6 +13707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnTime: 5
+  boxSound: {fileID: 890218697}
 --- !u!212 &2020845600
 SpriteRenderer:
   m_ObjectHideFlags: 0

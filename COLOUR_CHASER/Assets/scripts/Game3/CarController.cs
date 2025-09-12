@@ -157,8 +157,8 @@ public class CarController : MonoBehaviour
                 if (prefab != null)
                     Instantiate(prefab, Position1.transform.position, transform.rotation);
 
-                if (tireSound != null)
-                    AudioSource.PlayClipAtPoint(tireSound, transform.position, abilityVolume);
+                if (SoundManager.Instance != null && SoundManager.Instance.tireSource != null)
+                    SoundManager.Instance.tireSource.Play();
                 break;
 
             case "Oil":
@@ -166,16 +166,15 @@ public class CarController : MonoBehaviour
                 if (prefab != null)
                     Instantiate(prefab, Position2.transform.position, Quaternion.identity);
 
-                if (oilSound != null)
-                    AudioSource.PlayClipAtPoint(oilSound, transform.position, abilityVolume);
+                if (SoundManager.Instance != null && SoundManager.Instance.oilSource != null)
+                    SoundManager.Instance.oilSource.Play();
                 break;
-
 
             case "Speed":
                 StartCoroutine(SpeedBoost());
 
-                if (speedSound != null)
-                    AudioSource.PlayClipAtPoint(speedSound, transform.position, abilityVolume);
+                if (SoundManager.Instance != null && SoundManager.Instance.speedSource != null)
+                    SoundManager.Instance.speedSource.Play();
                 break;
 
             case "Shockwave":
@@ -183,8 +182,8 @@ public class CarController : MonoBehaviour
                 if (prefab != null)
                     Instantiate(prefab, transform.position, Quaternion.identity);
 
-                if (shockwaveSound != null)
-                    AudioSource.PlayClipAtPoint(shockwaveSound, transform.position, abilityVolume);
+                if (SoundManager.Instance != null && SoundManager.Instance.shockwaveSource != null)
+                    SoundManager.Instance.shockwaveSource.Play();
                 break;
         }
 

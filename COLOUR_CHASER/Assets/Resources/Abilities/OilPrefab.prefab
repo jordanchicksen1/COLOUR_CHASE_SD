@@ -164,3 +164,5 @@ MonoBehaviour:
   lifetime: 5
   slowAmount: 0.5
   slowDuration: 2
+  oilSound: {fileID: 8300000, guid: eb9bf45278678544ca912d7d2977f9f5, type: 3}
+  volume: 10

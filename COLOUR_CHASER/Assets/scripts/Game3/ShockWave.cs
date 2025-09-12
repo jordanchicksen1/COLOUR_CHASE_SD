@@ -8,6 +8,18 @@ public class ShockWave : MonoBehaviour
     public float maxSize = 5f;
     public float pushForce = 10f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip shockwaveSound;
+    [SerializeField] private float volume = 1f;
+
+    void Start()
+    {
+        if (shockwaveSound != null)
+        {
+            AudioSource.PlayClipAtPoint(shockwaveSound, transform.position, volume);
+        }
+    }
+
     void Update()
     {
         transform.localScale += Vector3.one * expandSpeed * Time.deltaTime;
