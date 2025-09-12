@@ -42,6 +42,8 @@ TagManager:
   - PearParticle
   - BananaParticle
   - AppleParticle
+  - PullPromptUI_P1
+  - PullPromptUI_P2
   layers:
   - Default
   - TransparentFX

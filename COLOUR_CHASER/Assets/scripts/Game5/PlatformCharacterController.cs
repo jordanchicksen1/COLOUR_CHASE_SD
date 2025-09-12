@@ -66,19 +66,23 @@ public class PlatformCharacterController : MonoBehaviour
             gameObject.tag = "Player1";
             player1Spawn = GameObject.FindGameObjectWithTag("p1");
             transform.position = player1Spawn.transform.position;
+
+            GameObject uiObject = GameObject.FindGameObjectWithTag("PullPromptUI_P1");
+            if (uiObject != null)
+                pullPromptImage = uiObject.GetComponent<Image>();
         }
         else if (playerInput.playerIndex == 1)
         {
             gameObject.tag = "Player2";
             player2Spawn = GameObject.FindGameObjectWithTag("p2");
             transform.position = player2Spawn.transform.position;
+
+            GameObject uiObject = GameObject.FindGameObjectWithTag("PullPromptUI_P2");
+            if (uiObject != null)
+                pullPromptImage = uiObject.GetComponent<Image>();
         }
 
         Boxc = GetComponent<BoxCollider2D>();
-
-        GameObject uiObject = GameObject.FindGameObjectWithTag("PullPromptUI");
-        if (uiObject != null)
-            pullPromptImage = uiObject.GetComponent<Image>();
     }
 
     public void OnGameSelection(InputAction.CallbackContext context)
