@@ -16,7 +16,7 @@ public class MoveSwitch : MonoBehaviour
     [SerializeField] private float soundVolume = 1f;
 
     private AudioSource audioSource;
-
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
@@ -25,6 +25,12 @@ public class MoveSwitch : MonoBehaviour
         {
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;
+        }
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+        {
+            Debug.LogWarning("MoveSwitch: No SpriteRenderer found on this GameObject!");
         }
     }
 
@@ -38,6 +44,9 @@ public class MoveSwitch : MonoBehaviour
             {
                 audioSource.PlayOneShot(triggerSound, soundVolume);
             }
+
+            if (spriteRenderer != null)
+                spriteRenderer.enabled = false;
         }
     }
 
@@ -46,6 +55,9 @@ public class MoveSwitch : MonoBehaviour
         if (IsValidPlayer(collision.tag) && targetPlatform != null)
         {
             targetPlatform.ReleaseSwitch();
+
+            if (spriteRenderer != null)
+                spriteRenderer.enabled = true;
         }
     }
 

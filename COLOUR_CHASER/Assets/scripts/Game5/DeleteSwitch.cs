@@ -17,14 +17,21 @@ public class DeleteSwitch : MonoBehaviour
 
     private AudioSource audioSource;
 
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
-            audioSource = gameObject.AddComponent<AudioSource>(); 
+            audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;
+        }
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+        {
+            Debug.LogWarning("DeleteSwitch: No SpriteRenderer found on this GameObject!");
         }
     }
 
@@ -41,6 +48,18 @@ public class DeleteSwitch : MonoBehaviour
             {
                 Destroy(objectToDelete);
             }
+
+            if (spriteRenderer != null)
+                spriteRenderer.enabled = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (IsValidPlayer(collision.tag))
+        {
+            if (spriteRenderer != null)
+                spriteRenderer.enabled = true;
         }
     }
 
