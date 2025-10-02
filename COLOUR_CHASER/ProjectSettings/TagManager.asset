@@ -44,6 +44,7 @@ TagManager:
   - AppleParticle
   - PullPromptUI_P1
   - PullPromptUI_P2
+  - Coin
   layers:
   - Default
   - TransparentFX
