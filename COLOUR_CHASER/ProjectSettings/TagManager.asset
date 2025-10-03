@@ -45,6 +45,13 @@ TagManager:
   - PullPromptUI_P1
   - PullPromptUI_P2
   - Coin
+  - Sniper
+  - Pistol
+  - Laser
+  - ShotGun
+  - Smg
+  - Bazooka
+  - AR
   layers:
   - Default
   - TransparentFX
