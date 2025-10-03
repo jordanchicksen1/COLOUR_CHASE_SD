@@ -203,6 +203,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8e088617-08a4-4ead-8571-64db2db6fb50
     m_ActionName: Player/GameSelection[/DualSenseGamepadHID1/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2b250bdc-c1e0-4aff-8c13-161cc04ce023
+    m_ActionName: Player/Pickup[/DualShock4GamepadHID/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -293,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 10
+  jumpForce: 13
   raycastDistance: 1
   groundLayer:
     serializedVersion: 2
@@ -303,10 +307,11 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 524fca7c2e54fb146beb8f196dc05305, type: 3}
   jumpVolume: 1
   pullRange: 1.5
-  pullForce: 5
+  pullSpeed: 3
   pullableLayer:
     serializedVersion: 2
     m_Bits: 1024
+  pullPromptImage: {fileID: 0}
 --- !u!82 &2243420777990557054
 AudioSource:
   m_ObjectHideFlags: 0
