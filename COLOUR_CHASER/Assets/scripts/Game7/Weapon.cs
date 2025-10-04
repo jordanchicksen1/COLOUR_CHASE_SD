@@ -8,6 +8,8 @@ public class Weapon : MonoBehaviour
     public GameObject bubbleBlaster;
     public GameObject lazerGun;
     public GameObject pumpshotGun;
+    public GameObject pistolGun;
+    public GameObject handCanon;
     public int fireRate;
     public int recoil;
 
