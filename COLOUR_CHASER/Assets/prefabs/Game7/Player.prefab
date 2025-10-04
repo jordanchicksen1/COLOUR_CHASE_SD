@@ -35,7 +35,8 @@ Transform:
   m_LocalPosition: {x: -18, y: 0, z: -1}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 370769979948953295}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1532506596850664173
@@ -152,7 +153,19 @@ MonoBehaviour:
     m_ActionId: ee5dcffc-f473-4234-9fb8-730c71f31c1e
     m_ActionName: Player/Dash[/DualSenseGamepadHID/buttonEast]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6849464882775870646}
+        m_TargetAssemblyTypeName: BrawlerController, Assembly-CSharp
+        m_MethodName: OnDrive
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c0aa90f6-9517-4f21-a7b7-a24fa49d4332
     m_ActionName: Player/Drive[/DualSenseGamepadHID/rightTrigger]
   - m_PersistentCalls:
@@ -184,7 +197,19 @@ MonoBehaviour:
     m_ActionId: 407818ed-1ebd-44bf-b72a-74b2c349c2b4
     m_ActionName: Player/Ability[/DualSenseGamepadHID/buttonEast]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c33329a1-3693-41a0-a0a4-d327fcb4bbcd
     m_ActionName: Player/Grab[/DualSenseGamepadHID/rightTrigger]
   - m_PersistentCalls:
@@ -204,7 +229,19 @@ MonoBehaviour:
     m_ActionId: 8e088617-08a4-4ead-8571-64db2db6fb50
     m_ActionName: Player/GameSelection[/DualSenseGamepadHID1/start]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6849464882775870646}
+        m_TargetAssemblyTypeName: BrawlerController, Assembly-CSharp
+        m_MethodName: OnPickup
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 2b250bdc-c1e0-4aff-8c13-161cc04ce023
     m_ActionName: Player/Pickup[/DualShock4GamepadHID/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
@@ -428,3 +465,35 @@ MonoBehaviour:
   pullableLayer:
     serializedVersion: 2
     m_Bits: 0
+  weaponHoldPoint: {fileID: 370769979948953295}
+--- !u!1 &4762164755949953302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 370769979948953295}
+  m_Layer: 0
+  m_Name: hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &370769979948953295
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4762164755949953302}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.043, y: -0.378, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2522521450817672359}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

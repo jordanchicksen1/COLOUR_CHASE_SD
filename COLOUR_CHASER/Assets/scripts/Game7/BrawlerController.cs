@@ -44,6 +44,10 @@ public class BrawlerController : MonoBehaviour
     private bool isPulling;
     private FixedJoint2D pullJoint;
 
+    [SerializeField] private Transform weaponHoldPoint; 
+    private Weapon currentWeapon;
+
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -207,4 +211,66 @@ public class BrawlerController : MonoBehaviour
         }
     }
 
+    public void OnPickup(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1f);
+            foreach (var hit in hits)
+            {
+                Weapon weapon = hit.GetComponent<Weapon>();
+                if (weapon != null)
+                {
+                    EquipWeapon(weapon);
+                    break;
+                }
+            }
+        }
+    }
+
+    void EquipWeapon(Weapon weapon)
+    {
+        if (currentWeapon != null)
+        {
+            Destroy(currentWeapon.gameObject);
+        }
+
+        currentWeapon = weapon;
+
+        weapon.transform.SetParent(weaponHoldPoint);
+
+        weapon.transform.localPosition = Vector3.zero;
+        weapon.transform.localRotation = Quaternion.identity;
+
+        weapon.transform.localScale = Vector3.one;
+
+        Rigidbody2D rb = weapon.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0;
+            rb.simulated = false;
+        }
+
+        Collider2D col = weapon.GetComponent<Collider2D>();
+        if (col != null)
+        {
+            col.enabled = false;
+        }
+
+        Debug.Log("Equipped " + weapon.weaponType);
+    }
+
+    public void OnDrive(InputAction.CallbackContext context)//shoot
+    {
+        if (context.performed && currentWeapon != null)
+        {
+            currentWeapon.Shoot();
+        }
+    }
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, pullRange);
+    }
 }

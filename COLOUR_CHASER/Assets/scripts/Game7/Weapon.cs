@@ -2,39 +2,84 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum WeaponType
+{
+    None,
+    BubbleBlaster,
+    LaserGun,
+    PumpShotgun,
+    Pistol,
+    HandCannon
+}
+
 public class Weapon : MonoBehaviour
 {
-    [SerializeField]
-    public GameObject bubbleBlaster;
-    public GameObject lazerGun;
-    public GameObject pumpshotGun;
-    public GameObject pistolGun;
-    public GameObject handCanon;
-    public int fireRate;
-    public int recoil;
+    [Header("Weapon Settings")]
+    public WeaponType weaponType = WeaponType.None;
+    public Transform firePoint; 
+    public GameObject projectilePrefab;
+    public float fireRate = 0.5f;
+    public float recoil = 1f;
 
-    void Start()
+    private float nextFireTime;
+
+    public void Shoot()
     {
-        
+        if (Time.time < nextFireTime) return;
+
+        switch (weaponType)
+        {
+            case WeaponType.BubbleBlaster:
+                ShootBubble();
+                break;
+            case WeaponType.LaserGun:
+                ShootLaser();
+                break;
+            case WeaponType.PumpShotgun:
+                ShootShotgun();
+                break;
+            case WeaponType.Pistol:
+                ShootPistol();
+                break;
+            case WeaponType.HandCannon:
+                ShootHandCannon();
+                break;
+        }
+
+        nextFireTime = Time.time + fireRate;
     }
 
-    void Update()
+    void ShootBubble()
     {
-        
+        Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        Debug.Log("Bubble Blaster Fired!");
     }
 
-    void LazerGun()
+    void ShootLaser()
     {
-
+        Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        Debug.Log("Laser Fired!");
     }
 
-    void BubbleBlaster()
+    void ShootShotgun()
     {
-
+        for (int i = -2; i <= 2; i++)
+        {
+            Quaternion spread = firePoint.rotation * Quaternion.Euler(0, 0, i * 5f);
+            Instantiate(projectilePrefab, firePoint.position, spread);
+        }
+        Debug.Log("Shotgun blast!");
     }
 
-    void PumpShotGun()
+    void ShootPistol()
     {
+        Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        Debug.Log("Pistol Fired!");
+    }
 
+    void ShootHandCannon()
+    {
+        Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        Debug.Log("Hand Cannon Blast!");
     }
 }
