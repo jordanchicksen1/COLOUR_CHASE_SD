@@ -26,7 +26,6 @@ public class FruitSortController : MonoBehaviour
     private GameObject currentlyHeldFruit;
     private GameObject p1Position;
     public Sprite[] sprites;
-
     private void Start()
     {
         if (playerInput.playerIndex == 0)

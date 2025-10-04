@@ -18,13 +18,27 @@ public class Game8playercontrols : MonoBehaviour
     [SerializeField]
     private List<bool> Guns;
     private bool hasSniper, hasShotgun, hasSmg, hasAR, hasPistol, hasLazer, hasBazooka;
-    public bool isShooting;
+    private bool canPickup;
+    [SerializeField]
+    private Transform holdingPosition;
+    [SerializeField]
+    private Transform GunPoint;
+    [SerializeField]
+    private Camera Cam;
+    [SerializeField]
+    private int MaxScope = -14;
+    private ShootManager shootManagerScript;
+    //Gun rotation
+    private Vector2 lookInput;
+
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
     }
+
+    
 
     private void Start()
     {
@@ -50,6 +64,29 @@ public class Game8playercontrols : MonoBehaviour
         hasPistol = Guns[4];
         hasLazer = Guns[5];
         hasBazooka = Guns[6];
+
+        Cam.transform.localPosition = new Vector3(0, 0, MaxScope);
+
+        if (shootManagerScript != null)
+        {
+            for (int i = 0; i < Guns.Count; i++)
+            {
+                shootManagerScript.Guns[i] = Guns[i];
+            }
+        }
+
+        //Gun Rotattion
+        if (lookInput.sqrMagnitude > 0.01f) // avoid noise when stick is idle
+        {
+            float angle = Mathf.Atan2(lookInput.y, lookInput.x) * Mathf.Rad2Deg;
+            holdingPosition.rotation = Quaternion.Euler(0f, 0f, angle);
+        }
+
+    }
+
+    public void OnRotate(InputAction.CallbackContext context)
+    {
+        lookInput = context.ReadValue<Vector2>();
     }
 
     // Called by PlayerInput when "Move" action is triggered
@@ -73,44 +110,115 @@ public class Game8playercontrols : MonoBehaviour
         }
     }
 
-    public void OnShoot(InputAction.CallbackContext context)
+    public void OnPickup(InputAction.CallbackContext context)
     {
         if(context.performed)
         {
-            isShooting = true;
+            canPickup = true;
+        }
+        else if (context.canceled)
+        {
+            canPickup = false;
+        }
+    }
 
+    public void OnScope(InputAction.CallbackContext context)
+    {
+       if (context.canceled)
+        {
             if (hasSniper)
             {
-
+                if (Cam.transform.localPosition.z != -41)
+                {
+                    MaxScope -= 7;
+                }
+                else if(Cam.transform.localPosition.z == -41)
+                {
+                    MaxScope = -20;
+                }
             }
             else if (hasPistol)
             {
-
+                if (Cam.transform.localPosition.z != -20)
+                {
+                    MaxScope -= 0;
+                }
+               
             }
             else if (hasLazer)
             {
+                if (Cam.transform.localPosition.z != -34)
+                {
+                    MaxScope -= 7;
+                }
+                else if (Cam.transform.localPosition.z == -34)
+                {
+                    MaxScope -= -20;
+                }
 
             }
             else if (hasBazooka)
             {
+                if (Cam.transform.localPosition.z != -34)
+                {
+                    MaxScope -= 7;
+                }
+                else if (Cam.transform.localPosition.z == -34)
+                {
+                    MaxScope -= -20;
+                }
 
             }
             else if (hasShotgun)
             {
+                if (Cam.transform.localPosition.z != -27)
+                {
+                    MaxScope -= 7;
+                }
+                else if (Cam.transform.localPosition.z == -27)
+                {
+                    MaxScope -= -20;
+                }
 
             }
             else if (hasAR)
             {
+                if (Cam.transform.localPosition.z != -34)
+                {
+                    MaxScope -= 7;
+                }
+                else if (Cam.transform.localPosition.z == -34)
+                {
+                    MaxScope -= -20;
+                }
 
             }
             else if (hasSmg)
             {
+                if (Cam.transform.localPosition.z != -27)
+                {
+                    MaxScope -= 7;
+                }
+                else if (Cam.transform.localPosition.z == -27)
+                {
+                    MaxScope -= -20;
+                }
 
             }
         }
+    }
+
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            shootManagerScript.isShooting = true;
+        }
         else if (context.canceled)
         {
-            isShooting = false;
+            shootManagerScript.isShooting = false;
+            shootManagerScript.isRunning = false;
+
         }
     }
 
@@ -118,13 +226,22 @@ public class Game8playercontrols : MonoBehaviour
     {
         if (collision.CompareTag("Sniper"))
         {
-
+            if (canPickup)
+            {
+                collision.gameObject.transform.position = GunPoint.position;
+                collision.gameObject.transform.parent = GunPoint;
+                Guns[0] = true;
+                shootManagerScript = collision.gameObject.GetComponent<ShootManager>();
+            }
         }
     }
+
+    
 
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveInput * speed * Time.fixedDeltaTime);
+
         if (playerInput.playerIndex == 0)
         {
             animator.SetBool("P2", true);
