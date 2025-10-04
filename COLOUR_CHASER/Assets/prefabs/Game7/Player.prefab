@@ -153,19 +153,7 @@ MonoBehaviour:
     m_ActionId: ee5dcffc-f473-4234-9fb8-730c71f31c1e
     m_ActionName: Player/Dash[/DualSenseGamepadHID/buttonEast]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6849464882775870646}
-        m_TargetAssemblyTypeName: BrawlerController, Assembly-CSharp
-        m_MethodName: OnDrive
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: c0aa90f6-9517-4f21-a7b7-a24fa49d4332
     m_ActionName: Player/Drive[/DualSenseGamepadHID/rightTrigger]
   - m_PersistentCalls:
@@ -244,6 +232,30 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2b250bdc-c1e0-4aff-8c13-161cc04ce023
     m_ActionName: Player/Pickup[/DualShock4GamepadHID/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 609211e5-384b-4f75-8032-d78c6c7c7f64
+    m_ActionName: Player/Zoom out[/DualShock4GamepadHID/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6849464882775870646}
+        m_TargetAssemblyTypeName: BrawlerController, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4739701a-328a-4348-908d-a8eefcc80e4f
+    m_ActionName: Player/Shoot[/DualShock4GamepadHID/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8376d77c-277f-4787-ad5f-d6d05c21654d
+    m_ActionName: Player/GunRotate[/DualShock4GamepadHID/rightStick]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
