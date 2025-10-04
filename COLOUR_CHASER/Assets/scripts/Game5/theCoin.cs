@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class theCoin : MonoBehaviour
@@ -13,10 +14,8 @@ public class theCoin : MonoBehaviour
     {
         if (other.CompareTag("Player1") || other.CompareTag("Player2"))
         {
+            GameData.coinScore++; // Add 1 to global counter
             StartCoroutine(GotTheCoin());
-
-            // Add +1 coin to global counter
-            GameData.coinScore++;
         }
     }
 
@@ -27,6 +26,7 @@ public class theCoin : MonoBehaviour
         coinSound.SetActive(true);
         coinText.SetActive(true);
         yield return new WaitForSeconds(0.4f);
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }
+
