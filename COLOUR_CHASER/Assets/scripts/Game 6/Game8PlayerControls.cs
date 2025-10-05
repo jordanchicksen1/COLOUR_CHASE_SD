@@ -30,12 +30,16 @@ public class Game8playercontrols : MonoBehaviour
     private ShootManager shootManagerScript;
     //Gun rotation
     private Vector2 lookInput;
-
+    [SerializeField]
+    private bool isFlying;
+    [SerializeField]
+    private float JetFuel, MaxJetFuel;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
+        InputSystem.settings.maxEventBytesPerUpdate = 1024 * 1024;
     }
 
     
@@ -121,6 +125,20 @@ public class Game8playercontrols : MonoBehaviour
             canPickup = false;
         }
     }
+
+
+    public void OnJetPack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            isFlying = true;
+        }
+        else if (context.canceled)
+        {
+            isFlying = false;
+        }
+    }
+
 
     public void OnScope(InputAction.CallbackContext context)
     {
@@ -212,12 +230,18 @@ public class Game8playercontrols : MonoBehaviour
     {
         if(context.performed)
         {
-            shootManagerScript.isShooting = true;
+           if (shootManagerScript != null)
+            {
+                shootManagerScript.isShooting = true;
+            }
         }
         else if (context.canceled)
         {
-            shootManagerScript.isShooting = false;
-            shootManagerScript.isRunning = false;
+            if (shootManagerScript != null)
+            {
+                shootManagerScript.isShooting = false;
+                shootManagerScript.isRunning = false;
+            }
 
         }
     }
@@ -240,7 +264,26 @@ public class Game8playercontrols : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + moveInput * speed * Time.fixedDeltaTime);
+
+        if (isFlying)
+        {
+           if (JetFuel > 0)
+            {
+                rb.velocity = new Vector2(moveInput.x * speed, 1 * speed);
+
+                JetFuel -= Time.deltaTime;
+            }
+            
+        }
+        else if (!isFlying)
+        {
+            rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
+            if(JetFuel < MaxJetFuel)
+            {
+                JetFuel += Time.deltaTime;
+            }
+        }
+
 
         if (playerInput.playerIndex == 0)
         {
