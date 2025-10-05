@@ -52,6 +52,7 @@ TagManager:
   - Smg
   - Bazooka
   - AR
+  - MoveBox
   layers:
   - Default
   - TransparentFX
