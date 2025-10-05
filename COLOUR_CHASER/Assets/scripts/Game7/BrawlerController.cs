@@ -47,6 +47,7 @@ public class BrawlerController : MonoBehaviour
     [SerializeField] private Transform weaponHoldPoint; 
     private Weapon currentWeapon;
 
+    private Vector2 lookInput;
 
     void Awake()
     {
@@ -100,6 +101,12 @@ public class BrawlerController : MonoBehaviour
     void Update()
     {
         CheckGrounded();
+
+        if (currentWeapon != null && lookInput.sqrMagnitude > 0.01f) 
+        {
+            float angle = Mathf.Atan2(lookInput.y, lookInput.x) * Mathf.Rad2Deg;
+            weaponHoldPoint.rotation = Quaternion.Euler(0f, 0f, angle);
+        }
     }
 
     void FixedUpdate()
@@ -130,12 +137,12 @@ public class BrawlerController : MonoBehaviour
             if (moveInput.x > 0)
             {
                 animator.SetBool("Walk", true);
-                GetComponent<SpriteRenderer>().flipX = false;
+                transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
             }
             else if (moveInput.x < 0)
             {
                 animator.SetBool("Walk", true);
-                GetComponent<SpriteRenderer>().flipX = true;
+                transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
             }
             else
             {
@@ -227,7 +234,10 @@ public class BrawlerController : MonoBehaviour
             }
         }
     }
-
+    public void OnRotate(InputAction.CallbackContext context)
+    {
+        lookInput = context.ReadValue<Vector2>();
+    }
     void EquipWeapon(Weapon weapon)
     {
         if (currentWeapon != null)
