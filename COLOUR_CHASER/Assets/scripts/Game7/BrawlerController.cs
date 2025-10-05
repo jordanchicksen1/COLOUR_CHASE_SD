@@ -272,7 +272,7 @@ public class BrawlerController : MonoBehaviour
         Debug.Log("Equipped " + weapon.weaponType);
     }
 
-    public void OnShoot(InputAction.CallbackContext context)//shoot
+    public void OnDrive(InputAction.CallbackContext context)//shoot
     {
         if (context.performed && currentWeapon != null)
         {
