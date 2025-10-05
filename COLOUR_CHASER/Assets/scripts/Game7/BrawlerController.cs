@@ -54,6 +54,7 @@ public class BrawlerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
         audioSource = GetComponent<AudioSource>();
+        InputSystem.settings.maxEventBytesPerUpdate = 1024 * 1024;
     }
 
     private void Start()
