@@ -114,15 +114,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Shoot",
-                    "type": "Button",
-                    "id": "4739701a-328a-4348-908d-a8eefcc80e4f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "GunRotate",
                     "type": "Value",
                     "id": "8376d77c-277f-4787-ad5f-d6d05c21654d",
@@ -306,17 +297,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Zoom out",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "282bf270-5d8c-4a9c-8d18-f95952a57326",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

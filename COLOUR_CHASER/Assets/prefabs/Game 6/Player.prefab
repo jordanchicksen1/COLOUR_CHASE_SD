@@ -165,7 +165,19 @@ MonoBehaviour:
     m_ActionId: 2e41d68c-4b05-49c2-8c64-e9b93a8083b8
     m_ActionName: Player/Movement[/DualShock4GamepadHID/leftStick]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -8804606512051019995}
+        m_TargetAssemblyTypeName: Game8playercontrols, Assembly-CSharp
+        m_MethodName: OnJetPack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9601ec2a-3ba5-4005-85ce-a84e2989cf08
     m_ActionName: Player/Jump[/DualShock4GamepadHID/buttonSouth]
   - m_PersistentCalls:
@@ -173,7 +185,19 @@ MonoBehaviour:
     m_ActionId: ee5dcffc-f473-4234-9fb8-730c71f31c1e
     m_ActionName: Player/Dash[/DualSenseGamepadHID1/rightTrigger,/DualSenseGamepadHID/rightTrigger]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -8804606512051019995}
+        m_TargetAssemblyTypeName: Game8playercontrols, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c0aa90f6-9517-4f21-a7b7-a24fa49d4332
     m_ActionName: Player/Drive[/DualSenseGamepadHID1/rightTrigger,/DualSenseGamepadHID/rightTrigger]
   - m_PersistentCalls:
@@ -244,22 +268,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 609211e5-384b-4f75-8032-d78c6c7c7f64
     m_ActionName: Player/Zoom out[/DualShock4GamepadHID/buttonNorth]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -8804606512051019995}
-        m_TargetAssemblyTypeName: Game8playercontrols, Assembly-CSharp
-        m_MethodName: OnShoot
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 4739701a-328a-4348-908d-a8eefcc80e4f
-    m_ActionName: Player/Shoot[/DualShock4GamepadHID/rightTrigger]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -8804606512051019995}
@@ -394,6 +402,9 @@ MonoBehaviour:
   GunPoint: {fileID: 1878771961877667694}
   Cam: {fileID: 3842484882079234949}
   MaxScope: -20
+  isFlying: 0
+  JetFuel: 5
+  MaxJetFuel: 5
 --- !u!1 &6437564772988338952
 GameObject:
   m_ObjectHideFlags: 0
