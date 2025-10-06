@@ -148,6 +148,17 @@
                 },
                 {
                     "name": "",
+                    "id": "e1386705-fb62-4a95-b462-f541072e1dca",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2b42c8ba-5789-40b0-8f43-a3a90a939d33",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",

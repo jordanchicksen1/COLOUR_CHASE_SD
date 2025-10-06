@@ -285,5 +285,7 @@ public class PlatformCharacterController : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, pullRange);
+
+        
     }
 }

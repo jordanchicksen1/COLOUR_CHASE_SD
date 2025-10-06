@@ -7,17 +7,19 @@ public class ShootManager : MonoBehaviour
     public bool isShooting;
     public List<bool> Guns;
     [SerializeField]
-    private int shootRate;
+    private float shootRate;
     [SerializeField]
     private GameObject bulletPrefab;
     [SerializeField]
-    private Transform bulletPoint;
+    private List <Transform> bulletPoints;
     [SerializeField]
     private int bulletSpeed;
     public bool isRunning;
     private bool isReLoading;
     [SerializeField]
-    private int ReloadTime;
+    private float ReloadTime;
+    [SerializeField]
+    private float bulletLife;
     //Guns[0] = sniper
     //Guns[1] = ShotGun
     //Guns[2] = SMG
@@ -69,10 +71,15 @@ public class ShootManager : MonoBehaviour
     {
         if(!isReLoading)
         {
-            GameObject bullet = Instantiate(bulletPrefab, bulletPoint.position, Quaternion.identity);
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.velocity = transform.right * bulletSpeed;
-            Destroy(bullet, 0.5f);
+            for(int i = 0; i < bulletPoints.Count; i++)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                rb.velocity = bulletPoints[i].right * bulletSpeed;
+                Destroy(bullet, bulletLife);
+            }
+
+
             StartCoroutine(ReloadChecker());
             yield return new WaitForSeconds(shootRate);
 
@@ -93,31 +100,139 @@ public class ShootManager : MonoBehaviour
 
     IEnumerator ShotGunShoot()
     {
-        yield return new WaitForSeconds(shootRate);
+        if (!isReLoading)
+        {
+            for (int i = 0; i < bulletPoints.Count; i++)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                rb.velocity = bulletPoints[i].right * bulletSpeed;
+                Destroy(bullet, bulletLife);
+            }
+
+
+            StartCoroutine(ReloadChecker());
+            yield return new WaitForSeconds(shootRate);
+
+            if (isShooting)
+            {
+                StartCoroutine(SniperShoot());
+            }
+        }
     }
 
     IEnumerator LaserShoot()
     {
-        yield return new WaitForSeconds(shootRate);
+        if (!isReLoading)
+        {
+            for (int i = 0; i < bulletPoints.Count; i++)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                rb.velocity = bulletPoints[i].right * bulletSpeed;
+                Destroy(bullet, bulletLife);
+            }
+
+
+            StartCoroutine(ReloadChecker());
+            yield return new WaitForSeconds(shootRate);
+
+            if (isShooting)
+            {
+                StartCoroutine(SniperShoot());
+            }
+        }
     }
 
     IEnumerator PistolShoot()
     {
-        yield return new WaitForSeconds(shootRate);
+        if (!isReLoading)
+        {
+            for (int i = 0; i < bulletPoints.Count; i++)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                rb.velocity = bulletPoints[i].right * bulletSpeed;
+                Destroy(bullet, bulletLife);
+            }
+
+
+            StartCoroutine(ReloadChecker());
+            yield return new WaitForSeconds(shootRate);
+
+            if (isShooting)
+            {
+                StartCoroutine(SniperShoot());
+            }
+        }
     }
 
     IEnumerator BazookaShoot()
     {
-        yield return new WaitForSeconds(shootRate);
+        if (!isReLoading)
+        {
+            for (int i = 0; i < bulletPoints.Count; i++)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                rb.velocity = bulletPoints[i].right * bulletSpeed;
+                Destroy(bullet, bulletLife);
+            }
+
+
+            StartCoroutine(ReloadChecker());
+            yield return new WaitForSeconds(shootRate);
+
+            if (isShooting)
+            {
+                StartCoroutine(SniperShoot());
+            }
+        }
     }
 
     IEnumerator SMGShoot()
     {
-        yield return new WaitForSeconds(shootRate);
+        if (!isReLoading)
+        {
+            for (int i = 0; i < bulletPoints.Count; i++)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                rb.velocity = bulletPoints[i].right * bulletSpeed;
+                Destroy(bullet, bulletLife);
+            }
+
+
+            StartCoroutine(ReloadChecker());
+            yield return new WaitForSeconds(shootRate);
+
+            if (isShooting)
+            {
+                StartCoroutine(SniperShoot());
+            }
+        }
     }
 
     IEnumerator ARShoot()
     {
-        yield return new WaitForSeconds(shootRate);
+        if (!isReLoading)
+        {
+            for (int i = 0; i < bulletPoints.Count; i++)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                rb.velocity = bulletPoints[i].right * bulletSpeed;
+                Destroy(bullet, bulletLife);
+            }
+
+
+            StartCoroutine(ReloadChecker());
+            yield return new WaitForSeconds(shootRate);
+
+            if (isShooting)
+            {
+                StartCoroutine(SniperShoot());
+            }
+        }
     }
 }

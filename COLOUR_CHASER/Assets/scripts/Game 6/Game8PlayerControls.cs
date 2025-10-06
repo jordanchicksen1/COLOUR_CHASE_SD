@@ -86,6 +86,11 @@ public class Game8playercontrols : MonoBehaviour
             holdingPosition.rotation = Quaternion.Euler(0f, 0f, angle);
         }
 
+        if (GunPoint.childCount > 1)
+        {
+            GameObject OldGun = GunPoint.GetChild(0).gameObject;
+            Destroy(OldGun);
+        }
     }
 
     public void OnRotate(InputAction.CallbackContext context)
@@ -171,7 +176,7 @@ public class Game8playercontrols : MonoBehaviour
                 }
                 else if (Cam.transform.localPosition.z == -34)
                 {
-                    MaxScope -= -20;
+                    MaxScope = -20;
                 }
 
             }
@@ -183,7 +188,7 @@ public class Game8playercontrols : MonoBehaviour
                 }
                 else if (Cam.transform.localPosition.z == -34)
                 {
-                    MaxScope -= -20;
+                    MaxScope = -20;
                 }
 
             }
@@ -195,7 +200,7 @@ public class Game8playercontrols : MonoBehaviour
                 }
                 else if (Cam.transform.localPosition.z == -27)
                 {
-                    MaxScope -= -20;
+                    MaxScope = -20;
                 }
 
             }
@@ -207,7 +212,7 @@ public class Game8playercontrols : MonoBehaviour
                 }
                 else if (Cam.transform.localPosition.z == -34)
                 {
-                    MaxScope -= -20;
+                    MaxScope = -20;
                 }
 
             }
@@ -219,7 +224,7 @@ public class Game8playercontrols : MonoBehaviour
                 }
                 else if (Cam.transform.localPosition.z == -27)
                 {
-                    MaxScope -= -20;
+                    MaxScope = -20;
                 }
 
             }
@@ -252,15 +257,98 @@ public class Game8playercontrols : MonoBehaviour
         {
             if (canPickup)
             {
+                ResetGuns();
                 collision.gameObject.transform.position = GunPoint.position;
                 collision.gameObject.transform.parent = GunPoint;
+                collision.gameObject.transform.rotation = GunPoint.rotation;
                 Guns[0] = true;
+                shootManagerScript = collision.gameObject.GetComponent<ShootManager>();
+            }
+        }
+        else if (collision.CompareTag("ShotGun"))
+        {
+            if (canPickup)
+            {
+                ResetGuns();
+                collision.gameObject.transform.position = GunPoint.position;
+                collision.gameObject.transform.parent = GunPoint;
+                collision.gameObject.transform.rotation = GunPoint.rotation;
+                Guns[1] = true;
+                shootManagerScript = collision.gameObject.GetComponent<ShootManager>();
+            }
+        }
+        else if (collision.CompareTag("Smg"))
+        {
+            if (canPickup)
+            {
+                canPickup = false;
+                ResetGuns();
+                collision.gameObject.transform.position = GunPoint.position;
+                collision.gameObject.transform.parent = GunPoint;
+                collision.gameObject.transform.rotation = GunPoint.rotation;
+                Guns[2] = true;
+                shootManagerScript = collision.gameObject.GetComponent<ShootManager>();
+            }
+        }
+        else if (collision.CompareTag("AR"))
+        {
+            if (canPickup)
+            {
+                ResetGuns();
+                collision.gameObject.transform.position = GunPoint.position;
+                collision.gameObject.transform.parent = GunPoint;
+                collision.gameObject.transform.rotation = GunPoint.rotation;
+                Guns[3] = true;
+                shootManagerScript = collision.gameObject.GetComponent<ShootManager>();
+            }
+        }
+        else if (collision.CompareTag("Pistol"))
+        {
+            if (canPickup)
+            {
+                ResetGuns();
+                collision.gameObject.transform.position = GunPoint.position;
+                collision.gameObject.transform.parent = GunPoint;
+                collision.gameObject.transform.rotation = GunPoint.rotation;
+                Guns[4] = true;
+                shootManagerScript = collision.gameObject.GetComponent<ShootManager>();
+            }
+        }
+        else if (collision.CompareTag("Laser"))
+        {
+            if (canPickup)
+            {
+                ResetGuns();
+                collision.gameObject.transform.position = GunPoint.position;
+                collision.gameObject.transform.parent = GunPoint;
+                collision.gameObject.transform.rotation = GunPoint.rotation;
+
+                Guns[5] = true;
+                shootManagerScript = collision.gameObject.GetComponent<ShootManager>();
+            }
+        }
+        else if (collision.CompareTag("Bazooka"))
+        {
+            if (canPickup)
+            {
+                canPickup = false;
+                ResetGuns();
+                collision.gameObject.transform.position = GunPoint.position;
+                collision.gameObject.transform.parent = GunPoint;
+                collision.gameObject.transform.rotation = GunPoint.rotation;
+                Guns[6] = true;
                 shootManagerScript = collision.gameObject.GetComponent<ShootManager>();
             }
         }
     }
 
-    
+    void ResetGuns()
+    {
+        for(int i = 0; i < Guns.Count; i++)
+        {
+            Guns[i] = false;
+        }
+    }
 
     void FixedUpdate()
     {
