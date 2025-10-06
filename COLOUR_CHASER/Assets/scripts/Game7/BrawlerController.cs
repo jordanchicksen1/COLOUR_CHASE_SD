@@ -103,10 +103,13 @@ public class BrawlerController : MonoBehaviour
     {
         CheckGrounded();
 
-        if (currentWeapon != null && lookInput.sqrMagnitude > 0.01f) 
+        if (currentWeapon != null)
         {
-            float angle = Mathf.Atan2(lookInput.y, lookInput.x) * Mathf.Rad2Deg;
-            weaponHoldPoint.rotation = Quaternion.Euler(0f, 0f, angle);
+            float facingDirection = GetFacingDirection();
+            if (facingDirection > 0)
+                weaponHoldPoint.rotation = Quaternion.Euler(0f, 0f, 0f); 
+            else
+                weaponHoldPoint.rotation = Quaternion.Euler(0f, 0f, 180f); 
         }
     }
 
@@ -117,6 +120,7 @@ public class BrawlerController : MonoBehaviour
         if (playerInput.playerIndex == 0)
         {
             animator.SetBool("P2", true);
+
             if (moveInput.x > 0)
             {
                 animator.SetBool("Walk2", true);
@@ -130,7 +134,6 @@ public class BrawlerController : MonoBehaviour
             else
             {
                 animator.SetBool("Walk2", false);
-                GetComponent<SpriteRenderer>().flipX = true;
             }
         }
         else if (playerInput.playerIndex == 1)
@@ -138,17 +141,16 @@ public class BrawlerController : MonoBehaviour
             if (moveInput.x > 0)
             {
                 animator.SetBool("Walk", true);
-                transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
+                GetComponent<SpriteRenderer>().flipX = false;
             }
             else if (moveInput.x < 0)
             {
                 animator.SetBool("Walk", true);
-                transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+                GetComponent<SpriteRenderer>().flipX = true; 
             }
             else
             {
                 animator.SetBool("Walk", false);
-                GetComponent<SpriteRenderer>().flipX = false;
             }
         }
     }
@@ -235,10 +237,7 @@ public class BrawlerController : MonoBehaviour
             }
         }
     }
-    public void OnRotate(InputAction.CallbackContext context)
-    {
-        lookInput = context.ReadValue<Vector2>();
-    }
+   
     void EquipWeapon(Weapon weapon)
     {
         if (currentWeapon != null)
@@ -283,5 +282,11 @@ public class BrawlerController : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, pullRange);
+    }
+
+    private float GetFacingDirection()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        return sr.flipX ? 1f : -1f;
     }
 }
