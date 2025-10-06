@@ -108,11 +108,30 @@ public class BrawlerController : MonoBehaviour
 
         if (currentWeapon != null)
         {
-            float facingDirection = GetFacingDirection();
-            if (facingDirection > 0)
-                weaponHoldPoint.rotation = Quaternion.Euler(0f, 0f, 0f); 
-            else
-                weaponHoldPoint.rotation = Quaternion.Euler(0f, 0f, 180f); 
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+
+            Vector3 handScale = weaponHoldPoint.localScale;
+            handScale.x = sr.flipX ? 1f : -1f;
+            weaponHoldPoint.localScale = handScale;
+
+            Vector3 handPos = weaponHoldPoint.localPosition;
+            handPos.x = sr.flipX ? 0.8f : -0.8f;
+            weaponHoldPoint.localPosition = handPos;
+
+            if (currentWeapon.firePoint != null)
+            {
+                Vector3 fireLocalPos = currentWeapon.firePoint.localPosition;
+                fireLocalPos.x = Mathf.Abs(fireLocalPos.x) * (sr.flipX ? 1f : -1f);
+                currentWeapon.firePoint.localPosition = fireLocalPos;
+            }
+
+            currentWeapon.transform.localRotation = Quaternion.identity;
+
+            if (currentWeapon != null)
+            {
+                bool facingRight = !GetComponent<SpriteRenderer>().flipX;
+                currentWeapon.FlipFirePoint(facingRight);
+            }
         }
     }
 

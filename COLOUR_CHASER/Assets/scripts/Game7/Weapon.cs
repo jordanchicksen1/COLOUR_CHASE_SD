@@ -25,6 +25,13 @@ public class Weapon : MonoBehaviour
     [SerializeField] private ParticleSystem muzzleFlash;
 
     private float nextFireTime;
+    private Vector3 firePointOriginalLocalPos;
+
+    void Awake()
+    {
+        if (firePoint != null)
+            firePointOriginalLocalPos = firePoint.localPosition;
+    }
 
     public void Shoot()
     {
@@ -86,6 +93,16 @@ public class Weapon : MonoBehaviour
     {
         Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         Debug.Log("Hand Cannon Blast!");
+    }
+
+    public void FlipFirePoint(bool facingRight)
+    {
+        Vector3 localPos = firePointOriginalLocalPos; 
+        float extraOffset = 0.5f; 
+        localPos.x = (facingRight ? 1 : 1) * Mathf.Abs(localPos.x + extraOffset);
+        firePoint.localPosition = localPos;
+
+        firePoint.localRotation = Quaternion.Euler(0, 0, facingRight ? 180f : 0f);
     }
 
     void PlayMuzzleFlash()
