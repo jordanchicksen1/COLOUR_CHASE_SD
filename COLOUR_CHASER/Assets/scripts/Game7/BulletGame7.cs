@@ -21,15 +21,14 @@ public class BulletGame7 : MonoBehaviour
 
     void Start()
     {
-       
-        rb.AddForce(transform.right * speed, ForceMode2D.Impulse);
+        rb.velocity = transform.right.normalized * speed;
 
         Invoke(nameof(DestroyBullet), lifeTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (hasHit) return; 
+        if (hasHit) return;
         hasHit = true;
 
         if (collision.gameObject.CompareTag("Player1") || collision.gameObject.CompareTag("Player2"))
@@ -48,9 +47,7 @@ public class BulletGame7 : MonoBehaviour
     void DestroyBullet()
     {
         if (!hasHit)
-        {
             PlayImpactEffect();
-        }
     }
 
     void PlayImpactEffect()
