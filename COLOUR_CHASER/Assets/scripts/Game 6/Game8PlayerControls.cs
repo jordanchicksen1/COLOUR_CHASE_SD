@@ -42,7 +42,7 @@ public class Game8playercontrols : MonoBehaviour
         InputSystem.settings.maxEventBytesPerUpdate = 1024 * 1024;
     }
 
-    
+
 
     private void Start()
     {
@@ -56,6 +56,9 @@ public class Game8playercontrols : MonoBehaviour
         {
             SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
         }
+
+        Guns[4] = true;
+
 
     }
 
@@ -100,10 +103,37 @@ public class Game8playercontrols : MonoBehaviour
 
         // Apply the appropriate scale
         float currentYScale = Mathf.Abs(holdingPosition.localScale.y);
-        holdingPosition.localScale = new Vector2(
-            holdingPosition.localScale.x,
-            isUpsideDown ? -currentYScale : currentYScale
-        );
+        holdingPosition.localScale = new Vector2(holdingPosition.localScale.x, isUpsideDown ? -currentYScale : currentYScale);
+
+        if (Guns.Any(b => b == true))
+        {
+            SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+
+            if (playerInput.playerIndex == 0)
+            {
+                if (isUpsideDown)
+                {
+                    spriteRend.flipX = false;
+                }
+                else
+                {
+                    spriteRend.flipX = true;
+
+                }
+            }
+            else if (playerInput.playerIndex == 1)
+            {
+                if (isUpsideDown)
+                {
+                    spriteRend.flipX = true;
+                }
+                else
+                {
+                    spriteRend.flipX = false;
+
+                }
+            }
+        }
     }
 
     public void OnRotate(InputAction.CallbackContext context)
@@ -134,7 +164,7 @@ public class Game8playercontrols : MonoBehaviour
 
     public void OnPickup(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
             canPickup = true;
         }
@@ -160,7 +190,7 @@ public class Game8playercontrols : MonoBehaviour
 
     public void OnScope(InputAction.CallbackContext context)
     {
-       if (context.canceled)
+        if (context.canceled)
         {
             if (hasSniper)
             {
@@ -168,7 +198,7 @@ public class Game8playercontrols : MonoBehaviour
                 {
                     MaxScope -= 7;
                 }
-                else if(Cam.transform.localPosition.z == -41)
+                else if (Cam.transform.localPosition.z == -41)
                 {
                     MaxScope = -20;
                 }
@@ -179,7 +209,7 @@ public class Game8playercontrols : MonoBehaviour
                 {
                     MaxScope -= 0;
                 }
-               
+
             }
             else if (hasLazer)
             {
@@ -246,9 +276,9 @@ public class Game8playercontrols : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
-           if (shootManagerScript != null)
+            if (shootManagerScript != null)
             {
                 shootManagerScript.isShooting = true;
             }
@@ -357,7 +387,7 @@ public class Game8playercontrols : MonoBehaviour
 
     void ResetGuns()
     {
-        for(int i = 0; i < Guns.Count; i++)
+        for (int i = 0; i < Guns.Count; i++)
         {
             MaxScope = -20;
             holdingPosition.localScale = new Vector2(1, 1);
@@ -370,20 +400,23 @@ public class Game8playercontrols : MonoBehaviour
 
         if (isFlying)
         {
-           if (JetFuel > 0)
+            if (JetFuel > 0)
             {
                 rb.velocity = new Vector2(moveInput.x * speed, 1 * speed);
 
                 JetFuel -= Time.deltaTime;
+                animator.SetBool("Fly", true);
             }
-            
+
         }
         else if (!isFlying)
         {
             rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
-            if(JetFuel < MaxJetFuel)
+            if (JetFuel < MaxJetFuel)
             {
                 JetFuel += Time.deltaTime;
+                animator.SetBool("Fly", false);
+
             }
         }
 
@@ -393,22 +426,26 @@ public class Game8playercontrols : MonoBehaviour
             animator.SetBool("P2", true);
             if (moveInput.x > 0)
             {
-                animator.SetBool("Walk2", true);
-                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-                spriteRend.flipX = true;
+                if (!isFlying)
+                {
+                    animator.SetBool("Walk2", true);
+
+                   
+                }
 
             }
             else if (moveInput.x < 0)
             {
-                animator.SetBool("Walk2", true);
-                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-                spriteRend.flipX = false;
+                if (!isFlying)
+                {
+                    animator.SetBool("Walk2", true);
+                    
+                }
             }
             else if (moveInput.x == 0)
             {
                 animator.SetBool("Walk2", false);
-                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-                spriteRend.flipX = true;
+
             }
         }
         else if (playerInput.playerIndex == 1)
@@ -416,21 +453,18 @@ public class Game8playercontrols : MonoBehaviour
             if (moveInput.x > 0)
             {
                 animator.SetBool("Walk", true);
-                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-                spriteRend.flipX = false;
+
 
             }
             else if (moveInput.x < 0)
             {
                 animator.SetBool("Walk", true);
-                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-                spriteRend.flipX = true;
+
             }
             else if (moveInput.x == 0)
             {
                 animator.SetBool("Walk", false);
-                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-                spriteRend.flipX = false;
+
             }
         }
     }

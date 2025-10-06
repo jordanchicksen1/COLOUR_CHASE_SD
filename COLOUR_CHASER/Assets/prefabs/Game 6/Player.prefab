@@ -25,9 +25,9 @@ Transform:
   m_GameObject: {fileID: 41620094938063208}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: -0.208, y: -0.202, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1878771961877667694}
   m_Father: {fileID: 2522521450817672359}
@@ -63,8 +63,8 @@ Transform:
   m_GameObject: {fileID: 1990880792847609032}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.32090178, y: -1.0393803, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.32090178, y: -1.0483, z: -1}
+  m_LocalScale: {x: 1, y: 1.0526, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8047334465727512924}
@@ -112,9 +112,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: baf91bba324070c458c9732f447563f4, type: 3}
+  m_Sprite: {fileID: -8235613164576150451, guid: 9d5a6c7226533d440af2cdfe6893445f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -352,7 +352,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.7777778, y: 1.7777778}
+    oldSize: {x: 1, y: 2.25}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -403,8 +403,8 @@ MonoBehaviour:
   Cam: {fileID: 3842484882079234949}
   MaxScope: -20
   isFlying: 0
-  JetFuel: 5
-  MaxJetFuel: 5
+  JetFuel: 3
+  MaxJetFuel: 3
 --- !u!1 &6437564772988338952
 GameObject:
   m_ObjectHideFlags: 0
