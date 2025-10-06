@@ -47,6 +47,9 @@ public class BrawlerController : MonoBehaviour
     [SerializeField] private Transform weaponHoldPoint; 
     private Weapon currentWeapon;
 
+    [Header("VFX")]
+    [SerializeField] private ParticleSystem muzzleFlash;
+
     private Vector2 lookInput;
 
     void Awake()

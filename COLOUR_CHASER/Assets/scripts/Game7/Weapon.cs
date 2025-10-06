@@ -21,6 +21,9 @@ public class Weapon : MonoBehaviour
     public float fireRate = 0.5f;
     public float recoil = 1f;
 
+    [Header("VFX")]
+    [SerializeField] private ParticleSystem muzzleFlash;
+
     private float nextFireTime;
 
     public void Shoot()
@@ -45,6 +48,8 @@ public class Weapon : MonoBehaviour
                 ShootHandCannon();
                 break;
         }
+
+        PlayMuzzleFlash();
 
         nextFireTime = Time.time + fireRate;
     }
@@ -81,5 +86,15 @@ public class Weapon : MonoBehaviour
     {
         Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         Debug.Log("Hand Cannon Blast!");
+    }
+
+    void PlayMuzzleFlash()
+    {
+        if (muzzleFlash != null)
+        {
+            muzzleFlash.transform.position = firePoint.position;
+            muzzleFlash.transform.rotation = firePoint.rotation;
+            muzzleFlash.Play();
+        }
     }
 }

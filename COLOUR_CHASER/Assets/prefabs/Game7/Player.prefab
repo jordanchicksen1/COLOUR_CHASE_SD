@@ -478,7 +478,7 @@ MonoBehaviour:
     m_Bits: 8
   player1Spawn: {fileID: 0}
   player2Spawn: {fileID: 0}
-  jumpSound: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: 524fca7c2e54fb146beb8f196dc05305, type: 3}
   jumpVolume: 1
   pullRange: 1.5
   pullSpeed: 3
