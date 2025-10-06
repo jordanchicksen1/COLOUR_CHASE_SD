@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5498943924898063538}
   - component: {fileID: 6005562616828450450}
   m_Layer: 0
-  m_Name: pistolBullet
+  m_Name: shotBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,9 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce3e921eccd51574b8ea3f7fd9a903ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
-  lifeTime: 3
-  knockbackForce: 15
+  speed: 50
+  lifeTime: 0.08
+  knockbackForce: 50
   impactEffect: {fileID: 7402273038625169145}
 --- !u!50 &2150837627023624723
 Rigidbody2D:
