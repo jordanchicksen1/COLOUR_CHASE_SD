@@ -91,6 +91,19 @@ public class Game8playercontrols : MonoBehaviour
             GameObject OldGun = GunPoint.GetChild(0).gameObject;
             Destroy(OldGun);
         }
+
+        // Normalize the rotation to be between -180 and 180 degrees
+        float normalizedRotation = Mathf.Repeat(holdingPosition.rotation.eulerAngles.z + 180, 360) - 180;
+
+        // Check if the object is upside down (between 90 and 270 degrees in absolute terms)
+        bool isUpsideDown = Mathf.Abs(normalizedRotation) > 90;
+
+        // Apply the appropriate scale
+        float currentYScale = Mathf.Abs(holdingPosition.localScale.y);
+        holdingPosition.localScale = new Vector2(
+            holdingPosition.localScale.x,
+            isUpsideDown ? -currentYScale : currentYScale
+        );
     }
 
     public void OnRotate(InputAction.CallbackContext context)
@@ -346,6 +359,8 @@ public class Game8playercontrols : MonoBehaviour
     {
         for(int i = 0; i < Guns.Count; i++)
         {
+            MaxScope = -20;
+            holdingPosition.localScale = new Vector2(1, 1);
             Guns[i] = false;
         }
     }
