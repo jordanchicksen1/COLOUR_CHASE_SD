@@ -237,21 +237,7 @@ public class BrawlerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Kill box"))
-        {
-            transform.position = OGposition;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Kill box"))
-        {
-            transform.position = OGposition;
-        }
-    }
+  
 
     IEnumerator Dash()
     {
@@ -278,19 +264,24 @@ public class BrawlerController : MonoBehaviour
     {
         if (context.performed)
         {
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1f);
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1.2f);
             foreach (var hit in hits)
             {
                 Weapon weapon = hit.GetComponent<Weapon>();
                 if (weapon != null)
                 {
+                    if (weapon.spawner != null)
+                    {
+                        weapon.spawner.OnWeaponPickedUp(weapon.gameObject);
+                    }
+
                     EquipWeapon(weapon);
                     break;
                 }
             }
         }
     }
-   
+
     void EquipWeapon(Weapon weapon)
     {
         if (currentWeapon != null)
@@ -301,10 +292,8 @@ public class BrawlerController : MonoBehaviour
         currentWeapon = weapon;
 
         weapon.transform.SetParent(weaponHoldPoint);
-
         weapon.transform.localPosition = Vector3.zero;
         weapon.transform.localRotation = Quaternion.identity;
-
         weapon.transform.localScale = Vector3.one;
 
         Rigidbody2D rb = weapon.GetComponent<Rigidbody2D>();
@@ -341,5 +330,19 @@ public class BrawlerController : MonoBehaviour
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         return sr.flipX ? 1f : -1f;
+    }
+
+    public void RespawnToSpawn()
+    {
+        if (playerInput.playerIndex == 0 && player1Spawn != null)
+        {
+            transform.position = player1Spawn.transform.position;
+        }
+        else if (playerInput.playerIndex == 1 && player2Spawn != null)
+        {
+            transform.position = player2Spawn.transform.position;
+        }
+
+        rb.velocity = Vector2.zero; // stop any movement
     }
 }
