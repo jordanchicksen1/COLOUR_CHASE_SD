@@ -59,6 +59,7 @@ TagManager:
   - ARBullet
   - SMGBullet
   - SniperBullet
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
