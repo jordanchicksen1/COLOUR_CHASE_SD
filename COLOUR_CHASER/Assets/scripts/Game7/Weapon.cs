@@ -103,6 +103,7 @@ public class Weapon : MonoBehaviour
         firePoint.localPosition = localPos;
 
         firePoint.localRotation = Quaternion.Euler(0, 0, facingRight ? 180f : 0f);
+
     }
 
     void PlayMuzzleFlash()
