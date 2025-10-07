@@ -108,29 +108,59 @@ public class BrawlerController : MonoBehaviour
 
         if (currentWeapon != null)
         {
-            SpriteRenderer sr = GetComponent<SpriteRenderer>();
-
-            Vector3 handScale = weaponHoldPoint.localScale;
-            handScale.x = sr.flipX ? 1f : -1f;
-            weaponHoldPoint.localScale = handScale;
-
-            Vector3 handPos = weaponHoldPoint.localPosition;
-            handPos.x = sr.flipX ? 0.8f : -0.8f;
-            weaponHoldPoint.localPosition = handPos;
-
-            if (currentWeapon.firePoint != null)
+            if (playerInput.playerIndex == 0)
             {
-                Vector3 fireLocalPos = currentWeapon.firePoint.localPosition;
-                fireLocalPos.x = Mathf.Abs(fireLocalPos.x) * (sr.flipX ? 1f : -1f);
-                currentWeapon.firePoint.localPosition = fireLocalPos;
+                SpriteRenderer sr = GetComponent<SpriteRenderer>();
+
+                Vector3 handScale = weaponHoldPoint.localScale;
+                handScale.x = sr.flipX ? 1f : -1f;
+                weaponHoldPoint.localScale = handScale;
+
+                Vector3 handPos = weaponHoldPoint.localPosition;
+                handPos.x = sr.flipX ? 0.8f : -0.8f;
+                weaponHoldPoint.localPosition = handPos;
+
+                if (currentWeapon.firePoint != null)
+                {
+                    Vector3 fireLocalPos = currentWeapon.firePoint.localPosition;
+                    fireLocalPos.x = Mathf.Abs(fireLocalPos.x) * (sr.flipX ? 1f : -1f);
+                    currentWeapon.firePoint.localPosition = fireLocalPos;
+                }
+
+                currentWeapon.transform.localRotation = Quaternion.identity;
+
+                if (currentWeapon != null)
+                {
+                    bool facingRight = !GetComponent<SpriteRenderer>().flipX;
+                    currentWeapon.FlipFirePoint(facingRight);
+                }
             }
-
-            currentWeapon.transform.localRotation = Quaternion.identity;
-
-            if (currentWeapon != null)
+            else if (playerInput.playerIndex == 1)
             {
-                bool facingRight = !GetComponent<SpriteRenderer>().flipX;
-                currentWeapon.FlipFirePoint(facingRight);
+                SpriteRenderer sr = GetComponent<SpriteRenderer>();
+
+                Vector3 handScale = weaponHoldPoint.localScale;
+                handScale.x = sr.flipX ? -1f : 1f;
+                weaponHoldPoint.localScale = handScale;
+
+                Vector3 handPos = weaponHoldPoint.localPosition;
+                handPos.x = sr.flipX ? -0.8f : 0.8f;
+                weaponHoldPoint.localPosition = handPos;
+
+                if (currentWeapon.firePoint != null)
+                {
+                    Vector3 fireLocalPos = currentWeapon.firePoint.localPosition;
+                    fireLocalPos.x = Mathf.Abs(fireLocalPos.x) * (sr.flipX ? -1f : 1f);
+                    currentWeapon.firePoint.localPosition = fireLocalPos;
+                }
+
+                currentWeapon.transform.localRotation = Quaternion.identity;
+
+                if (currentWeapon != null)
+                {
+                    bool facingRight = !GetComponent<SpriteRenderer>().flipX;
+                    currentWeapon.FlipFirePoint(facingRight);
+                }
             }
         }
     }
@@ -160,15 +190,16 @@ public class BrawlerController : MonoBehaviour
         }
         else if (playerInput.playerIndex == 1)
         {
+            transform.localScale = new Vector2(-0.8f, 0.8f);
             if (moveInput.x > 0)
             {
                 animator.SetBool("Walk", true);
-                GetComponent<SpriteRenderer>().flipX = false;
+                GetComponent<SpriteRenderer>().flipX = true;
             }
             else if (moveInput.x < 0)
             {
                 animator.SetBool("Walk", true);
-                GetComponent<SpriteRenderer>().flipX = true; 
+                GetComponent<SpriteRenderer>().flipX = false; 
             }
             else
             {
