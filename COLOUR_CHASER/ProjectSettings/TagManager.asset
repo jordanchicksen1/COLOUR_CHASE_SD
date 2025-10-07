@@ -53,6 +53,12 @@ TagManager:
   - Bazooka
   - AR
   - MoveBox
+  - PistolBullet
+  - ShotGunBullet
+  - BazookaBullet
+  - ARBullet
+  - SMGBullet
+  - SniperBullet
   layers:
   - Default
   - TransparentFX
