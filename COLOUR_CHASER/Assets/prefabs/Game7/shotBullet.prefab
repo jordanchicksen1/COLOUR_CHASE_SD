@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 50
   lifeTime: 0.08
-  knockbackForce: 50
+  knockbackForce: 10
   impactEffect: {fileID: 7402273038625169145}
 --- !u!50 &2150837627023624723
 Rigidbody2D:
@@ -141,7 +141,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 1082782459321934504}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 662e4663ff2fbae408dddc8053491fac, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
