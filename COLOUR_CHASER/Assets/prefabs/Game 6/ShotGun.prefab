@@ -105,7 +105,7 @@ MonoBehaviour:
   isShooting: 0
   Guns: 00000000000000
   shootRate: 1.5
-  bulletPrefab: {fileID: 6100988838423927084, guid: 190095a34a4ec0e47967b0f62a9580ac, type: 3}
+  bulletPrefab: {fileID: 6100988838423927084, guid: c5be63431f3e9ea429b03192b8b9b385, type: 3}
   bulletPoints:
   - {fileID: 994918522474913583}
   - {fileID: 484139801518396015}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,10 +13,42 @@ public class HPmanager : MonoBehaviour
     private int ARDamage, SMGDamage, ShotGunDamage, PistolDamage, SniperDamage, BazookaDamage;
     private bool gotShot;
     private float TimeFrombeingShot;
+    private bool canRespawn;
 
+    private GameObject[] SpawnPoints;
+
+    private void Start()
+    {
+        SpawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
+    }
     private void Update()
     {
         hpSlider.value = hP;
+        if (hP <= 0)
+        {
+            if (!canRespawn)
+            {
+                canRespawn = true;
+                Game8playercontrols controls = GetComponent<Game8playercontrols>();
+                controls.speed = 0;
+                Respawn();
+            }
+        }
+    }
+
+    void Respawn()
+    {
+        StartCoroutine(RespawnPosition());
+    }
+
+    IEnumerator RespawnPosition()
+    {
+        yield return new WaitForSeconds(2);
+        transform.position = SpawnPoints[Random.Range(0, SpawnPoints.Length)].transform.position;
+        Game8playercontrols controls = GetComponent<Game8playercontrols>();
+        controls.speed = 5;
+        hP = MaxHp;
+        canRespawn = false;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
