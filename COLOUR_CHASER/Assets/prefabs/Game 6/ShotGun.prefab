@@ -115,6 +115,7 @@ MonoBehaviour:
   isRunning: 0
   ReloadTime: 1.5
   bulletLife: 0.25
+  BulletTag: ShotGunBullet
 --- !u!61 &5270370561730242135
 BoxCollider2D:
   m_ObjectHideFlags: 0

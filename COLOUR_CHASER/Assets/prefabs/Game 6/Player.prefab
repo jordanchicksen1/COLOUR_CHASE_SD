@@ -443,6 +443,7 @@ MonoBehaviour:
   isFlying: 0
   JetFuel: 3
   MaxJetFuel: 3
+  JetFuelSlider: {fileID: 7310615752311760773}
 --- !u!114 &5284642767625797276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,6 +456,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945791aa345640948a444119ee7aa696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hP: 200
+  MaxHp: 200
+  hpSlider: {fileID: 4962954718787894704}
+  ARDamage: 3
+  SMGDamage: 8
+  ShotGunDamage: 10
+  PistolDamage: 8
+  SniperDamage: 50
+  BazookaDamage: 60
 --- !u!1 &2163819065208854927
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +811,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 201.23, y: -238}
+  m_AnchoredPosition: {x: 201.22998, y: -238}
   m_SizeDelta: {x: 251.55, y: 48.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7310615752311760773
@@ -889,7 +899,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -4.87, y: 0}
+  m_AnchoredPosition: {x: -4.8700027, y: 0}
   m_SizeDelta: {x: -9.74, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6354230541610444055
@@ -1132,7 +1142,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -4.87, y: 0}
+  m_AnchoredPosition: {x: -4.869995, y: 0}
   m_SizeDelta: {x: -9.74, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2545590180973961229

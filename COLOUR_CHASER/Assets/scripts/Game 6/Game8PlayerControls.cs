@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Game8playercontrols : MonoBehaviour
@@ -34,7 +35,7 @@ public class Game8playercontrols : MonoBehaviour
     private bool isFlying;
     [SerializeField]
     private float JetFuel, MaxJetFuel;
-
+    public Slider JetFuelSlider;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -72,6 +73,7 @@ public class Game8playercontrols : MonoBehaviour
         hasLazer = Guns[5];
         hasBazooka = Guns[6];
 
+        JetFuelSlider.value = JetFuel;
         Cam.transform.localPosition = new Vector3(0, 0, MaxScope);
 
         if (shootManagerScript != null)

@@ -113,6 +113,7 @@ MonoBehaviour:
   isRunning: 0
   ReloadTime: 0.1
   bulletLife: 0.5
+  BulletTag: ARBullet
 --- !u!61 &5270370561730242135
 BoxCollider2D:
   m_ObjectHideFlags: 0

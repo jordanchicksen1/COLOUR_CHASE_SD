@@ -20,6 +20,8 @@ public class ShootManager : MonoBehaviour
     private float ReloadTime;
     [SerializeField]
     private float bulletLife;
+    [SerializeField]
+    private string BulletTag;
     //Guns[0] = sniper
     //Guns[1] = ShotGun
     //Guns[2] = SMG
@@ -107,6 +109,7 @@ public class ShootManager : MonoBehaviour
                 GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 rb.velocity = bulletPoints[i].right * bulletSpeed;
+                bullet.tag = BulletTag;
                 Destroy(bullet, bulletLife);
             }
 
@@ -128,6 +131,7 @@ public class ShootManager : MonoBehaviour
             for (int i = 0; i < bulletPoints.Count; i++)
             {
                 GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
+                bullet.tag = BulletTag;
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 rb.velocity = bulletPoints[i].right * bulletSpeed;
                 Destroy(bullet, bulletLife);
@@ -153,6 +157,7 @@ public class ShootManager : MonoBehaviour
                 GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 rb.velocity = bulletPoints[i].right * bulletSpeed;
+                bullet.tag = BulletTag;
                 Destroy(bullet, bulletLife);
             }
 
@@ -176,6 +181,7 @@ public class ShootManager : MonoBehaviour
                 GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 rb.velocity = bulletPoints[i].right * bulletSpeed;
+                bullet.tag = BulletTag;
                 Destroy(bullet, bulletLife);
             }
 
@@ -199,6 +205,7 @@ public class ShootManager : MonoBehaviour
                 GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 rb.velocity = bulletPoints[i].right * bulletSpeed;
+                bullet.tag = BulletTag;
                 Destroy(bullet, bulletLife);
             }
 
@@ -220,6 +227,7 @@ public class ShootManager : MonoBehaviour
             for (int i = 0; i < bulletPoints.Count; i++)
             {
                 GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
+                bullet.tag = BulletTag;
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 rb.velocity = bulletPoints[i].right * bulletSpeed;
                 Destroy(bullet, bulletLife);
