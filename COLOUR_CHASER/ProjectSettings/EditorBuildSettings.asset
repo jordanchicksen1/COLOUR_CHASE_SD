@@ -62,4 +62,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/P2Car.unity
     guid: 7377ce81af6b0254c8fa76b777feba86
+  - enabled: 1
+    path: Assets/Scenes/G7P1Win.unity
+    guid: f404e2466488749478f1c4bad45a991d
+  - enabled: 1
+    path: Assets/Scenes/G7P2Win.unity
+    guid: 765d38809d1c67f4194607c3ee9abfbc
+  - enabled: 1
+    path: Assets/Scenes/G7Draw.unity
+    guid: e21a87a0dca2bd9419755dc4a01633cc
   m_configObjects: {}
