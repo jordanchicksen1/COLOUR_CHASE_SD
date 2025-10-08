@@ -122,7 +122,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &2077670118
+--- !u!1001 &5395508668849128685
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -132,19 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4961300329740418977, guid: 4c14586586786bc47891bbc76254259f, type: 3}
       propertyPath: m_Name
-      value: p2winsGame7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5248507191029105285, guid: 4c14586586786bc47891bbc76254259f, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5248507191029105285, guid: 4c14586586786bc47891bbc76254259f, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5248507191029105285, guid: 4c14586586786bc47891bbc76254259f, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
+      value: p1winsGame7
       objectReference: {fileID: 0}
     - target: {fileID: 7858532555191881881, guid: 4c14586586786bc47891bbc76254259f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -186,22 +174,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8243017481684986848, guid: 4c14586586786bc47891bbc76254259f, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8243017481684986848, guid: 4c14586586786bc47891bbc76254259f, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8243017481684986848, guid: 4c14586586786bc47891bbc76254259f, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8338744286496680901, guid: 4c14586586786bc47891bbc76254259f, type: 3}
-      propertyPath: m_text
-      value: P2 WINS
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -211,4 +183,4 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 2077670118}
+  - {fileID: 5395508668849128685}
