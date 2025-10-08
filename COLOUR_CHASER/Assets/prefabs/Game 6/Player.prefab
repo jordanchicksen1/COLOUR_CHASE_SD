@@ -465,6 +465,9 @@ MonoBehaviour:
   PistolDamage: 8
   SniperDamage: 50
   BazookaDamage: 60
+  hpRestoreTime: 0
+  hpRestoreRate: 10
+  hpColldownTimer: 5
 --- !u!1 &2163819065208854927
 GameObject:
   m_ObjectHideFlags: 0

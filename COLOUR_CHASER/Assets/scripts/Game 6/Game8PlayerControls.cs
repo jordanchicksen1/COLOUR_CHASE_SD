@@ -196,11 +196,11 @@ public class Game8playercontrols : MonoBehaviour
         {
             if (hasSniper)
             {
-                if (Cam.transform.localPosition.z != -41)
+                if (Cam.transform.localPosition.z != -48)
                 {
                     MaxScope -= 7;
                 }
-                else if (Cam.transform.localPosition.z == -41)
+                else if (Cam.transform.localPosition.z == -48)
                 {
                     MaxScope = -20;
                 }
@@ -213,25 +213,13 @@ public class Game8playercontrols : MonoBehaviour
                 }
 
             }
-            else if (hasLazer)
-            {
-                if (Cam.transform.localPosition.z != -34)
-                {
-                    MaxScope -= 7;
-                }
-                else if (Cam.transform.localPosition.z == -34)
-                {
-                    MaxScope = -20;
-                }
-
-            }
             else if (hasBazooka)
             {
-                if (Cam.transform.localPosition.z != -34)
+                if (Cam.transform.localPosition.z != -41)
                 {
                     MaxScope -= 7;
                 }
-                else if (Cam.transform.localPosition.z == -34)
+                else if (Cam.transform.localPosition.z == -41)
                 {
                     MaxScope = -20;
                 }
@@ -251,11 +239,11 @@ public class Game8playercontrols : MonoBehaviour
             }
             else if (hasAR)
             {
-                if (Cam.transform.localPosition.z != -34)
+                if (Cam.transform.localPosition.z != -41)
                 {
                     MaxScope -= 7;
                 }
-                else if (Cam.transform.localPosition.z == -34)
+                else if (Cam.transform.localPosition.z == -41)
                 {
                     MaxScope = -20;
                 }
@@ -263,11 +251,11 @@ public class Game8playercontrols : MonoBehaviour
             }
             else if (hasSmg)
             {
-                if (Cam.transform.localPosition.z != -27)
+                if (Cam.transform.localPosition.z != -34)
                 {
                     MaxScope -= 7;
                 }
-                else if (Cam.transform.localPosition.z == -27)
+                else if (Cam.transform.localPosition.z == -34)
                 {
                     MaxScope = -20;
                 }

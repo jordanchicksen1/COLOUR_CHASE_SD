@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class HPmanager : MonoBehaviour
 {
     [SerializeField]
-    private int hP, MaxHp;
+    private float hP, MaxHp;
     public Slider hpSlider;
     [SerializeField]
     private int ARDamage, SMGDamage, ShotGunDamage, PistolDamage, SniperDamage, BazookaDamage;
@@ -16,7 +16,12 @@ public class HPmanager : MonoBehaviour
     private bool canRespawn;
 
     private GameObject[] SpawnPoints;
-
+    [SerializeField]
+    private float hpRestoreTime;
+    [SerializeField]
+    private int hpRestoreRate;
+    [SerializeField]
+    private int hpColldownTimer;
     private void Start()
     {
         SpawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
@@ -32,6 +37,24 @@ public class HPmanager : MonoBehaviour
                 Game8playercontrols controls = GetComponent<Game8playercontrols>();
                 controls.speed = 0;
                 Respawn();
+            }
+        }
+
+        if (hpRestoreTime > 0)
+        {
+            hpRestoreTime -= Time.deltaTime;
+        }
+
+        Gainhp();
+    }
+
+    void Gainhp()
+    {
+        if (hpRestoreTime <= 0)
+        {
+            if (hP < MaxHp)
+            {
+                hP += Time.deltaTime * hpRestoreRate;
             }
         }
     }
@@ -57,38 +80,49 @@ public class HPmanager : MonoBehaviour
             hP -= ARDamage;
             Destroy(collision.gameObject);
             gotShot = true;
+            hpRestoreTime = hpColldownTimer;
         }
         else if (collision.collider.CompareTag("ShotGunBullet"))
         {
             hP -= ShotGunDamage;
             Destroy(collision.gameObject);
             gotShot = true;
+            hpRestoreTime = hpColldownTimer;
         }
         else if (collision.collider.CompareTag("SniperBullet"))
         {
             hP -= SniperDamage;
             Destroy(collision.gameObject);
             gotShot = true;
+            hpRestoreTime = hpColldownTimer;
         }
         else if (collision.collider.CompareTag("PistolBullet"))
         {
             hP -= PistolDamage;
             Destroy(collision.gameObject);
             gotShot = true;
+            hpRestoreTime = hpColldownTimer;
         }
         else if (collision.collider.CompareTag("BazookaBullet"))
         {
             hP -= BazookaDamage;
             Destroy(collision.gameObject);
             gotShot = true;
+            hpRestoreTime = hpColldownTimer;
         }
         else if (collision.collider.CompareTag("SMGBullet"))
         {
             hP -= SMGDamage;
             Destroy(collision.gameObject);
             gotShot = true;
+            hpRestoreTime = hpColldownTimer;
         }
     }
     
+
+    IEnumerator LastShot()
+    {
+        yield return new WaitForSeconds(hpRestoreTime);
+    }
     
 }
