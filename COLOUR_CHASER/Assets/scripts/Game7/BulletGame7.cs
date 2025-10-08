@@ -22,7 +22,6 @@ public class BulletGame7 : MonoBehaviour
     void Start()
     {
         rb.velocity = transform.right.normalized * speed;
-
         Invoke(nameof(DestroyBullet), lifeTime);
     }
 
@@ -36,7 +35,10 @@ public class BulletGame7 : MonoBehaviour
             Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
             if (playerRb != null)
             {
-                Vector2 knockDir = (collision.transform.position - transform.position).normalized;
+                float directionX = Mathf.Sign(collision.transform.position.x - transform.position.x);
+
+                Vector2 knockDir = new Vector2(directionX, 0f).normalized;
+
                 playerRb.AddForce(knockDir * knockbackForce, ForceMode2D.Impulse);
             }
         }

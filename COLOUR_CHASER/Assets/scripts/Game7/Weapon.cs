@@ -27,10 +27,17 @@ public class Weapon : MonoBehaviour
     private float nextFireTime;
     private Vector3 firePointOriginalLocalPos;
 
+    [HideInInspector] public weaponSpawner spawner;
+
     void Awake()
     {
         if (firePoint != null)
             firePointOriginalLocalPos = firePoint.localPosition;
+    }
+
+    public void RegisterSpawner(weaponSpawner weaponSpawner)
+    {
+        spawner = weaponSpawner;
     }
 
     public void Shoot()
@@ -39,40 +46,19 @@ public class Weapon : MonoBehaviour
 
         switch (weaponType)
         {
-            case WeaponType.BubbleBlaster:
-                ShootBubble();
-                break;
-            case WeaponType.LaserGun:
-                ShootLaser();
-                break;
-            case WeaponType.PumpShotgun:
-                ShootShotgun();
-                break;
-            case WeaponType.Pistol:
-                ShootPistol();
-                break;
-            case WeaponType.HandCannon:
-                ShootHandCannon();
-                break;
+            case WeaponType.BubbleBlaster: ShootBubble(); break;
+            case WeaponType.LaserGun: ShootLaser(); break;
+            case WeaponType.PumpShotgun: ShootShotgun(); break;
+            case WeaponType.Pistol: ShootPistol(); break;
+            case WeaponType.HandCannon: ShootHandCannon(); break;
         }
 
         PlayMuzzleFlash();
-
         nextFireTime = Time.time + fireRate;
     }
 
-    void ShootBubble()
-    {
-        Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        Debug.Log("Bubble Blaster Fired!");
-    }
-
-    void ShootLaser()
-    {
-        Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        Debug.Log("Laser Fired!");
-    }
-
+    void ShootBubble() => Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+    void ShootLaser() => Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
     void ShootShotgun()
     {
         for (int i = -2; i <= 2; i++)
@@ -80,30 +66,17 @@ public class Weapon : MonoBehaviour
             Quaternion spread = firePoint.rotation * Quaternion.Euler(0, 0, i * 5f);
             Instantiate(projectilePrefab, firePoint.position, spread);
         }
-        Debug.Log("Shotgun blast!");
     }
-
-    void ShootPistol()
-    {
-        Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        Debug.Log("Pistol Fired!");
-    }
-
-    void ShootHandCannon()
-    {
-        Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        Debug.Log("Hand Cannon Blast!");
-    }
+    void ShootPistol() => Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+    void ShootHandCannon() => Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
 
     public void FlipFirePoint(bool facingRight)
     {
-        Vector3 localPos = firePointOriginalLocalPos; 
-        float extraOffset = 0.5f; 
+        Vector3 localPos = firePointOriginalLocalPos;
+        float extraOffset = 0.5f;
         localPos.x = (facingRight ? 1 : 1) * Mathf.Abs(localPos.x + extraOffset);
         firePoint.localPosition = localPos;
-
         firePoint.localRotation = Quaternion.Euler(0, 0, facingRight ? 180f : 0f);
-
     }
 
     void PlayMuzzleFlash()
