@@ -37,11 +37,13 @@ public class HPmanager : MonoBehaviour
         SpawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
         if(playerInput.playerIndex ==0)
         {
-            BG.color = Color.blue;
+            BG.color = Color.red;
+            BG.color = new Color(1f,0f,0f, 0.5450981f);
         }
         else if (playerInput.playerIndex == 1)
         {
             BG.color = Color.red;
+            BG.color = new Color(0f,0f,1f, 0.5450981f);
         }
     }
     private void Update()
