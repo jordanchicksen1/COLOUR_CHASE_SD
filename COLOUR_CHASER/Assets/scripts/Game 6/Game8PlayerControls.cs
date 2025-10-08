@@ -23,7 +23,7 @@ public class Game8playercontrols : MonoBehaviour
     [SerializeField]
     private Transform holdingPosition;
     [SerializeField]
-    private Transform GunPoint;
+    public Transform GunPoint;
     [SerializeField]
     private Camera Cam;
     [SerializeField]
@@ -375,7 +375,7 @@ public class Game8playercontrols : MonoBehaviour
         }
     }
 
-    void ResetGuns()
+    public void ResetGuns()
     {
         for (int i = 0; i < Guns.Count; i++)
         {

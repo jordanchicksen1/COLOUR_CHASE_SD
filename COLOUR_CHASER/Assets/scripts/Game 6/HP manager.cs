@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class HPmanager : MonoBehaviour
@@ -22,9 +23,28 @@ public class HPmanager : MonoBehaviour
     private int hpRestoreRate;
     [SerializeField]
     private int hpColldownTimer;
+    public GameObject DeadPlayer1, DeadPlayer2;
+    private PlayerInput playerInput;
+    [SerializeField]
+    private RawImage BG;
+    private void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>();
+
+    }
     private void Start()
     {
         SpawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
+        if(playerInput.playerIndex ==0)
+        {
+            BG.color = Color.red;
+            BG.color = new Color(1f,0f,0f, 0.5450981f);
+        }
+        else if (playerInput.playerIndex == 1)
+        {
+            BG.color = Color.red;
+            BG.color = new Color(0f,0f,1f, 0.5450981f);
+        }
     }
     private void Update()
     {
@@ -36,7 +56,26 @@ public class HPmanager : MonoBehaviour
                 canRespawn = true;
                 Game8playercontrols controls = GetComponent<Game8playercontrols>();
                 controls.speed = 0;
+                SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+                spriteRend.enabled = false;
+
+                if (playerInput.playerIndex == 0)
+                {
+                    GameObject deadplayer = Instantiate(DeadPlayer1, transform.position, Quaternion.identity);
+                    Destroy(deadplayer, 4);
+                }
+                else if (playerInput.playerIndex == 1)
+                {
+                    GameObject deadplayer = Instantiate(DeadPlayer2, transform.position, Quaternion.identity);
+                    Destroy(deadplayer, 4);
+                }
                 Respawn();
+                controls.ResetGuns();
+                GameObject OldGun = controls.GunPoint.GetChild(0).gameObject;
+                if (OldGun != null)
+                {
+                    Destroy(OldGun);
+                }
             }
         }
 
@@ -66,11 +105,13 @@ public class HPmanager : MonoBehaviour
 
     IEnumerator RespawnPosition()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         transform.position = SpawnPoints[Random.Range(0, SpawnPoints.Length)].transform.position;
         Game8playercontrols controls = GetComponent<Game8playercontrols>();
         controls.speed = 5;
         hP = MaxHp;
+        SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
+        spriteRend.enabled = true;
         canRespawn = false;
     }
     private void OnCollisionEnter2D(Collision2D collision)
