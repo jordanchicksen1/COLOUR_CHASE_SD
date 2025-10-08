@@ -53,6 +53,12 @@ public class BrawlerController : MonoBehaviour
 
     private Vector2 lookInput;
     public Transform handTransform;
+
+    [Header("Dash Settings")]
+    [SerializeField] private int maxDashCharges = 2;
+    [SerializeField] private float dashCooldown = 5f; 
+    private int currentDashCharges;
+    [SerializeField] private float dashSpeed = 25f;
     [SerializeField] private TrailRenderer[] dashTrails;
 
     void Awake()
@@ -79,7 +85,7 @@ public class BrawlerController : MonoBehaviour
             player2Spawn = GameObject.FindGameObjectWithTag("p2");
             transform.position = player2Spawn.transform.position;
         }
-
+        currentDashCharges = maxDashCharges;
         Boxc = GetComponent<BoxCollider2D>();
     }
 
@@ -103,10 +109,8 @@ public class BrawlerController : MonoBehaviour
 
     public void OnAbility(InputAction.CallbackContext context)
     {
-        if (context.performed && !isDashing)
-        {
-            StartCoroutine(Dash());
-        }
+        if (context.performed)
+            TryDash();
     }
 
     void Update()
@@ -247,20 +251,22 @@ public class BrawlerController : MonoBehaviour
         }
     }
 
-    IEnumerator Dash()
-    {
-        if (isDashing) yield break;
+    private Coroutine dashRefillCoroutine; 
 
+    private void TryDash()
+    {
+        if (currentDashCharges > 0 && !isDashing)
+            StartCoroutine(Dash());
+    }
+
+    private IEnumerator Dash()
+    {
         isDashing = true;
 
-        // Determine dash trail color based on player
-        Color trailColor = Color.white;
-        if (gameObject.CompareTag("Player1"))
-            trailColor = Color.blue;
-        else if (gameObject.CompareTag("Player2"))
-            trailColor = Color.red;
+        currentDashCharges--;
 
-        // Enable trails and set gradient
+        Color trailColor = gameObject.CompareTag("Player1") ? Color.blue : Color.red;
+
         if (dashTrails != null)
         {
             foreach (var trail in dashTrails)
@@ -279,30 +285,53 @@ public class BrawlerController : MonoBehaviour
             }
         }
 
-        // Determine facing direction
         float dashDirection = GetComponent<SpriteRenderer>().flipX ? 1f : -1f;
-
-        // Apply dash velocity (instant force for short burst)
-        float dashSpeed = 25f;
         rb.velocity = new Vector2(dashDirection * dashSpeed, rb.velocity.y);
 
-        // Dash duration
-        float dashTime = 0.15f;
-        yield return new WaitForSeconds(dashTime);
+        yield return new WaitForSeconds(0.15f);
 
-        // Stop movement
         rb.velocity = new Vector2(0, rb.velocity.y);
 
-        // Disable trails after a small delay to let them fade
         if (dashTrails != null)
         {
             foreach (var trail in dashTrails)
-            {
                 if (trail != null) trail.enabled = false;
-            }
         }
 
         isDashing = false;
+
+        if (currentDashCharges < maxDashCharges && dashRefillCoroutine == null)
+        {
+            dashRefillCoroutine = StartCoroutine(RefillDashCharge());
+        }
+    }
+
+    private IEnumerator RefillDashCharge()
+    {
+        while (currentDashCharges < maxDashCharges)
+        {
+            yield return new WaitForSeconds(dashCooldown);
+            currentDashCharges++;
+        }
+
+        dashRefillCoroutine = null;
+    }
+
+    public void RespawnToSpawn()
+    {
+        if (playerInput.playerIndex == 0 && player1Spawn != null)
+            transform.position = player1Spawn.transform.position;
+        else if (playerInput.playerIndex == 1 && player2Spawn != null)
+            transform.position = player2Spawn.transform.position;
+
+        rb.velocity = Vector2.zero;
+        currentDashCharges = maxDashCharges;
+
+        if (dashRefillCoroutine != null)
+        {
+            StopCoroutine(dashRefillCoroutine);
+            dashRefillCoroutine = null;
+        }
     }
 
 
@@ -380,19 +409,7 @@ public class BrawlerController : MonoBehaviour
         return sr.flipX ? 1f : -1f;
     }
 
-    public void RespawnToSpawn()
-    {
-        if (playerInput.playerIndex == 0 && player1Spawn != null)
-        {
-            transform.position = player1Spawn.transform.position;
-        }
-        else if (playerInput.playerIndex == 1 && player2Spawn != null)
-        {
-            transform.position = player2Spawn.transform.position;
-        }
 
-        rb.velocity = Vector2.zero; 
-    }
     public void DropOrRemoveWeapon()
     {
         Debug.Log($"DropOrRemoveWeapon called on {name}");
