@@ -19,6 +19,8 @@ public class KillBox : MonoBehaviour
         BrawlerController player = collision.GetComponent<BrawlerController>();
         if (player != null)
         {
+            player.DropOrRemoveWeapon();
+
             player.RespawnToSpawn();
         }
     }

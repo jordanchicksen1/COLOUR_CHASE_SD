@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+
 public class BrawlerController : MonoBehaviour
 {
     private Vector2 moveInput;
@@ -51,6 +52,8 @@ public class BrawlerController : MonoBehaviour
     [SerializeField] private ParticleSystem muzzleFlash;
 
     private Vector2 lookInput;
+    public Transform handTransform;
+    [SerializeField] private TrailRenderer[] dashTrails;
 
     void Awake()
     {
@@ -100,6 +103,10 @@ public class BrawlerController : MonoBehaviour
 
     public void OnAbility(InputAction.CallbackContext context)
     {
+        if (context.performed && !isDashing)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
     void Update()
@@ -167,43 +174,46 @@ public class BrawlerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
-
-        if (playerInput.playerIndex == 0)
+        if (!isDashing)
         {
-            animator.SetBool("P2", true);
+            rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
 
-            if (moveInput.x > 0)
+            if (playerInput.playerIndex == 0)
             {
-                animator.SetBool("Walk2", true);
-                GetComponent<SpriteRenderer>().flipX = true;
+                animator.SetBool("P2", true);
+
+                if (moveInput.x > 0)
+                {
+                    animator.SetBool("Walk2", true);
+                    GetComponent<SpriteRenderer>().flipX = true;
+                }
+                else if (moveInput.x < 0)
+                {
+                    animator.SetBool("Walk2", true);
+                    GetComponent<SpriteRenderer>().flipX = false;
+                }
+                else
+                {
+                    animator.SetBool("Walk2", false);
+                }
             }
-            else if (moveInput.x < 0)
+            else if (playerInput.playerIndex == 1)
             {
-                animator.SetBool("Walk2", true);
-                GetComponent<SpriteRenderer>().flipX = false;
-            }
-            else
-            {
-                animator.SetBool("Walk2", false);
-            }
-        }
-        else if (playerInput.playerIndex == 1)
-        {
-            transform.localScale = new Vector2(-0.8f, 0.8f);
-            if (moveInput.x > 0)
-            {
-                animator.SetBool("Walk", true);
-                GetComponent<SpriteRenderer>().flipX = true;
-            }
-            else if (moveInput.x < 0)
-            {
-                animator.SetBool("Walk", true);
-                GetComponent<SpriteRenderer>().flipX = false; 
-            }
-            else
-            {
-                animator.SetBool("Walk", false);
+                transform.localScale = new Vector2(-0.8f, 0.8f);
+                if (moveInput.x > 0)
+                {
+                    animator.SetBool("Walk", true);
+                    GetComponent<SpriteRenderer>().flipX = true;
+                }
+                else if (moveInput.x < 0)
+                {
+                    animator.SetBool("Walk", true);
+                    GetComponent<SpriteRenderer>().flipX = false;
+                }
+                else
+                {
+                    animator.SetBool("Walk", false);
+                }
             }
         }
     }
@@ -237,28 +247,66 @@ public class BrawlerController : MonoBehaviour
         }
     }
 
-  
-
     IEnumerator Dash()
     {
+        if (isDashing) yield break;
+
         isDashing = true;
-        Boxc.isTrigger = true;
-        rb.gravityScale = 0;
-        speed += 5;
-        yield return new WaitForSeconds(0.5f);
-        Boxc.isTrigger = false;
-        rb.gravityScale = 2;
-        speed -= 5;
+
+        // Determine dash trail color based on player
+        Color trailColor = Color.white;
+        if (gameObject.CompareTag("Player1"))
+            trailColor = Color.blue;
+        else if (gameObject.CompareTag("Player2"))
+            trailColor = Color.red;
+
+        // Enable trails and set gradient
+        if (dashTrails != null)
+        {
+            foreach (var trail in dashTrails)
+            {
+                if (trail != null)
+                {
+                    trail.Clear();
+                    Gradient g = new Gradient();
+                    g.SetKeys(
+                        new GradientColorKey[] { new GradientColorKey(trailColor, 0f), new GradientColorKey(trailColor, 1f) },
+                        new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(0f, 1f) }
+                    );
+                    trail.colorGradient = g;
+                    trail.enabled = true;
+                }
+            }
+        }
+
+        // Determine facing direction
+        float dashDirection = GetComponent<SpriteRenderer>().flipX ? 1f : -1f;
+
+        // Apply dash velocity (instant force for short burst)
+        float dashSpeed = 25f;
+        rb.velocity = new Vector2(dashDirection * dashSpeed, rb.velocity.y);
+
+        // Dash duration
+        float dashTime = 0.15f;
+        yield return new WaitForSeconds(dashTime);
+
+        // Stop movement
+        rb.velocity = new Vector2(0, rb.velocity.y);
+
+        // Disable trails after a small delay to let them fade
+        if (dashTrails != null)
+        {
+            foreach (var trail in dashTrails)
+            {
+                if (trail != null) trail.enabled = false;
+            }
+        }
+
         isDashing = false;
     }
 
-    public void OnDash(InputAction.CallbackContext context)
-    {
-        if (context.performed && !isDashing)
-        {
-            StartCoroutine(Dash());
-        }
-    }
+
+
 
     public void OnPickup(InputAction.CallbackContext context)
     {
@@ -343,6 +391,72 @@ public class BrawlerController : MonoBehaviour
             transform.position = player2Spawn.transform.position;
         }
 
-        rb.velocity = Vector2.zero; // stop any movement
+        rb.velocity = Vector2.zero; 
+    }
+    public void DropOrRemoveWeapon()
+    {
+        Debug.Log($"DropOrRemoveWeapon called on {name}");
+
+        if (currentWeapon != null)
+        {
+            Debug.Log($"Destroying referenced currentWeapon: {currentWeapon.gameObject.name}");
+            Destroy(currentWeapon.gameObject);
+            currentWeapon = null;
+        }
+
+        if (handTransform == null)
+        {
+            handTransform = transform.Find("Hand");
+            if (handTransform == null)
+                Debug.LogWarning($"Hand transform not found on {name}. Consider assigning handTransform in the inspector.");
+        }
+
+        if (handTransform != null)
+        {
+            Weapon[] childWeapons = handTransform.GetComponentsInChildren<Weapon>(true);
+            foreach (var w in childWeapons)
+            {
+                if (w != null)
+                {
+                    Debug.Log($"Destroying weapon under Hand: {w.gameObject.name}");
+                    Destroy(w.gameObject);
+                }
+            }
+
+            Transform namedWeapon = FindDeepChild(handTransform, "Weapon");
+            if (namedWeapon != null)
+            {
+                Debug.Log($"Destroying named child under Hand: {namedWeapon.gameObject.name}");
+                Destroy(namedWeapon.gameObject);
+            }
+
+            if (childWeapons.Length == 0 && namedWeapon == null)
+            {
+                Debug.Log("No weapon found under Hand (childWeapons.Length == 0).");
+            }
+        }
+        else
+        {
+            Weapon[] allWeapons = GetComponentsInChildren<Weapon>(true);
+            foreach (var w in allWeapons)
+            {
+                Debug.Log($"Fallback destroying weapon: {w.gameObject.name}");
+                Destroy(w.gameObject);
+            }
+
+            if (allWeapons.Length == 0)
+                Debug.Log("Fallback: No Weapon components found in children.");
+        }
+    }
+
+    private Transform FindDeepChild(Transform parent, string name)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.name == name) return child;
+            Transform found = FindDeepChild(child, name);
+            if (found != null) return found;
+        }
+        return null;
     }
 }
