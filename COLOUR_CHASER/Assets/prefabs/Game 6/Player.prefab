@@ -469,7 +469,7 @@ MonoBehaviour:
   ARDamage: 3
   SMGDamage: 8
   ShotGunDamage: 10
-  PistolDamage: 8
+  PistolDamage: 12
   SniperDamage: 50
   BazookaDamage: 60
   hpRestoreTime: 0
