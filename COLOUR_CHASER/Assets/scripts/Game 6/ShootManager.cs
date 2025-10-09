@@ -182,7 +182,6 @@ public class ShootManager : MonoBehaviour
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 rb.velocity = bulletPoints[i].right * bulletSpeed;
                 bullet.tag = BulletTag;
-                Destroy(bullet, bulletLife);
             }
 
 
