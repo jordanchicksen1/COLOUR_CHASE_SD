@@ -3428,7 +3428,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 8596707bec9247b4f9baa923c278ef19, type: 3}
+  m_Texture: {fileID: 2800000, guid: b2705739cf3ceb342bab868fcccf0935, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3828,7 +3828,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293891524}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 3bb7e48ba55628f498cfdc557ccf8a95, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 221ca07492ff39d468541b8bd5163cbc, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -3842,12 +3842,14 @@ VideoPlayer:
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
-  m_TargetAudioSources: []
-  m_DirectAudioVolumes: []
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
   m_Url: 
-  m_EnabledAudioTracks: 
-  m_DirectAudioMutes: 
-  m_ControlledAudioTrackCount: 0
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 1
@@ -3869,7 +3871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &294276938
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6050,7 +6052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &443450990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21160,7 +21162,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 562e778e1f5c16f46876a5b6a4279d46, type: 3}
+  m_Texture: {fileID: 2800000, guid: 0e3577a2602c6644baff6e6756969010, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -23636,7 +23638,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604225527}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 5ccdbbc477cf0744dbe0da541a39b539, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: adeabdf2831b4234eacb1ef103a4cf28, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
