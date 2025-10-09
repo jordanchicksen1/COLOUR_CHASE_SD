@@ -22,6 +22,7 @@ public class ShootManager : MonoBehaviour
     private float bulletLife;
     [SerializeField]
     private string BulletTag;
+    public AudioSource shootSFX;
     //Guns[0] = sniper
     //Guns[1] = ShotGun
     //Guns[2] = SMG
@@ -73,6 +74,7 @@ public class ShootManager : MonoBehaviour
     {
         if(!isReLoading)
         {
+            shootSFX.Play();
             for(int i = 0; i < bulletPoints.Count; i++)
             {
                 GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
@@ -104,6 +106,7 @@ public class ShootManager : MonoBehaviour
     {
         if (!isReLoading)
         {
+            shootSFX.Play();
             for (int i = 0; i < bulletPoints.Count; i++)
             {
                 GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
@@ -128,6 +131,7 @@ public class ShootManager : MonoBehaviour
     {
         if (!isReLoading)
         {
+            shootSFX.Play();
             for (int i = 0; i < bulletPoints.Count; i++)
             {
                 GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
@@ -152,6 +156,7 @@ public class ShootManager : MonoBehaviour
     {
         if (!isReLoading)
         {
+            shootSFX.Play();
             for (int i = 0; i < bulletPoints.Count; i++)
             {
                 GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
@@ -176,6 +181,7 @@ public class ShootManager : MonoBehaviour
     {
         if (!isReLoading)
         {
+            shootSFX.Play();
             for (int i = 0; i < bulletPoints.Count; i++)
             {
                 GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
@@ -199,6 +205,7 @@ public class ShootManager : MonoBehaviour
     {
         if (!isReLoading)
         {
+            shootSFX.Play();
             for (int i = 0; i < bulletPoints.Count; i++)
             {
                 GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
@@ -206,6 +213,7 @@ public class ShootManager : MonoBehaviour
                 rb.velocity = bulletPoints[i].right * bulletSpeed;
                 bullet.tag = BulletTag;
                 Destroy(bullet, bulletLife);
+                shootSFX.Stop();
             }
 
 
@@ -223,6 +231,7 @@ public class ShootManager : MonoBehaviour
     {
         if (!isReLoading)
         {
+            shootSFX.Play();
             for (int i = 0; i < bulletPoints.Count; i++)
             {
                 GameObject bullet = Instantiate(bulletPrefab, bulletPoints[i].position, Quaternion.identity);
