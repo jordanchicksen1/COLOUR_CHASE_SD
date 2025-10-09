@@ -433,17 +433,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveInput: {x: 0, y: 0}
-  speed: 5
+  speed: 8
   audioSource: {fileID: 0}
   Guns: 00000000000000
   holdingPosition: {fileID: 9125615702588325501}
   GunPoint: {fileID: 1878771961877667694}
   Cam: {fileID: 3842484882079234949}
-  MaxScope: -20
+  MaxScope: -34
   isFlying: 0
   JetFuel: 3
   MaxJetFuel: 3
   JetFuelSlider: {fileID: 7310615752311760773}
+  SniperZoom: 74
+  ShotGunZoom: 42
+  SMGZoom: 50
+  ARZoom: 58
+  BazookaZooma: 66
+  ZoomAmount: 8
+  NormalZoom: 34
 --- !u!114 &5284642767625797276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,8 +1068,8 @@ Camera:
   m_GameObject: {fileID: 6437564772988338952}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.6603774, g: 0.56829995, b: 0.33268067, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1360,7 +1367,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &5936580777948658212
 MonoBehaviour:

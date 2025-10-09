@@ -36,6 +36,9 @@ public class Game8playercontrols : MonoBehaviour
     [SerializeField]
     private float JetFuel, MaxJetFuel;
     public Slider JetFuelSlider;
+    [SerializeField]
+    private int SniperZoom, ShotGunZoom, SMGZoom, ARZoom, BazookaZooma, ZoomAmount, NormalZoom;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -196,68 +199,64 @@ public class Game8playercontrols : MonoBehaviour
         {
             if (hasSniper)
             {
-                if (Cam.transform.localPosition.z != -48)
+                if (Cam.transform.localPosition.z != -SniperZoom)
                 {
-                    MaxScope -= 7;
+                    MaxScope -= ZoomAmount;
                 }
-                else if (Cam.transform.localPosition.z == -48)
+                else if (Cam.transform.localPosition.z == -SniperZoom)
                 {
-                    MaxScope = -20;
+                    MaxScope = -NormalZoom;
                 }
             }
             else if (hasPistol)
             {
-                if (Cam.transform.localPosition.z != -20)
-                {
-                    MaxScope -= 0;
-                }
-
+                    MaxScope = -NormalZoom;
             }
             else if (hasBazooka)
             {
-                if (Cam.transform.localPosition.z != -41)
+                if (Cam.transform.localPosition.z != -BazookaZooma)
                 {
-                    MaxScope -= 7;
+                    MaxScope -= ZoomAmount;
                 }
-                else if (Cam.transform.localPosition.z == -41)
+                else if (Cam.transform.localPosition.z == -BazookaZooma)
                 {
-                    MaxScope = -20;
+                    MaxScope = -NormalZoom;
                 }
 
             }
             else if (hasShotgun)
             {
-                if (Cam.transform.localPosition.z != -27)
+                if (Cam.transform.localPosition.z != -ShotGunZoom)
                 {
-                    MaxScope -= 7;
+                    MaxScope -= ZoomAmount;
                 }
-                else if (Cam.transform.localPosition.z == -27)
+                else if (Cam.transform.localPosition.z == -ShotGunZoom)
                 {
-                    MaxScope = -20;
+                    MaxScope = -NormalZoom;
                 }
 
             }
             else if (hasAR)
             {
-                if (Cam.transform.localPosition.z != -41)
+                if (Cam.transform.localPosition.z != -ARZoom)
                 {
-                    MaxScope -= 7;
+                    MaxScope -= ZoomAmount;
                 }
-                else if (Cam.transform.localPosition.z == -41)
+                else if (Cam.transform.localPosition.z == -ARZoom)
                 {
-                    MaxScope = -20;
+                    MaxScope = -NormalZoom;
                 }
 
             }
             else if (hasSmg)
             {
-                if (Cam.transform.localPosition.z != -34)
+                if (Cam.transform.localPosition.z != -SMGZoom)
                 {
-                    MaxScope -= 7;
+                    MaxScope -= ZoomAmount;
                 }
-                else if (Cam.transform.localPosition.z == -34)
+                else if (Cam.transform.localPosition.z == -SMGZoom)
                 {
-                    MaxScope = -20;
+                    MaxScope = -NormalZoom;
                 }
 
             }
@@ -379,7 +378,7 @@ public class Game8playercontrols : MonoBehaviour
     {
         for (int i = 0; i < Guns.Count; i++)
         {
-            MaxScope = -20;
+            MaxScope = -NormalZoom;
             holdingPosition.localScale = new Vector2(1, 1);
             Guns[i] = false;
         }
