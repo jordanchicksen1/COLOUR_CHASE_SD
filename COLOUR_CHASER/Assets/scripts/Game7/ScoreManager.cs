@@ -34,12 +34,14 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScoreToPlayer1()
     {
+        GameData.playerOneScore++;
         player1Score++;
         UpdateUI();
     }
 
     public void AddScoreToPlayer2()
     {
+        GameData.playerTwoScore++;
         player2Score++;
         UpdateUI();
     }
