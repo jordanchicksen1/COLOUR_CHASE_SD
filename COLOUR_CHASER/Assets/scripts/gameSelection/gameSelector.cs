@@ -261,8 +261,8 @@ public class gameSelector : MonoBehaviour
 
     public void nextGame7()
     {
-        gamesGroup.SetActive(true);
-        game1Page.SetActive(false);
+        gamesGroup.SetActive(false);
+        game1Page.SetActive(true);
         game2Page.SetActive(false);
         game3Page.SetActive(false);
         game4Page.SetActive(false);
