@@ -54,6 +54,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Game 6.unity
     guid: 86808b0b8ba82e042bb80b30c58d2eba
   - enabled: 1
+    path: Assets/Scenes/p1WinsGame6.unity
+    guid: d5c218efa1c45c34a9e5f64a885d8d1c
+  - enabled: 1
+    path: Assets/Scenes/p2WinsGame6.unity
+    guid: a0db33783fb4cb64e85927939143b3a5
+  - enabled: 1
     path: Assets/Scenes/Game7.unity
     guid: 9055717bde3930946b07713301f0f077
   - enabled: 1

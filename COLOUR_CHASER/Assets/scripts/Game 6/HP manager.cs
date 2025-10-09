@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -25,6 +26,9 @@ public class HPmanager : MonoBehaviour
     private PlayerInput playerInput;
     [SerializeField]
     private RawImage BG;
+    private pointCheckManager WinChecker;
+    private GameObject winCheckerGameObject;
+    public TextMeshProUGUI Points;
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -33,6 +37,9 @@ public class HPmanager : MonoBehaviour
     private void Start()
     {
         SpawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
+        winCheckerGameObject = GameObject.FindGameObjectWithTag("Finish");
+        WinChecker = winCheckerGameObject.GetComponent<pointCheckManager>();
+
         if(playerInput.playerIndex ==0)
         {
             BG.color = new Color(0f,0f,1f, 0.5450981f);
@@ -45,6 +52,18 @@ public class HPmanager : MonoBehaviour
     private void Update()
     {
         hpSlider.value = hP;
+
+        if (playerInput.playerIndex == 0)
+        {
+            Points.text = WinChecker.PLayer1Score.ToString();
+            Points.color = Color.blue;
+        }
+        else if (playerInput.playerIndex == 1)
+        {
+            Points.text = WinChecker.PLayer2Score.ToString();
+            Points.color = Color.red;
+
+        }
         if (hP <= 0)
         {
             if (!canRespawn)
@@ -59,11 +78,14 @@ public class HPmanager : MonoBehaviour
                 {
                     GameObject deadplayer = Instantiate(DeadPlayer1, transform.position, Quaternion.identity);
                     Destroy(deadplayer, 4);
+                    WinChecker.PLayer2Score++;
                 }
                 else if (playerInput.playerIndex == 1)
                 {
                     GameObject deadplayer = Instantiate(DeadPlayer2, transform.position, Quaternion.identity);
                     Destroy(deadplayer, 4);
+                    WinChecker.PLayer1Score++;
+
                 }
                 Respawn();
                 controls.ResetGuns();
