@@ -494,6 +494,7 @@ MonoBehaviour:
   dashSpeed: 25
   dashTrails:
   - {fileID: 1245336852530751879}
+  pushForce: 100
 --- !u!96 &1245336852530751879
 TrailRenderer:
   serializedVersion: 3

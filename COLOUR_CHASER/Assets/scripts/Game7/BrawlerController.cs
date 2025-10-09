@@ -61,6 +61,9 @@ public class BrawlerController : MonoBehaviour
     [SerializeField] private float dashSpeed = 25f;
     [SerializeField] private TrailRenderer[] dashTrails;
 
+    [Header("Collision Pushback")]
+    [SerializeField] private float pushForce = 5f;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -78,13 +81,34 @@ public class BrawlerController : MonoBehaviour
             gameObject.tag = "Player1";
             player1Spawn = GameObject.FindGameObjectWithTag("p1");
             transform.position = player1Spawn.transform.position;
+
+            // Make Player1 ignore Player2 collider
+            GameObject player2 = GameObject.FindGameObjectWithTag("Player2");
+            if (player2 != null)
+            {
+                Collider2D col = GetComponent<Collider2D>();
+                Collider2D col2 = player2.GetComponent<Collider2D>();
+                if (col != null && col2 != null)
+                    Physics2D.IgnoreCollision(col, col2, true);
+            }
         }
         else if (playerInput.playerIndex == 1)
         {
             gameObject.tag = "Player2";
             player2Spawn = GameObject.FindGameObjectWithTag("p2");
             transform.position = player2Spawn.transform.position;
+
+            // Make Player2 ignore Player1 collider
+            GameObject player1 = GameObject.FindGameObjectWithTag("Player1");
+            if (player1 != null)
+            {
+                Collider2D col = GetComponent<Collider2D>();
+                Collider2D col1 = player1.GetComponent<Collider2D>();
+                if (col != null && col1 != null)
+                    Physics2D.IgnoreCollision(col, col1, true);
+            }
         }
+
         currentDashCharges = maxDashCharges;
         Boxc = GetComponent<BoxCollider2D>();
     }
@@ -305,7 +329,7 @@ public class BrawlerController : MonoBehaviour
             dashRefillCoroutine = StartCoroutine(RefillDashCharge());
         }
     }
-
+  
     private IEnumerator RefillDashCharge()
     {
         while (currentDashCharges < maxDashCharges)
