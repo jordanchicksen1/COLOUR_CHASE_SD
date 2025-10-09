@@ -282,9 +282,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 4
   m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: 44278e8d609390a46a7fd072ed008399, type: 2}
   m_IncludeLayers:
@@ -489,6 +489,9 @@ MonoBehaviour:
   weaponHoldPoint: {fileID: 370769979948953295}
   muzzleFlash: {fileID: 0}
   handTransform: {fileID: 0}
+  maxDashCharges: 2
+  dashCooldown: 5
+  dashSpeed: 25
   dashTrails:
   - {fileID: 1245336852530751879}
 --- !u!96 &1245336852530751879

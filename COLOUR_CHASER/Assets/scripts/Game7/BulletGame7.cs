@@ -30,20 +30,31 @@ public class BulletGame7 : MonoBehaviour
         if (hasHit) return;
         hasHit = true;
 
+        Vector2 contactPoint = collision.GetContact(0).point;
+
         if (collision.gameObject.CompareTag("Player1") || collision.gameObject.CompareTag("Player2"))
         {
             Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
             if (playerRb != null)
             {
                 float directionX = Mathf.Sign(collision.transform.position.x - transform.position.x);
-
-                Vector2 knockDir = new Vector2(directionX, 0f).normalized;
-
-                playerRb.AddForce(knockDir * knockbackForce, ForceMode2D.Impulse);
+                playerRb.velocity = new Vector2(directionX * knockbackForce, 0f);
             }
         }
 
-        PlayImpactEffect();
+        PlayImpactEffect(contactPoint);
+    }
+
+    void PlayImpactEffect(Vector2 position)
+    {
+        if (impactEffect != null)
+        {
+            ParticleSystem effect = Instantiate(impactEffect, position, Quaternion.identity);
+            effect.Play();
+            Destroy(effect.gameObject, effect.main.duration);
+        }
+
+        Destroy(gameObject);
     }
 
     void DestroyBullet()
