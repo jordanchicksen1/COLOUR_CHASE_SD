@@ -33,6 +33,7 @@ public class gameSelector : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        GameData.coinScore = 0;
     }
     private void SetSelected(GameObject newSelected)
     {
