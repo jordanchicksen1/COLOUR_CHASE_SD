@@ -69,8 +69,8 @@ public class BoxingHPManager : MonoBehaviour
         isTakingLeftPunch = false;
         Debug.Log("Punched");
         HP -= MaxDamage;
+        yield return new WaitForSeconds(0.5f);
 
-        yield return new WaitForSeconds(0);
     }
 
     IEnumerator TakeBlockDamage()

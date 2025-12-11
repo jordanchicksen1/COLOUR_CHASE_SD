@@ -126,9 +126,13 @@ public class BoxingController : MonoBehaviour
         {
             OtherPlayersHP = hit.collider.GetComponent<BoxingHPManager>();
             OtherPlayersHP.isTakingLeftPunch = true;
+            
+
+
         }
 
     }
+
 
 
     public void OnLeftblock(InputAction.CallbackContext context)
