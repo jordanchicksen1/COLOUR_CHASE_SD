@@ -1,0 +1,114 @@
+{
+    "name": "BoxingActions",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "0800a727-78f3-4c23-ada2-7551d25e5e7a",
+            "actions": [
+                {
+                    "name": "RightPunch",
+                    "type": "Button",
+                    "id": "8a2ee1c1-874e-4c80-844b-5cf20a0fbc72",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LeftPunch",
+                    "type": "Button",
+                    "id": "9b1754b0-7f38-4053-b613-220b50277830",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LeftBlock",
+                    "type": "Button",
+                    "id": "2ffeb18e-ab8c-41c1-adbc-0a8d9f29ed0f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightBlock",
+                    "type": "Button",
+                    "id": "d45779a1-dcb0-4a35-adcd-74aaf0be5c9e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "d3c14bcf-90c3-4668-af4c-fdcb1e0e7561",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "77392aac-f6f6-4ccd-99bc-e82b7d85c2e1",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightPunch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d9f49bfa-799b-4a79-8664-1226de4a48f4",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftPunch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd7aba8b-a58c-4218-aeb1-afa8194e2643",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftBlock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1d12ff14-e2ca-4804-a6a9-93717451a065",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightBlock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b526541-4ad5-4f70-9337-44e1a9544fa1",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
