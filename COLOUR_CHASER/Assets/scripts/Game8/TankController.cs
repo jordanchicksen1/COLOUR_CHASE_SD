@@ -36,6 +36,21 @@
         [SerializeField] private GameObject player1Spawn;
         [SerializeField] private GameObject player2Spawn;
 
+        [Header("Shooting")]
+        [SerializeField] private GameObject normalBulletPrefab;
+        [SerializeField] private GameObject lobBulletPrefab;
+        [SerializeField] private Transform firePoint;
+
+        [SerializeField] private float shotForce = 20f;
+        [SerializeField] private float lobForce = 10f;
+
+        [Header("Shot Cooldowns")]
+        [SerializeField] private float normalShotCooldown = 0.3f;
+        [SerializeField] private float lobShotCooldown = 1f;
+
+        private float nextNormalShotTime = 0f;
+        private float nextLobShotTime = 0f;
+
 
     void Awake()
     {
@@ -79,9 +94,47 @@
         public void OnDrive(InputAction.CallbackContext context) => forwardInput = context.ReadValue<float>();
         public void OnReverse(InputAction.CallbackContext context) => reverseInput = context.ReadValue<float>();
         public void OnRotate(InputAction.CallbackContext context) => turnInput = context.ReadValue<float>();
+    public void OnFireNormal(InputAction.CallbackContext context)
+    {
+        if (context.started && Time.time >= nextNormalShotTime)
+        {
+            ShootNormal();
+            nextNormalShotTime = Time.time + normalShotCooldown;
+        }
+    }
+
+    public void OnFireLob(InputAction.CallbackContext context)
+    {
+        if (context.started && Time.time >= nextLobShotTime)
+        {
+            ShootLob();
+            nextLobShotTime = Time.time + lobShotCooldown;
+        }
+    }
+    private void ShootNormal()
+    {
+        GameObject b = Instantiate(normalBulletPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody2D rb2 = b.GetComponent<Rigidbody2D>();
+        rb2.AddForce(firePoint.up * shotForce, ForceMode2D.Impulse);
+    }
+
+    private void ShootLob()
+    {
+        GameObject b = Instantiate(lobBulletPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody2D rb2 = b.GetComponent<Rigidbody2D>();
+
+        Vector2 forward = firePoint.up;
+        Vector2 curve = firePoint.right * 0.4f;
+
+        Vector2 lobDirection = (forward + curve).normalized;
+
+        rb2.AddForce(lobDirection * lobForce, ForceMode2D.Impulse);
+    }
 
 
-        void FixedUpdate()
+
+
+    void FixedUpdate()
         {
             float moveValue = (forwardInput * acceleration) - (reverseInput * reverse);
             rb.AddForce(transform.up * moveValue);

@@ -352,6 +352,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2975970649044758944}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6787327746628747977
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 61628183975598891}
+  m_Layer: 0
+  m_Name: firepoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &61628183975598891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6787327746628747977}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.061, y: 0.65, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2975970649044758944}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7517469388048440201
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +424,7 @@ Transform:
   - {fileID: 1728708478858786423}
   - {fileID: 8509581621073542428}
   - {fileID: 1457248941118858412}
+  - {fileID: 61628183975598891}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4988275586400124234
@@ -608,6 +640,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8376d77c-277f-4787-ad5f-d6d05c21654d
     m_ActionName: Player/GunRotate
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 256224357516500182}
+        m_TargetAssemblyTypeName: TankController, Assembly-CSharp
+        m_MethodName: OnFireLob
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1194d23a-a89f-4ad2-9afd-73328352c2a2
+    m_ActionName: Player/R1[/DualShock4GamepadHID/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 256224357516500182}
+        m_TargetAssemblyTypeName: TankController, Assembly-CSharp
+        m_MethodName: OnFireNormal
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c151cae4-9253-4f05-af37-9978e9fe79de
+    m_ActionName: Player/L1[/DualShock4GamepadHID/leftShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -803,6 +867,13 @@ MonoBehaviour:
   Player2: {fileID: 21300000, guid: 91b4838698bfcea4d9571fbbc42abafa, type: 3}
   player1Spawn: {fileID: 0}
   player2Spawn: {fileID: 0}
+  normalBulletPrefab: {fileID: 5369842018123679848, guid: fab4456e2f83b964a8ce3f5875ffc2a2, type: 3}
+  lobBulletPrefab: {fileID: 6910039500721157199, guid: 1feb50f4c7e0dfd40bb5430477c5438b, type: 3}
+  firePoint: {fileID: 61628183975598891}
+  shotForce: 20
+  lobForce: 10
+  normalShotCooldown: 1
+  lobShotCooldown: 1.5
 --- !u!1 &8253478041327007783
 GameObject:
   m_ObjectHideFlags: 0
