@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoxingHPManager : MonoBehaviour
@@ -11,11 +9,13 @@ public class BoxingHPManager : MonoBehaviour
     [SerializeField]
     public int HP;
     public bool isTakingLeftPunch, isTakingRightPunch;
+    private Rigidbody2D rb;
+    [SerializeField] private float knockbackForce = 8f;
 
     private void Start()
     {
         BoxingScrpit = GetComponent<BoxingController>();
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -28,9 +28,30 @@ public class BoxingHPManager : MonoBehaviour
         {
             TakeDamageRight();
         }
-
-        
     }
+
+    public void ApplyKnockback()
+    {
+        StartCoroutine(KnockbackRoutine());
+    }
+
+    IEnumerator KnockbackRoutine()
+    {
+        Vector3 startPos = transform.position;
+        Vector3 endPos = startPos + (-transform.up * knockbackForce);
+        float duration = 0.1f; // Adjust for how long the knockback takes
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            transform.position = Vector3.Lerp(startPos, endPos, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = endPos; // Ensure exact position
+    }
+
 
     void TakeDamageRight()
     {
@@ -40,11 +61,10 @@ public class BoxingHPManager : MonoBehaviour
             {
                 StartCoroutine(TakeDamage());
             }
-            else if(BoxingScrpit.isBlockingRight)
+            else if (BoxingScrpit.isBlockingRight)
             {
                 StartCoroutine(TakeBlockDamage());
             }
-
         }
     }
 
@@ -69,17 +89,20 @@ public class BoxingHPManager : MonoBehaviour
         isTakingLeftPunch = false;
         Debug.Log("Punched");
         HP -= MaxDamage;
-        yield return new WaitForSeconds(0.5f);
 
+        // Apply knockback after taking damage
+       ApplyKnockback();
+        yield return new WaitForSeconds(0.5f);
     }
 
     IEnumerator TakeBlockDamage()
     {
         isTakingRightPunch = false;
         isTakingLeftPunch = false;
-        Debug.Log("Bocked");
+        Debug.Log("Blocked");
         HP -= BlockedDamage;
+
+        // Apply knockback for blocked hits too (with less force if you want)
         yield return new WaitForSeconds(0);
     }
-
 }

@@ -65,19 +65,19 @@
                 },
                 {
                     "name": "",
-                    "id": "d9f49bfa-799b-4a79-8664-1226de4a48f4",
-                    "path": "<Gamepad>/leftTrigger",
+                    "id": "dd7aba8b-a58c-4218-aeb1-afa8194e2643",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftPunch",
+                    "action": "LeftBlock",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "dd7aba8b-a58c-4218-aeb1-afa8194e2643",
-                    "path": "<Gamepad>/leftShoulder",
+                    "id": "b31ed5db-2af4-49bd-a2a3-68d8c9ec350a",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -104,6 +104,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "525e32a2-b1e5-4b4e-98eb-10d07a71dcda",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftPunch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

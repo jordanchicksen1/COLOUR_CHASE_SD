@@ -10,7 +10,7 @@ public class BoxingController : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float speed = 5f;
-    [SerializeField] private int raycastDistance = 2;
+    [SerializeField] private float raycastDistance = 2;
 
     [Header("Rotation Settings")]
     [SerializeField] private int rotateSpeed = 20;
@@ -34,7 +34,7 @@ public class BoxingController : MonoBehaviour
 
     private BoxingHPManager OtherPlayersHP;
     private string OtherPlayersTag;
-    private GameObject OtherPlayer;
+    public GameObject OtherPlayer;
     private GameObject RoundManagerHolder;
     private BoxingRoundManager RoundManager;
     private BoxingHPManager playerHPManager;
