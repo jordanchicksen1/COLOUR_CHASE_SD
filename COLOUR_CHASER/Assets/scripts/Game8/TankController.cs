@@ -50,6 +50,7 @@
 
         private float nextNormalShotTime = 0f;
         private float nextLobShotTime = 0f;
+        public int PlayerIndex => trueIndex;
 
 
     void Awake()
@@ -114,6 +115,8 @@
     private void ShootNormal()
     {
         GameObject b = Instantiate(normalBulletPrefab, firePoint.position, firePoint.rotation);
+        b.GetComponent<Bullet>().SetOwner(trueIndex);
+
         Rigidbody2D rb2 = b.GetComponent<Rigidbody2D>();
         rb2.AddForce(firePoint.up * shotForce, ForceMode2D.Impulse);
     }
@@ -121,16 +124,12 @@
     private void ShootLob()
     {
         GameObject b = Instantiate(lobBulletPrefab, firePoint.position, firePoint.rotation);
+        b.GetComponent<Bullet>().SetOwner(trueIndex);
+
         Rigidbody2D rb2 = b.GetComponent<Rigidbody2D>();
-
-        Vector2 forward = firePoint.up;
-        Vector2 curve = firePoint.right * 0.4f;
-
-        Vector2 lobDirection = (forward + curve).normalized;
-
-        rb2.AddForce(lobDirection * lobForce, ForceMode2D.Impulse);
+        Vector2 dir = (firePoint.up + firePoint.right * 0.4f).normalized;
+        rb2.AddForce(dir * lobForce, ForceMode2D.Impulse);
     }
-
 
 
 
