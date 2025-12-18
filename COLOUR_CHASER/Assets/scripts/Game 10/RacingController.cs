@@ -39,7 +39,7 @@ public class RacingController : MonoBehaviour
     [SerializeField] private GameObject player2Spawn;
 
     [SerializeField]
-    private bool isAccelerating, isBreaking;
+    private bool isAccelerating, isBreaking, isOutOfBounds;
 
     [Header("Game Controller")]
     private GameObject GameControllerHolder;
@@ -112,7 +112,7 @@ public class RacingController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float moveValue = (forwardInput * acceleration) - (reverseInput * reverse);
+        float moveValue = (forwardInput * acceleration) + (reverseInput * reverse);
         rb.AddForce(transform.up * moveValue);
 
         float rotationAmount = -turnInput * steering * Time.fixedDeltaTime;
@@ -126,7 +126,7 @@ public class RacingController : MonoBehaviour
             {
                 acceleration += Time.deltaTime * 3;
             }
-            else if (isBreaking)
+            else if (isBreaking || isOutOfBounds)
             {
                 if (acceleration > 0)
                 {
@@ -194,5 +194,21 @@ public class RacingController : MonoBehaviour
             }
         }
 
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Kill box"))
+        {
+            isOutOfBounds = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Kill box"))
+        {
+            isOutOfBounds = false;
+        }
     }
 }
