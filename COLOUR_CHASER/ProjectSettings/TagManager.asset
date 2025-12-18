@@ -60,6 +60,8 @@ TagManager:
   - SMGBullet
   - SniperBullet
   - SpawnPoint
+  - CheckPoint
+  - CheckPoint2
   layers:
   - Default
   - TransparentFX
