@@ -145,19 +145,19 @@ public class RacingController : MonoBehaviour
 
     private void Update()
     {
-        foreach (var t in trail)
-        {
-            if (playerInput.playerIndex == 0)
-            {
-                t.startColor = Color.blue;
-                t.endColor = Color.blue;
-            }
-            else if (playerInput.playerIndex == 1)
-            {
-                t.startColor = Color.red;
-                t.endColor = Color.red;
-            }
-        }
+        //foreach (var t in trail)
+        //{
+        //    if (playerInput.playerIndex == 0)
+        //    {
+        //        t.startColor = Color.blue;
+        //        t.endColor = Color.blue;
+        //    }
+        //    else if (playerInput.playerIndex == 1)
+        //    {
+        //        t.startColor = Color.red;
+        //        t.endColor = Color.red;
+        //    }
+        //}
     }
 
 
