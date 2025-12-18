@@ -45,6 +45,8 @@ public class RacingController : MonoBehaviour
 
     public GameObject ExplotionParticle;
 
+    public AudioSource boostSFX;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -165,6 +167,7 @@ public class RacingController : MonoBehaviour
 
     private IEnumerator SpeedBoost()
     {
+        boostSFX.Play();
         float originalAccel = acceleration;
         acceleration *= 2f;
         foreach (var t in trail)

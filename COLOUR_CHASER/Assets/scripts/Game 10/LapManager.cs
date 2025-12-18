@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LapManager : MonoBehaviour
 {
@@ -11,6 +14,10 @@ public class LapManager : MonoBehaviour
 
     [SerializeField]
     private int player1Laps, player2Laps;
+
+    public TextMeshProUGUI player1Text, player2Text;
+    public AudioSource p1LapSFX;
+    public AudioSource p2LapSFX;
 
     public void ActivateNextCheckPoint1()
     {
@@ -23,6 +30,7 @@ public class LapManager : MonoBehaviour
             Player1Index = 0;
             player1Laps++;
             Player1CheckPoints[Player1Index].SetActive(true);
+            p1LapSFX.Play();
         }
         else
         {
@@ -46,6 +54,7 @@ public class LapManager : MonoBehaviour
             Player2Index = 0;
             player2Laps++;
             Player2CheckPoints[Player2Index].SetActive(true);
+            p2LapSFX.Play();
         }
         else
         {
@@ -63,10 +72,15 @@ public class LapManager : MonoBehaviour
         if (player1Laps == 6)
         {
             //Win Code
+            SceneManager.LoadScene("P1Balloon");
         }
         else if(player2Laps == 6)
         {
             //Win Code
+            SceneManager.LoadScene("P2Balloon");
         }
+
+        player1Text.text = player1Laps.ToString();
+        player2Text.text = player2Laps.ToString();
     }
 }
