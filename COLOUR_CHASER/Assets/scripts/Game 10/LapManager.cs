@@ -57,4 +57,16 @@ public class LapManager : MonoBehaviour
             Player2Index++;
         }
     }
+
+    public void Update()
+    {
+        if (player1Laps == 6)
+        {
+            //Win Code
+        }
+        else if(player2Laps == 6)
+        {
+            //Win Code
+        }
+    }
 }

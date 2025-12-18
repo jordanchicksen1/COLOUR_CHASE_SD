@@ -1,6 +1,4 @@
-using JetBrains.Annotations;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -44,6 +42,8 @@ public class RacingController : MonoBehaviour
     [Header("Game Controller")]
     private GameObject GameControllerHolder;
     private LapManager lapManagerManagerScript;
+
+    public GameObject ExplotionParticle;
 
     void Awake()
     {
@@ -122,15 +122,22 @@ public class RacingController : MonoBehaviour
 
         if (isAccelerating && acceleration < MaxSpeed)
         {
-            if (!isBreaking)
+            if (!isBreaking && !isOutOfBounds)
             {
                 acceleration += Time.deltaTime * 3;
             }
-            else if (isBreaking || isOutOfBounds)
+            else if (isBreaking)
             {
                 if (acceleration > 0)
                 {
                     acceleration -= Time.deltaTime * 15;
+                }
+            }
+            else if(isOutOfBounds)
+            {
+                if (acceleration > 10)
+                {
+                    acceleration -= Time.deltaTime * 10;
                 }
             }
         }
@@ -145,19 +152,7 @@ public class RacingController : MonoBehaviour
 
     private void Update()
     {
-        //foreach (var t in trail)
-        //{
-        //    if (playerInput.playerIndex == 0)
-        //    {
-        //        t.startColor = Color.blue;
-        //        t.endColor = Color.blue;
-        //    }
-        //    else if (playerInput.playerIndex == 1)
-        //    {
-        //        t.startColor = Color.red;
-        //        t.endColor = Color.red;
-        //    }
-        //}
+
     }
 
 
@@ -172,8 +167,34 @@ public class RacingController : MonoBehaviour
     {
         float originalAccel = acceleration;
         acceleration *= 2f;
-        yield return new WaitForSeconds(3f);
+        foreach (var t in trail)
+        {
+            if (playerInput.playerIndex == 0)
+            {
+                t.startColor = Color.blue;
+                t.endColor = Color.white;
+            }
+            else if (playerInput.playerIndex == 1)
+            {
+                t.startColor = Color.red;
+                t.endColor = Color.white;
+            }
+        }
+        yield return new WaitForSeconds(1f);
         acceleration /= 2f;
+        foreach (var t in trail)
+        {
+            if (playerInput.playerIndex == 0)
+            {
+                t.startColor = Color.black;
+                t.endColor = Color.black;
+            }
+            else if (playerInput.playerIndex == 1)
+            {
+                t.startColor = Color.black;
+                t.endColor = Color.black;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -192,6 +213,18 @@ public class RacingController : MonoBehaviour
             {
                 lapManagerManagerScript.ActivateNextCheckPoint2();
             }
+        }
+
+        if (collision.CompareTag("Spikes"))
+        {
+            acceleration = MinSpeed;
+            GameObject Explotion = Instantiate(ExplotionParticle, collision.gameObject.transform.position, Quaternion.identity);
+            Destroy(Explotion, 1);
+        }
+        else if (collision.CompareTag("boost"))
+        {
+            StartCoroutine(SpeedBoost());
+
         }
 
     }
