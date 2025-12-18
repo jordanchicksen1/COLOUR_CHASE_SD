@@ -389,7 +389,9 @@ MonoBehaviour:
   Position1: {fileID: 0}
   Position2: {fileID: 0}
   turnInput: 0
-  trail: []
+  trail:
+  - {fileID: 1721177426015325959}
+  - {fileID: 2196596898700281898}
   Player1: {fileID: 21300000, guid: 91b4838698bfcea4d9571fbbc42abafa, type: 3}
   Player2: {fileID: 21300000, guid: 602bde2ea2122d8468b290fb330b54de, type: 3}
   player1Spawn: {fileID: 0}
@@ -562,7 +564,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_Time: 0.5
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -594,7 +596,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.465649, g: 0.89433956, b: 0.1940547, a: 1}
+      key0: {r: 0.19215688, g: 0.24483025, b: 0.89411765, a: 1}
       key1: {r: 0.465649, g: 0.89433956, b: 0.1940547, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -707,7 +709,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_Time: 0.5
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -739,7 +741,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.465649, g: 0.89433956, b: 0.1940547, a: 1}
+      key0: {r: 0.19215688, g: 0.24483025, b: 0.89411765, a: 1}
       key1: {r: 0.465649, g: 0.89433956, b: 0.1940547, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
