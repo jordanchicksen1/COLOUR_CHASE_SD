@@ -398,6 +398,8 @@ MonoBehaviour:
   player2Spawn: {fileID: 0}
   isAccelerating: 0
   isBreaking: 0
+  isOutOfBounds: 0
+  ExplotionParticle: {fileID: 9144190152893461960, guid: 6f521750aac236143a8c3c7b5d1348ee, type: 3}
 --- !u!1 &3960224521204575783
 GameObject:
   m_ObjectHideFlags: 0

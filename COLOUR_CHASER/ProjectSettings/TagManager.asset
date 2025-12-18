@@ -62,6 +62,8 @@ TagManager:
   - SpawnPoint
   - CheckPoint
   - CheckPoint2
+  - boost
+  - Spikes
   layers:
   - Default
   - TransparentFX
