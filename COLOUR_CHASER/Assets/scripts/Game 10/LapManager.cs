@@ -97,6 +97,17 @@ public class LapManager : MonoBehaviour
             SceneManager.LoadScene("P2Race1");
         }
 
+        if (player1Laps == 4 && Race2 == true)
+        {
+            //Win Code
+            SceneManager.LoadScene("P1Race2");
+        }
+        else if (player2Laps == 4 && Race2 == true)
+        {
+            //Win Code
+            SceneManager.LoadScene("P2Race2");
+        }
+
         player1Text.text = player1Laps.ToString();
         player2Text.text = player2Laps.ToString();
     }

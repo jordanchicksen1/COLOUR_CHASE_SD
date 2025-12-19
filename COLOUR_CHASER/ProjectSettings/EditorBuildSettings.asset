@@ -92,4 +92,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/P2Race1.unity
     guid: 60d9c828e17975a48921cdcad6112a1a
+  - enabled: 1
+    path: Assets/Scenes/P1Race2.unity
+    guid: 69ab2940f9d852b4da7eaa62989c31a3
+  - enabled: 1
+    path: Assets/Scenes/P2Race2.unity
+    guid: 049d245f6858f634d98316486aaec2e3
   m_configObjects: {}
