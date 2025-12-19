@@ -19,6 +19,23 @@ public class LapManager : MonoBehaviour
     public AudioSource p1LapSFX;
     public AudioSource p2LapSFX;
 
+    [Header("Race Start")]
+    [SerializeField] private int requiredPlayers = 2;
+    private int playersReady = 0;
+
+    private RacingController[] racers;
+
+    [SerializeField] private GameObject panel3;
+    [SerializeField] private GameObject panel2;
+    [SerializeField] private GameObject panel1;
+    [SerializeField] private GameObject panelGo;
+    public GameObject backgroundMusic;
+
+    [Header("Racer Chooser")]
+    [SerializeField] private bool Race1 = false;
+    [SerializeField] private bool Race2 = false;
+    [SerializeField] private bool Race3 = false;
+
     public void ActivateNextCheckPoint1()
     {
         if (Player1Index == Player1CheckPoints.Count)
@@ -69,18 +86,58 @@ public class LapManager : MonoBehaviour
 
     public void Update()
     {
-        if (player1Laps == 6)
+        if (player1Laps == 4 && Race1 == true)
         {
             //Win Code
-            SceneManager.LoadScene("P1Balloon");
+            SceneManager.LoadScene("P1Race1");
         }
-        else if(player2Laps == 6)
+        else if(player2Laps == 4 && Race1 == true)
         {
             //Win Code
-            SceneManager.LoadScene("P2Balloon");
+            SceneManager.LoadScene("P2Race1");
         }
 
         player1Text.text = player1Laps.ToString();
         player2Text.text = player2Laps.ToString();
     }
+
+    public void RegisterPlayer(RacingController racer)
+    {
+        playersReady++;
+
+        if (playersReady >= requiredPlayers)
+        {
+            StartCoroutine(GameCounter());
+        }
+    }
+
+    private IEnumerator GameCounter()
+    {
+        racers = FindObjectsOfType<RacingController>();
+
+        yield return new WaitForSeconds(0f);
+        panel3.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+        panel3.SetActive(false);
+        panel2.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+        panel2.SetActive(false);
+        panel1.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+        panel1.SetActive(false);
+        panelGo.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+        panelGo.SetActive(false);
+        backgroundMusic.SetActive(true);
+        
+        foreach (var racer in racers)
+        {
+            racer.canDrive = true;
+        }
+    }
+
 }

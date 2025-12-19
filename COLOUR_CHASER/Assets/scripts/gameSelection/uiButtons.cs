@@ -47,6 +47,11 @@ public class uiButtons : MonoBehaviour
         StartCoroutine(RedoGame7());
     }
 
+    public void RetryRace1()
+    {
+        StartCoroutine(RedoRace1());
+    }
+
     public IEnumerator GameSelection()
     {
         yield return new WaitForSeconds(0f);
@@ -102,5 +107,13 @@ public class uiButtons : MonoBehaviour
         buttonSound.Play();
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Game 6");
+    }
+
+    public IEnumerator RedoRace1()
+    {
+        yield return new WaitForSeconds(0f);
+        buttonSound.Play();
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene("Game10.1");
     }
 }

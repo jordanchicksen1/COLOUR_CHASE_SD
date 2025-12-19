@@ -1855,6 +1855,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1316758101}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &440287373 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5028524759345161389, guid: 9297802f0a145de4587d57d4fe740c93, type: 3}
+  m_PrefabInstance: {fileID: 5093369973900248766}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &447171394 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1049923840575145811, guid: 42e8e058586cdcc44b7eee0f6082fef8, type: 3}
@@ -1990,6 +1995,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1316758101}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &511482329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4026871290766997852, guid: 3670840e1b74c6a4291fee7d09fe8b82, type: 3}
+  m_PrefabInstance: {fileID: 8745099924639117546}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &517574382
 GameObject:
   m_ObjectHideFlags: 0
@@ -10661,6 +10671,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1316758101}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 135}
+--- !u!1 &1192170199 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6113012843624677239, guid: 9297802f0a145de4587d57d4fe740c93, type: 3}
+  m_PrefabInstance: {fileID: 5093369973900248766}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1196033032 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3111432230017893846, guid: 42e8e058586cdcc44b7eee0f6082fef8, type: 3}
@@ -11092,6 +11107,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1316758101}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1239050063 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4311351035917822705, guid: 9297802f0a145de4587d57d4fe740c93, type: 3}
+  m_PrefabInstance: {fileID: 5093369973900248766}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1247173761
 GameObject:
   m_ObjectHideFlags: 0
@@ -11933,6 +11953,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1496175979 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5315114613128992034, guid: 9297802f0a145de4587d57d4fe740c93, type: 3}
+  m_PrefabInstance: {fileID: 5093369973900248766}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1566212021
 GameObject:
   m_ObjectHideFlags: 0
@@ -14729,6 +14754,26 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 849866611788472674, guid: 85894491cf8ae584fa3cdf88729630fc, type: 3}
+      propertyPath: Race1
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 849866611788472674, guid: 85894491cf8ae584fa3cdf88729630fc, type: 3}
+      propertyPath: panel1
+      value: 
+      objectReference: {fileID: 1192170199}
+    - target: {fileID: 849866611788472674, guid: 85894491cf8ae584fa3cdf88729630fc, type: 3}
+      propertyPath: panel2
+      value: 
+      objectReference: {fileID: 440287373}
+    - target: {fileID: 849866611788472674, guid: 85894491cf8ae584fa3cdf88729630fc, type: 3}
+      propertyPath: panel3
+      value: 
+      objectReference: {fileID: 1239050063}
+    - target: {fileID: 849866611788472674, guid: 85894491cf8ae584fa3cdf88729630fc, type: 3}
+      propertyPath: panelGo
+      value: 
+      objectReference: {fileID: 1496175979}
+    - target: {fileID: 849866611788472674, guid: 85894491cf8ae584fa3cdf88729630fc, type: 3}
       propertyPath: p1LapSFX
       value: 
       objectReference: {fileID: 1899347976}
@@ -14744,6 +14789,14 @@ PrefabInstance:
       propertyPath: player2Text
       value: 
       objectReference: {fileID: 1487979139}
+    - target: {fileID: 849866611788472674, guid: 85894491cf8ae584fa3cdf88729630fc, type: 3}
+      propertyPath: backgroundMusic
+      value: 
+      objectReference: {fileID: 511482329}
+    - target: {fileID: 849866611788472674, guid: 85894491cf8ae584fa3cdf88729630fc, type: 3}
+      propertyPath: requiredPlayers
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 849866611788472674, guid: 85894491cf8ae584fa3cdf88729630fc, type: 3}
       propertyPath: Player1CheckPoints.Array.data[0]
       value: 
@@ -14908,6 +14961,10 @@ PrefabInstance:
     - target: {fileID: 4026871290766997852, guid: 3670840e1b74c6a4291fee7d09fe8b82, type: 3}
       propertyPath: m_Name
       value: backgroundMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026871290766997852, guid: 3670840e1b74c6a4291fee7d09fe8b82, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

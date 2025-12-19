@@ -47,6 +47,8 @@ public class RacingController : MonoBehaviour
 
     public AudioSource boostSFX;
 
+    public bool canDrive = false;
+    
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -70,25 +72,32 @@ public class RacingController : MonoBehaviour
             gameObject.tag = "Player2";
             player2Spawn = GameObject.FindGameObjectWithTag("p2");
             transform.position = player2Spawn.transform.position;
+            
         }
         GameControllerHolder = GameObject.FindGameObjectWithTag("GameController");
         lapManagerManagerScript = GameControllerHolder.GetComponent<LapManager>();
         spriteRnd = GetComponent<SpriteRenderer>();
+        lapManagerManagerScript.RegisterPlayer(this);
+
     }
 
     public void OnDrive(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if(canDrive == true)
         {
-            forwardInput = context.ReadValue<float>();
-            isAccelerating = true;
+            if (context.performed)
+            {
+                forwardInput = context.ReadValue<float>();
+                isAccelerating = true;
+            }
+            else if (context.canceled)
+            {
+                isAccelerating = false;
+                acceleration = MinSpeed;
+                forwardInput = context.ReadValue<float>();
+            }
         }
-        else if (context.canceled)
-        {
-            isAccelerating = false;
-            acceleration = MinSpeed;
-            forwardInput = context.ReadValue<float>();
-        }
+        
     }
 
 
@@ -247,4 +256,6 @@ public class RacingController : MonoBehaviour
             isOutOfBounds = false;
         }
     }
+
+   
 }
