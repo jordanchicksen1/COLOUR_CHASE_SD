@@ -48,7 +48,13 @@ public class RacingController : MonoBehaviour
     public AudioSource boostSFX;
 
     public bool canDrive = false;
-    
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource engineSFX;
+    private bool enginePlaying = false;
+    [SerializeField] private AudioSource brakeSFX;
+    private bool brakePlaying = false;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -163,7 +169,8 @@ public class RacingController : MonoBehaviour
 
     private void Update()
     {
-
+        HandleEngineSound();
+        HandleBrakeSound();
     }
 
 
@@ -257,5 +264,65 @@ public class RacingController : MonoBehaviour
         }
     }
 
-   
+    private void HandleEngineSound()
+    {
+        if (!canDrive)
+        {
+            StopEngine();
+            return;
+        }
+
+        if (isAccelerating && forwardInput > 0.1f)
+        {
+            PlayEngine();
+        }
+        else
+        {
+            StopEngine();
+        }
+    }
+
+    private void PlayEngine()
+    {
+        if (enginePlaying) return;
+
+        engineSFX.Play();
+        enginePlaying = true;
+    }
+
+    private void StopEngine()
+    {
+        if (!enginePlaying) return;
+
+        engineSFX.Stop();
+        enginePlaying = false;
+    }
+
+    private void HandleBrakeSound()
+    {
+        if (!canDrive || !isBreaking || rb.velocity.magnitude < 0.5f)
+        {
+            StopBrake();
+            return;
+        }
+
+        PlayBrake();
+    }
+
+    private void PlayBrake()
+    {
+        if (brakePlaying) return;
+
+        brakeSFX.Play();
+        brakePlaying = true;
+    }
+
+    private void StopBrake()
+    {
+        if (!brakePlaying) return;
+
+        brakeSFX.Stop();
+        brakePlaying = false;
+    }
+
 }
