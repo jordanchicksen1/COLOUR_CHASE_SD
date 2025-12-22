@@ -15,6 +15,10 @@ public class gameSelector : MonoBehaviour
     public GameObject game5Page;
     public GameObject game6Page;
     public GameObject game7Page;
+    public GameObject game8Page;
+    public GameObject game9Page;
+    public GameObject game10Page;
+    public GameObject chooseRacePage;
 
     //button selection stuff
     public GameObject defaultGamesGroupButton;
@@ -26,418 +30,179 @@ public class gameSelector : MonoBehaviour
     public GameObject defaultGame5Button;
     public GameObject defaultGame6Button;
     public GameObject defaultGame7Button;
+    public GameObject defaultGame8Button;
+    public GameObject defaultGame9Button;
+    public GameObject defaultGame10Button;
+    public GameObject defaultChooseRaceButton;
 
     public AudioSource clickSFX;
 
-    public void Start()
+    GameObject[] gamePages;
+    GameObject[] defaultGameButtons;
+    int currentGameIndex = -1;
+
+    void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         GameData.coinScore = 0;
+
+        gamePages = new GameObject[]
+        {
+            game1Page, game2Page, game3Page, game4Page, game5Page,
+            game6Page, game7Page, game8Page, game9Page, game10Page
+        };
+
+        defaultGameButtons = new GameObject[]
+        {
+            defaultGame1Button, defaultGame2Button, defaultGame3Button,
+            defaultGame4Button, defaultGame5Button, defaultGame6Button,
+            defaultGame7Button, defaultGame8Button, defaultGame9Button,
+            defaultGame10Button
+        };
+
+        ShowGamesGroup1();
     }
-    private void SetSelected(GameObject newSelected)
+
+    /* ----------------- CORE HELPERS ----------------- */
+
+    void DisableAllPages()
     {
-        EventSystem.current.SetSelectedGameObject(null); // clear old selection
-        EventSystem.current.SetSelectedGameObject(newSelected); // set new one
+        foreach (var page in gamePages)
+            page.SetActive(false);
+
+        chooseRacePage.SetActive(false);
     }
-    public void Game1()
+
+    void EnableAllChildren(GameObject parent)
     {
+        foreach (Transform child in parent.transform)
+            child.gameObject.SetActive(true);
+    }
+
+    void SetSelected(GameObject obj)
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(obj);
+    }
+
+    void ShowGamesGroup1()
+    {
+        currentGameIndex = -1;
+        DisableAllPages();
+        gamesGroup.SetActive(true);
+        gamesGroup2.SetActive(false);
+        EnableAllChildren(gamesGroup);
+        SetSelected(defaultGamesGroupButton);
+        clickSFX.Play();
+    }
+
+    void ShowGamesGroup2()
+    {
+        currentGameIndex = -1;
+        DisableAllPages();
+        gamesGroup.SetActive(false);
+        gamesGroup2.SetActive(true);
+        EnableAllChildren(gamesGroup2);
+        SetSelected(defaultGamesGroup2Button);
+        clickSFX.Play();
+    }
+
+    void ShowGameByIndex(int index)
+    {
+        currentGameIndex = index;
+
         gamesGroup.SetActive(false);
         gamesGroup2.SetActive(false);
-        game1Page.SetActive(true);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
-        clickSFX.Play();
+        DisableAllPages();
 
-        SetSelected(defaultGame1Button);
+        gamePages[index].SetActive(true);
+        clickSFX.Play();
+        SetSelected(defaultGameButtons[index]);
     }
-    public void Game2() 
+
+    /* ----------------- GAME PAGES ----------------- */
+
+    public void Game1() => ShowGameByIndex(0);
+    public void Game2() => ShowGameByIndex(1);
+    public void Game3() => ShowGameByIndex(2);
+    public void Game4() => ShowGameByIndex(3);
+    public void Game5() => ShowGameByIndex(4);
+    public void Game6() => ShowGameByIndex(5);
+    public void Game7() => ShowGameByIndex(6);
+    public void Game8() => ShowGameByIndex(7);
+    public void Game9() => ShowGameByIndex(8);
+    public void Game10() => ShowGameByIndex(9);
+
+    public void ChooseRace()
     {
+        currentGameIndex = -1;
         gamesGroup.SetActive(false);
         gamesGroup2.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(true);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
+        DisableAllPages();
+        chooseRacePage.SetActive(true);
         clickSFX.Play();
-
-        SetSelected(defaultGame2Button);
+        SetSelected(defaultChooseRaceButton);
     }
-    public void Game3() 
+
+    /* ----------------- NEXT / PREVIOUS GAME PAGE ----------------- */
+
+    public void NextGame()
     {
-        gamesGroup.SetActive(false);
-        gamesGroup2.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(true);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
-        clickSFX.Play();
-
-        SetSelected(defaultGame3Button);
+        if (currentGameIndex < 0) return;
+        int next = (currentGameIndex + 1) % gamePages.Length;
+        ShowGameByIndex(next);
     }
-    public void Game4() 
+
+    public void PreviousGame()
     {
-        gamesGroup.SetActive(false);
-        gamesGroup2.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(true);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
-        clickSFX.Play();
-
-        SetSelected(defaultGame4Button);
-    }
-    public void Game5() 
-    {
-        gamesGroup.SetActive(false);
-        gamesGroup2.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(true);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
-        clickSFX.Play();
-
-        SetSelected(defaultGame5Button);
+        if (currentGameIndex < 0) return;
+        int prev = (currentGameIndex - 1 + gamePages.Length) % gamePages.Length;
+        ShowGameByIndex(prev);
     }
 
-    public void Game6()
-    {
-        gamesGroup2.SetActive(false);
-        gamesGroup2.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(true);
-        game7Page.SetActive(false);
-        clickSFX.Play();
-
-        SetSelected(defaultGame6Button);
-    }
-
-    public void Game7()
-    {
-        gamesGroup2.SetActive(false);
-        gamesGroup.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(true);
-        clickSFX.Play();
-
-        SetSelected(defaultGame7Button);
-    }
+    /* ----------------- EXIT / NAV ----------------- */
 
     public void ExitPage()
     {
-        gamesGroup.SetActive(true);
-        gamesGroup2.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
         clickSFX.Play();
-        
-        SetSelected(defaultGamesGroupButton);
+        ShowGamesGroup1();
     }
 
     public void ExitPage2()
     {
-        gamesGroup.SetActive(false);
-        gamesGroup2.SetActive(true);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
         clickSFX.Play();
-
-        SetSelected(defaultGamesGroup2Button);
+        ShowGamesGroup2();
     }
 
-    public void nextGame1()
+    public void nextGameGroup1() => ShowGamesGroup2();
+    public void previousGameGroup1() => ShowGamesGroup2();
+    public void nextGameGroup2() => ShowGamesGroup1();
+    public void previousGameGroup2() => ShowGamesGroup1();
+
+    /* ----------------- SCENE LOAD ----------------- */
+
+    public void QuitGame() => Application.Quit();
+
+    public void PlayGame1() => SceneManager.LoadScene("Game1");
+    public void PlayGame2() => SceneManager.LoadScene("Game5");
+    public void PlayGame3() => SceneManager.LoadScene("Game2");
+    public void PlayGame4() => SceneManager.LoadScene("Game4");
+    public void PlayGame5() => SceneManager.LoadScene("Game3");
+    public void PlayGame6() => SceneManager.LoadScene("Game 6");
+    public void PlayGame7() => SceneManager.LoadScene("Game7");
+    public void PlayGame8() => SceneManager.LoadScene("Game8");
+    public void PlayGame9() => SceneManager.LoadScene("Game9");
+
+    public void PlayGame10()
     {
-        gamesGroup.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(true);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
+        game10Page.SetActive(false);
+        chooseRacePage.SetActive(true);
+        SetSelected(defaultChooseRaceButton);
         clickSFX.Play();
-        SetSelected(defaultGame2Button);
-    }
-    public void nextGame2() 
-    {
-        gamesGroup.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(true);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
-        clickSFX.Play();
-        SetSelected(defaultGame3Button);
-    }
-    public void nextGame3() 
-    {
-        gamesGroup.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(true);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
-        clickSFX.Play();
-        SetSelected(defaultGame4Button);
-    }
-    public void nextGame4() 
-    {
-        gamesGroup.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(true);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
-        clickSFX.Play();   
-        SetSelected(defaultGame5Button);
-    }
-    public void nextGame5() 
-    {
-        gamesGroup.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(true);
-        game7Page.SetActive(false);
-        clickSFX.Play();
-        SetSelected(defaultGame6Button);
     }
 
-    public void nextGame6()
-    {
-        gamesGroup.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(true);
-        clickSFX.Play();
-        SetSelected(defaultGame7Button);
-    }
-
-    public void nextGame7()
-    {
-        gamesGroup.SetActive(false);
-        game1Page.SetActive(true);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
-        clickSFX.Play();
-        SetSelected(defaultGame1Button);
-    }
-
-    public void prevGame1()
-    {
-        gamesGroup.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(true);
-        clickSFX.Play();
-        SetSelected(defaultGame7Button);
-    }
-    public void prevGame2() 
-    {
-        gamesGroup.SetActive(false);
-        game1Page.SetActive(true);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
-        clickSFX.Play();
-        SetSelected(defaultGame1Button);
-    }
-    public void prevGame3() 
-    {
-        gamesGroup.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(true);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
-        clickSFX.Play();
-        SetSelected(defaultGame2Button);
-    }
-    public void prevGame4() 
-    {
-        gamesGroup.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(true);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
-        clickSFX.Play();
-        SetSelected(defaultGame3Button);
-    }
-    public void prevGame5() 
-    {
-        gamesGroup.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(true);
-        game5Page.SetActive(false);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
-        clickSFX.Play();
-        SetSelected(defaultGame4Button);
-    }
-
-    public void prevGame6()
-    {
-        gamesGroup.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(true);
-        game6Page.SetActive(false);
-        game7Page.SetActive(false);
-        clickSFX.Play();
-        SetSelected(defaultGame5Button);
-    }
-
-    public void prevGame7()
-    {
-        gamesGroup.SetActive(false);
-        game1Page.SetActive(false);
-        game2Page.SetActive(false);
-        game3Page.SetActive(false);
-        game4Page.SetActive(false);
-        game5Page.SetActive(false);
-        game6Page.SetActive(true);
-        game7Page.SetActive(false);
-        clickSFX.Play();
-        SetSelected(defaultGame6Button);
-    }
-
-    public void nextGameGroup1()
-    {
-        gamesGroup.SetActive(false);
-        gamesGroup2.SetActive(true);
-
-        SetSelected(defaultGamesGroup2Button);
-    }
-
-    public void previousGameGroup1()
-    {
-        gamesGroup.SetActive(false);
-        gamesGroup2.SetActive(true);
-
-        SetSelected(defaultGamesGroup2Button);
-    }
-
-    public void nextGameGroup2()
-    {
-        gamesGroup.SetActive(true);
-        gamesGroup2.SetActive(false);
-
-        SetSelected(defaultGamesGroupButton);
-    }
-
-    public void previousGameGroup2()
-    {
-        gamesGroup.SetActive(true);
-        gamesGroup2.SetActive(false);
-
-        SetSelected(defaultGamesGroupButton);
-    }
-
-
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
-    public void PlayGame1()
-    {
-        SceneManager.LoadScene("Game1");
-    }
-    public void PlayGame2()
-    {
-        SceneManager.LoadScene("Game5");
-    }
-
-    public void PlayGame3()
-    {
-        SceneManager.LoadScene("Game2");
-    }
-
-    public void PlayGame4()
-    {
-        SceneManager.LoadScene("Game4");
-    }
-
-    public void PlayGame5()
-    {
-        SceneManager.LoadScene("Game3");
-    }
-
-    public void PlayGame6()
-    {
-        SceneManager.LoadScene("Game 6");
-    }
-
-    public void PlayGame7()
-    {
-        SceneManager.LoadScene("Game7");
-    }
+    public void PlayRace1() => SceneManager.LoadScene("Game10.1");
+    public void PlayRace2() => SceneManager.LoadScene("Game10.2");
+    public void PlayRace3() => SceneManager.LoadScene("Game10.3");
 }
