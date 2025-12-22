@@ -2842,8 +2842,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 588.99976, y: -346.67856}
-  m_SizeDelta: {x: 198.46, y: 53.3214}
+  m_AnchoredPosition: {x: 590.09973, y: -345.21}
+  m_SizeDelta: {x: 219.34, y: 69.44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &128366484
 MonoBehaviour:
@@ -10740,7 +10740,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 46915384}
         m_TargetAssemblyTypeName: gameSelector, Assembly-CSharp
-        m_MethodName: Game3
+        m_MethodName: PlayRace3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

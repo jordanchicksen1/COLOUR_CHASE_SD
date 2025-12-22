@@ -94,7 +94,7 @@ public class gameSelector : MonoBehaviour
         gamesGroup2.SetActive(false);
         EnableAllChildren(gamesGroup);
         SetSelected(defaultGamesGroupButton);
-        clickSFX.Play();
+        //clickSFX.Play();
     }
 
     void ShowGamesGroup2()
@@ -105,7 +105,7 @@ public class gameSelector : MonoBehaviour
         gamesGroup2.SetActive(true);
         EnableAllChildren(gamesGroup2);
         SetSelected(defaultGamesGroup2Button);
-        clickSFX.Play();
+        //clickSFX.Play();
     }
 
     void ShowGameByIndex(int index)
@@ -175,10 +175,27 @@ public class gameSelector : MonoBehaviour
         ShowGamesGroup2();
     }
 
-    public void nextGameGroup1() => ShowGamesGroup2();
-    public void previousGameGroup1() => ShowGamesGroup2();
-    public void nextGameGroup2() => ShowGamesGroup1();
-    public void previousGameGroup2() => ShowGamesGroup1();
+    public void nextGameGroup1()
+    {
+        ShowGamesGroup2();
+        clickSFX.Play();
+    }
+    public void previousGameGroup1()
+    {
+        ShowGamesGroup2();
+        clickSFX.Play();
+    }
+    public void nextGameGroup2()
+    {
+        ShowGamesGroup1();
+        clickSFX.Play();
+    }
+    public void previousGameGroup2()
+    {
+        ShowGamesGroup1();
+        clickSFX.Play();
+    }
+
 
     /* ----------------- SCENE LOAD ----------------- */
 
