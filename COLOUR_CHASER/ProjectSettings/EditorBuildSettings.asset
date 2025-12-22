@@ -104,4 +104,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/P2Race3.unity
     guid: 8b27b38dacfde784c9bc0c0c2bd0924f
+  - enabled: 1
+    path: Assets/Scenes/Game8.unity
+    guid: 90587f1f66bcfc049bf4a0f2b67b4e61
+  - enabled: 1
+    path: Assets/Scenes/P1Tank.unity
+    guid: 486207100adfa9a47950ff23077e683f
+  - enabled: 1
+    path: Assets/Scenes/P2Tank.unity
+    guid: 581cac33c2b1a7a4cbf43148ff34ca69
+  - enabled: 1
+    path: Assets/Scenes/Game9.unity
+    guid: 14616dae5f213d3428f62abf38fe9a05
+  - enabled: 1
+    path: Assets/Scenes/P1Boxing.unity
+    guid: aba91e97cef716846a8bc90b187324c5
+  - enabled: 1
+    path: Assets/Scenes/P2Boxing.unity
+    guid: 1ed173958a2f69747ac0db53f2d494eb
   m_configObjects: {}
