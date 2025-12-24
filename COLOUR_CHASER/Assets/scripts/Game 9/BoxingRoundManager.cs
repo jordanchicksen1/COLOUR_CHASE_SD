@@ -14,7 +14,6 @@ public class BoxingRoundManager : MonoBehaviour
     [SerializeField]
     private PlayerInputManager playerInputManager;
 
-
     private void Update()
     {
         if(Player1WinIndex >= 0)

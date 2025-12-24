@@ -38,9 +38,17 @@ public class BoxingController : MonoBehaviour
     private GameObject RoundManagerHolder;
     private BoxingRoundManager RoundManager;
     private BoxingHPManager playerHPManager;
+    public AnimationManager animationManagerScript;
 
     private void Start()
     {
+        animationManagerScript = GetComponent<AnimationManager>();
+        inputManagerHolder = GameObject.FindGameObjectWithTag("GameController");
+        playerInputManager = inputManagerHolder.GetComponent<PlayerInputManager>();
+        RoundManagerHolder = GameObject.FindGameObjectWithTag("PointManager");
+        RoundManager = RoundManagerHolder.GetComponent<BoxingRoundManager>();
+        playerHPManager = GetComponent<BoxingHPManager>();
+        animationManagerScript.PlayerAnimator = GetComponent<Animator>();
         if (playerInput.playerIndex == 0)
         {
             //p1Position = GameObject.FindGameObjectWithTag("p1");
@@ -49,7 +57,7 @@ public class BoxingController : MonoBehaviour
             //sprite.sprite = sprites[0]; 
             gameObject.tag = "Player1";
             OtherPlayersTag = "Player2";
-           
+            animationManagerScript.Player1();
         }
         else if (playerInput.playerIndex == 1)
         {
@@ -59,12 +67,11 @@ public class BoxingController : MonoBehaviour
             //sprite.sprite = sprites[1];
             gameObject.tag = "Player2";
             OtherPlayersTag = "Player1";
+            animationManagerScript.Player2();
+
         }
-        inputManagerHolder = GameObject.FindGameObjectWithTag("GameController");
-        playerInputManager = inputManagerHolder.GetComponent<PlayerInputManager>();
-        RoundManagerHolder = GameObject.FindGameObjectWithTag("PointManager");
-        RoundManager = RoundManagerHolder.GetComponent<BoxingRoundManager>();
-        playerHPManager = GetComponent<BoxingHPManager>();
+        
+        
     }
 
     public void OnGameSelection(InputAction.CallbackContext context)
@@ -114,6 +121,7 @@ public class BoxingController : MonoBehaviour
             OtherPlayersHP.isTakingRightPunch = true;
 
         }
+        animationManagerScript.RightPunch();
     }
 
     private void leftPunch()
@@ -126,14 +134,11 @@ public class BoxingController : MonoBehaviour
         {
             OtherPlayersHP = hit.collider.GetComponent<BoxingHPManager>();
             OtherPlayersHP.isTakingLeftPunch = true;
-            
-
-
         }
-
+        animationManagerScript.LeftPunch();
     }
 
-
+    
 
     public void OnLeftblock(InputAction.CallbackContext context)
     {

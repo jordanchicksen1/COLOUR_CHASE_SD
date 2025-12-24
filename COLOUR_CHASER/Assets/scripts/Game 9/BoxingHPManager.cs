@@ -11,7 +11,6 @@ public class BoxingHPManager : MonoBehaviour
     public bool isTakingLeftPunch, isTakingRightPunch;
     private Rigidbody2D rb;
     [SerializeField] private float knockbackForce = 8f;
-
     private void Start()
     {
         BoxingScrpit = GetComponent<BoxingController>();
@@ -41,7 +40,7 @@ public class BoxingHPManager : MonoBehaviour
         Vector3 endPos = startPos + (-transform.up * knockbackForce);
         float duration = 0.1f; // Adjust for how long the knockback takes
         float elapsed = 0f;
-
+        BoxingScrpit.animationManagerScript.Knock();
         while (elapsed < duration)
         {
             transform.position = Vector3.Lerp(startPos, endPos, elapsed / duration);

@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1209225814406497940}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.505, z: 0}
+  m_LocalPosition: {x: 0, y: 0.215, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 75056601971863464}
   - component: {fileID: 7335638605301263932}
   - component: {fileID: 5547303847397085070}
+  - component: {fileID: 2610737814289646034}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -307,7 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  raycastDistance: 1
+  raycastDistance: 0.5
   rotateSpeed: 20
   PlayerLayer:
     serializedVersion: 2
@@ -319,6 +320,7 @@ MonoBehaviour:
   isBlockingRight: 0
   RayPoint: {fileID: 1512806641530176408}
   OtherPlayer: {fileID: 0}
+  animationManagerScript: {fileID: 0}
 --- !u!114 &7335638605301263932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,3 +360,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2610737814289646034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990880792847609032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa39715115214694b91b2f495e233cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerAnimator: {fileID: 0}
+  Animations:
+  - LBlock
+  - LPunch
+  - RBlock
+  - RPunch
+  - DBlock
