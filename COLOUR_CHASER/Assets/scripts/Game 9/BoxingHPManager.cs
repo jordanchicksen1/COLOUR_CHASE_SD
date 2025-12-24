@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class BoxingHPManager : MonoBehaviour
@@ -11,10 +12,15 @@ public class BoxingHPManager : MonoBehaviour
     public bool isTakingLeftPunch, isTakingRightPunch;
     private Rigidbody2D rb;
     [SerializeField] private float knockbackForce = 8f;
+    private GameObject CountDownHolder;
+    public TextMeshProUGUI CountDownText;
+
     private void Start()
     {
         BoxingScrpit = GetComponent<BoxingController>();
         rb = GetComponent<Rigidbody2D>();
+        CountDownHolder = GameObject.FindGameObjectWithTag("Timer");
+        CountDownText = CountDownHolder.GetComponent<TextMeshProUGUI>();
     }
 
     private void Update()
@@ -27,30 +33,66 @@ public class BoxingHPManager : MonoBehaviour
         {
             TakeDamageRight();
         }
+        
+        
     }
 
     public void ApplyKnockback()
     {
         StartCoroutine(KnockbackRoutine());
     }
-
+    private void ResetPositios()
+    {
+        transform.position = BoxingScrpit.StartPosition.transform.position;
+        BoxingController otherplayerScript = BoxingScrpit.OtherPlayer.GetComponent<BoxingController>();
+        BoxingScrpit.OtherPlayer.transform.position = otherplayerScript.StartPosition.transform.position;
+    }
     IEnumerator KnockbackRoutine()
     {
-        Vector3 startPos = transform.position;
-        Vector3 endPos = startPos + (-transform.up * knockbackForce);
-        float duration = 0.1f; // Adjust for how long the knockback takes
-        float elapsed = 0f;
-        BoxingScrpit.animationManagerScript.Knock();
-        while (elapsed < duration)
+        
+        if (HP <= 0)
         {
-            transform.position = Vector3.Lerp(startPos, endPos, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
+            ResetPositios();
+            StartCoroutine(CountDown());
         }
+        else if (HP > 0)
+        {
+            Vector3 startPos = transform.position;
+            Vector3 endPos = startPos + (-transform.up * knockbackForce);
+            float duration = 0.1f; // Adjust for how long the knockback takes
+            float elapsed = 0f;
+            BoxingScrpit.animationManagerScript.Knock();
+            while (elapsed < duration)
+            {
+                transform.position = Vector3.Lerp(startPos, endPos, elapsed / duration);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
 
-        transform.position = endPos; // Ensure exact position
+            transform.position = endPos; // Ensure exact position
+        }
     }
+    public bool GameStarted;
 
+    public IEnumerator CountDown()
+    {
+        GameStarted = true;
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        Rigidbody2D rb2 = BoxingScrpit.OtherPlayer.GetComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Static;
+        rb2.bodyType = RigidbodyType2D.Static;
+        CountDownText.text = "3";
+        yield return new WaitForSeconds(1);
+        CountDownText.text = "2";
+        yield return new WaitForSeconds(1);
+        CountDownText.text = "1";
+        yield return new WaitForSeconds(1);
+        CountDownText.text = "Fight";
+        yield return new WaitForSeconds(1);
+        CountDownText.text = "";
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb2.bodyType = RigidbodyType2D.Dynamic;
+    }
 
     void TakeDamageRight()
     {

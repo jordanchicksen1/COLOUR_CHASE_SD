@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BoxingRoundManager : MonoBehaviour
 {
-    private int currentRound;
+    public int currentRound;
     [SerializeField]
     private List<RawImage> Player1Rounds, Player2Rounds;
     [SerializeField]
     public int Player1WinIndex, Player2WinIndex;
     [SerializeField]
     private PlayerInputManager playerInputManager;
-
+    private GameObject Player1, Player2;
+    
     private void Update()
     {
         if(Player1WinIndex >= 0)
@@ -26,6 +28,17 @@ public class BoxingRoundManager : MonoBehaviour
             Player2Rounds[Player2WinIndex].color = Color.red;
         }
 
-        
+        if (Player1WinIndex == 1)
+        {
+            //Boxing Player 1 Win
+            SceneManager.LoadScene("");
+        }
+        else if (Player2WinIndex ==1)
+        {
+            //Boxing Player 1 Win
+
+            SceneManager.LoadScene("");
+
+        }
     }
 }

@@ -64,6 +64,7 @@ TagManager:
   - CheckPoint2
   - boost
   - Spikes
+  - Timer
   layers:
   - Default
   - TransparentFX

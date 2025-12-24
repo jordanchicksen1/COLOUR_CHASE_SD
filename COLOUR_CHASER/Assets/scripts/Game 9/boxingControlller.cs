@@ -39,7 +39,7 @@ public class BoxingController : MonoBehaviour
     private BoxingRoundManager RoundManager;
     private BoxingHPManager playerHPManager;
     public AnimationManager animationManagerScript;
-
+    public GameObject StartPosition;
     private void Start()
     {
         animationManagerScript = GetComponent<AnimationManager>();
@@ -58,6 +58,8 @@ public class BoxingController : MonoBehaviour
             gameObject.tag = "Player1";
             OtherPlayersTag = "Player2";
             animationManagerScript.Player1();
+            StartPosition = GameObject.FindGameObjectWithTag("p1");
+            transform.position = StartPosition.transform.position;
         }
         else if (playerInput.playerIndex == 1)
         {
@@ -68,10 +70,12 @@ public class BoxingController : MonoBehaviour
             gameObject.tag = "Player2";
             OtherPlayersTag = "Player1";
             animationManagerScript.Player2();
+            StartPosition = GameObject.FindGameObjectWithTag("p2");
+            transform.position = StartPosition.transform.position;
 
         }
-        
-        
+
+
     }
 
     public void OnGameSelection(InputAction.CallbackContext context)
@@ -171,6 +175,8 @@ public class BoxingController : MonoBehaviour
         HandleMovement();
         if (playerInputManager.playerCount == 2)
         {
+            
+            
             if (playerInput.playerIndex == 0)
             {
                 if (OtherPlayer == null)
@@ -184,6 +190,10 @@ public class BoxingController : MonoBehaviour
                 {
                     OtherPlayer = GameObject.FindGameObjectWithTag(OtherPlayersTag);
                 }
+            }
+            if (!playerHPManager.GameStarted)
+            {
+                StartCoroutine(playerHPManager.CountDown());
             }
         }
 
@@ -200,16 +210,19 @@ public class BoxingController : MonoBehaviour
             {
                 RoundManager.Player2WinIndex++;
                 playerHPManager.HP = 100;
+                RoundManager.currentRound++;
             }
             else if (playerInput.playerIndex ==1)
             {
                 RoundManager.Player1WinIndex++;
                 playerHPManager.HP = 100;
-
+                RoundManager.currentRound++;
             }
         }
     }
 
+
+    
     private void HandleMovement()
     {
         rb.MovePosition(rb.position + moveInput * speed * Time.fixedDeltaTime);
