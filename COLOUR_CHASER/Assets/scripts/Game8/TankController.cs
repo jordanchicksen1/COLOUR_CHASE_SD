@@ -17,8 +17,10 @@
 
 
         private float forwardInput;
-        private float reverseInput;
-        [SerializeField] private float turnInput;
+        private Vector2 moveInput;  
+        private Vector2 lookInput;   
+
+    [SerializeField] private float turnInput;
 
         private SpriteRenderer spriteRnd;
 
@@ -78,9 +80,15 @@
             spriteRnd = GetComponent<SpriteRenderer>();
     }
 
-        public void OnDrive(InputAction.CallbackContext context) => forwardInput = context.ReadValue<float>();
-        public void OnReverse(InputAction.CallbackContext context) => reverseInput = context.ReadValue<float>();
-        public void OnRotate(InputAction.CallbackContext context) => turnInput = context.ReadValue<float>();
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
+    }
+
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        lookInput = context.ReadValue<Vector2>();
+    }
     public void OnFireNormal(InputAction.CallbackContext context)
     {
         if (context.started && Time.time >= nextNormalShotTime)
@@ -121,18 +129,22 @@
 
     void FixedUpdate()
         {
-            float moveValue = (forwardInput * acceleration) - (reverseInput * reverse);
-            rb.AddForce(transform.up * moveValue);
 
-            float rotationAmount = -turnInput * steering * Time.fixedDeltaTime;
-            rb.MoveRotation(rb.rotation + rotationAmount);
+        // Forward / reverse based on left stick Y
+        float moveValue = moveInput.y * acceleration;
+        rb.AddForce(transform.up * moveValue);
 
-            rb.velocity = rb.velocity * (1 - drag * Time.fixedDeltaTime);
-        }
+        // Apply drag
+        rb.velocity = rb.velocity * (1 - drag * Time.fixedDeltaTime);
+    }
 
         private void Update()
         {
-      
+          if (lookInput.sqrMagnitude > 0.1f)
+          {
+              float angle = Mathf.Atan2(lookInput.y, lookInput.x) * Mathf.Rad2Deg - 90f;
+              rb.MoveRotation(angle);
+          }
         }
 
         public void OnGameSelection(InputAction.CallbackContext context)

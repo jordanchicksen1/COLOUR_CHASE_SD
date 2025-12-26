@@ -139,6 +139,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "L3",
+                    "type": "Value",
+                    "id": "b964c908-1ee4-44cb-97ed-ef93cfae8f14",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "R3",
+                    "type": "Value",
+                    "id": "d0545054-5860-4736-9131-dda260e141c0",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -359,6 +377,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "L1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dbc7fb3f-b827-44f0-9f8e-4e0a1c31b346",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "L3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "97ee96b0-a6f2-4ba4-bc64-98dad34cbf80",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "R3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
