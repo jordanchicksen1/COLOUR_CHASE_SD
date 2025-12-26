@@ -31,13 +31,13 @@ public class BoxingRoundManager : MonoBehaviour
         if (Player1WinIndex == 1)
         {
             //Boxing Player 1 Win
-            SceneManager.LoadScene("");
+            SceneManager.LoadScene("P1Boxing");
         }
         else if (Player2WinIndex ==1)
         {
             //Boxing Player 1 Win
 
-            SceneManager.LoadScene("");
+            SceneManager.LoadScene("P2Boxing");
 
         }
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -235,5 +236,29 @@ public class BoxingController : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + transform.up * raycastDistance);
     }
 
-   
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "OutsideRing")
+        {
+
+            rb.position = Vector2.zero;
+            rb.velocity = Vector2.zero;
+            moveInput = Vector2.zero;
+
+            Debug.Log("outside ring");
+        }
+    }
+
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "OutsideRing")
+        {
+
+            rb.position = Vector2.zero;
+            rb.velocity = Vector2.zero;
+            moveInput = Vector2.zero;
+
+            Debug.Log("outside ring");
+        }
+    }
 }
