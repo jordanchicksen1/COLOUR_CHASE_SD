@@ -41,6 +41,7 @@ public class BoxingController : MonoBehaviour
     private BoxingHPManager playerHPManager;
     public AnimationManager animationManagerScript;
     public GameObject StartPosition;
+    public AudioSource punchSFX;
     private void Start()
     {
         animationManagerScript = GetComponent<AnimationManager>();
@@ -103,7 +104,7 @@ public class BoxingController : MonoBehaviour
         if (context.performed) // Only trigger on button press, not release
         {
             RightPunch();
-
+            punchSFX.Play();
         }
     }
 
@@ -112,6 +113,7 @@ public class BoxingController : MonoBehaviour
         if (context.performed) // Only trigger on button press, not release
         {
             leftPunch();
+            punchSFX.Play();
         }
     }
 

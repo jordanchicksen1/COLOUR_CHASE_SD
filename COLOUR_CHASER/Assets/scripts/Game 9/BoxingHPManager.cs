@@ -25,6 +25,14 @@ public class BoxingHPManager : MonoBehaviour
     public bool GameStarted;
 
     private PlayerInput playerInput;
+
+    //sfx
+    public AudioSource oneSFX;
+    public AudioSource twoSFX;
+    public AudioSource threeSFX;
+    public AudioSource fightSFX;
+    public AudioSource hitSFX;
+
     private void Start()
     {
         BoxingScrpit = GetComponent<BoxingController>();
@@ -54,10 +62,12 @@ public class BoxingHPManager : MonoBehaviour
         if (isTakingLeftPunch)
         {
             TakeDamageleft();
+            
         }
         else if (isTakingRightPunch)
         {
             TakeDamageRight();
+            
         }
     }
 
@@ -102,7 +112,10 @@ public class BoxingHPManager : MonoBehaviour
         UpdateHealthBar();
         ApplyKnockback();
 
+        yield return new WaitForSeconds(0.15f);
+        hitSFX.Play();
         yield return new WaitForSeconds(0.5f);
+        
     }
 
     IEnumerator TakeBlockDamage()
@@ -178,17 +191,20 @@ public class BoxingHPManager : MonoBehaviour
         rb2.bodyType = RigidbodyType2D.Static;
         
         
-        
+        threeSFX.Play();
         CountDownText.text = "3";
         yield return new WaitForSeconds(1);
 
+        twoSFX.Play();
         CountDownText.text = "2";
         yield return new WaitForSeconds(1);
 
+        oneSFX.Play();
         CountDownText.text = "1";
         yield return new WaitForSeconds(1);
 
         UpdateHealthBar();
+        fightSFX.Play();
         CountDownText.text = "Fight";
         yield return new WaitForSeconds(1);
         
