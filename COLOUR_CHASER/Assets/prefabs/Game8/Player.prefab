@@ -301,9 +301,9 @@ MonoBehaviour:
     m_ActionName: Player/Reverse[/DualShock4GamepadHID/leftTrigger]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CarController, Assembly-CSharp
-        m_MethodName: OnAbility
+      - m_Target: {fileID: 256224357516500182}
+        m_TargetAssemblyTypeName: TankController, Assembly-CSharp
+        m_MethodName: OnUsePowerUp
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -612,6 +612,10 @@ MonoBehaviour:
   lobForce: 15
   normalShotCooldown: 1
   lobShotCooldown: 1.5
+  missilePrefab: {fileID: 3966727261249856416, guid: c041d922b7eab41409eb1a34103a8290, type: 3}
+  missileForce: 12
+  speedBoostMultiplier: 1.8
+  speedBoostDuration: 9
 --- !u!1 &8253478041327007783
 GameObject:
   m_ObjectHideFlags: 0

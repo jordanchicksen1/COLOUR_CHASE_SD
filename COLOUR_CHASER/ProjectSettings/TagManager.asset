@@ -65,6 +65,7 @@ TagManager:
   - boost
   - Spikes
   - Timer
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -78,8 +79,8 @@ TagManager:
   - Player2
   - Pullable
   - Player
-  - 
-  - 
+  - Obstacle
+  - Bullet
   - 
   - 
   - 

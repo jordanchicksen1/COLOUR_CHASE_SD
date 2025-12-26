@@ -50,6 +50,18 @@
         private float nextLobShotTime = 0f;
         public int PlayerIndex => trueIndex;
 
+    public enum PowerUpType { None, Missiles, SpeedBoost }
+
+    private PowerUpType currentPowerUp = PowerUpType.None;
+
+    [SerializeField] private GameObject missilePrefab;
+    [SerializeField] private float missileForce = 12f;
+
+    [SerializeField] private float speedBoostMultiplier = 1.8f;
+    [SerializeField] private float speedBoostDuration = 9f;
+
+    private bool speedBoostActive = false;
+
 
     void Awake()
     {
@@ -178,4 +190,52 @@
             }
         }
 
+    public void OnUsePowerUp(InputAction.CallbackContext context)
+    {
+        if (!context.started || currentPowerUp == PowerUpType.None)
+            return;
+
+        switch (currentPowerUp)
+        {
+            case PowerUpType.Missiles:
+                FireMissiles();
+                break;
+
+            case PowerUpType.SpeedBoost:
+                StartCoroutine(SpeedBoost());
+                break;
+        }
+
+        currentPowerUp = PowerUpType.None;
     }
+    void FireMissiles()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            float spread = Random.Range(-15f, 15f);
+            Quaternion rot = firePoint.rotation * Quaternion.Euler(0, 0, spread);
+
+            GameObject m = Instantiate(missilePrefab, firePoint.position, rot);
+            m.GetComponent<Rigidbody2D>()
+             .AddForce(m.transform.up * missileForce, ForceMode2D.Impulse);
+        }
+    }
+    IEnumerator SpeedBoost()
+    {
+        if (speedBoostActive)
+            yield break;
+
+        speedBoostActive = true;
+        acceleration *= speedBoostMultiplier;
+
+        yield return new WaitForSeconds(speedBoostDuration);
+
+        acceleration /= speedBoostMultiplier;
+        speedBoostActive = false;
+    }
+    public void GivePowerUp(PowerUpType type)
+    {
+        currentPowerUp = type;
+    }
+
+}
