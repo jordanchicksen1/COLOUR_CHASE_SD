@@ -603,8 +603,12 @@ MonoBehaviour:
   turnInput: 0
   Player1: {fileID: 21300000, guid: fe86089c6c2bb8b41b3aba7c358afa71, type: 3}
   Player2: {fileID: 21300000, guid: fcf2e4b10be10284ea631e1a35c0b958, type: 3}
-  player1Spawn: {fileID: 0}
-  player2Spawn: {fileID: 0}
+  player1Spawns:
+  - {fileID: 0}
+  - {fileID: 0}
+  player2Spawns:
+  - {fileID: 0}
+  - {fileID: 0}
   normalBulletPrefab: {fileID: 5369842018123679848, guid: fab4456e2f83b964a8ce3f5875ffc2a2, type: 3}
   lobBulletPrefab: {fileID: 6910039500721157199, guid: 1feb50f4c7e0dfd40bb5430477c5438b, type: 3}
   firePoint: {fileID: 61628183975598891}
