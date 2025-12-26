@@ -771,6 +771,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &84065664
 Rigidbody2D:
   serializedVersion: 4
@@ -1773,6 +1775,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &158877328
 Rigidbody2D:
   serializedVersion: 4
@@ -2485,6 +2489,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &197503475
 Rigidbody2D:
   serializedVersion: 4
@@ -3285,6 +3291,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &279826180
 Rigidbody2D:
   serializedVersion: 4
@@ -4047,6 +4055,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &359781491
 Rigidbody2D:
   serializedVersion: 4
@@ -4893,6 +4903,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &398914159
 Rigidbody2D:
   serializedVersion: 4
@@ -5490,6 +5502,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &439815240
 Rigidbody2D:
   serializedVersion: 4
@@ -5652,6 +5666,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &440731150
 Rigidbody2D:
   serializedVersion: 4
@@ -6032,6 +6048,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &466585660
 Rigidbody2D:
   serializedVersion: 4
@@ -7229,7 +7247,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3251d59065802784fa8c896d3221abd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitsToBreak: 3
+  hitsToBreak: 4
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &598664934
 Rigidbody2D:
   serializedVersion: 4
@@ -7476,6 +7496,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &622587414
 Rigidbody2D:
   serializedVersion: 4
@@ -8581,6 +8603,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &686832138
 Rigidbody2D:
   serializedVersion: 4
@@ -8827,6 +8851,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &708774512
 Rigidbody2D:
   serializedVersion: 4
@@ -8989,6 +9015,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &708782208
 Rigidbody2D:
   serializedVersion: 4
@@ -9999,6 +10027,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &816074809
 Rigidbody2D:
   serializedVersion: 4
@@ -10981,6 +11011,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &906719941
 Rigidbody2D:
   serializedVersion: 4
@@ -12774,6 +12806,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &1055287723
 Rigidbody2D:
   serializedVersion: 4
@@ -13402,6 +13436,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &1110996592
 Rigidbody2D:
   serializedVersion: 4
@@ -13732,6 +13768,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &1147189404
 Rigidbody2D:
   serializedVersion: 4
@@ -16224,6 +16262,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &1419318830
 Rigidbody2D:
   serializedVersion: 4
@@ -16589,6 +16629,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &1473174773
 Rigidbody2D:
   serializedVersion: 4
@@ -17313,6 +17355,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &1497364479
 Rigidbody2D:
   serializedVersion: 4
@@ -18523,6 +18567,9 @@ MonoBehaviour:
   player2Score: 0
   player1ScoreText: {fileID: 1750246649}
   player2ScoreText: {fileID: 444507927}
+  killsToWin: 3
+  player1WinScene: P1Tank
+  player2WinScene: P2Tank
 --- !u!4 &1586380460
 Transform:
   m_ObjectHideFlags: 0
@@ -21060,6 +21107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &1801110479
 Rigidbody2D:
   serializedVersion: 4
@@ -22658,6 +22707,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &2013340030
 Rigidbody2D:
   serializedVersion: 4
@@ -23833,6 +23884,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitsToBreak: 3
+  crackedSprite: {fileID: 21300000, guid: 4297ae6138d0f8445a37e3236914fbff, type: 3}
+  veryCrackedSprite: {fileID: 21300000, guid: e3dad4fc28115d94593f00a7f41a784b, type: 3}
 --- !u!50 &2103363958
 Rigidbody2D:
   serializedVersion: 4

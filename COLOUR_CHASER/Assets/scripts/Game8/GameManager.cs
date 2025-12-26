@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +27,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TMP_Text player1ScoreText;
     [SerializeField] private TMP_Text player2ScoreText;
+
+    [Header("Win Condition")]
+    [SerializeField] private int killsToWin = 3;
+
+    [SerializeField] private string player1WinScene = "Player1Win";
+    [SerializeField] private string player2WinScene = "Player2Win";
 
     private void StartGame()
     {
@@ -57,13 +64,42 @@ public class GameManager : MonoBehaviour
 
     public void PlayerKilled(int deadPlayerIndex)
     {
+        if (gameStarted == false)
+            return;
+
         if (deadPlayerIndex == 0)
             player2Score++;
         else
             player1Score++;
 
         UpdateScoreUI();
+
+        if (player1Score >= killsToWin)
+        {
+            EndGame(1);
+            return;
+        }
+        else if (player2Score >= killsToWin)
+        {
+            EndGame(2);
+            return;
+        }
+
         StartCoroutine(RespawnBothPlayers());
+    }
+    private void EndGame(int winningPlayer)
+    {
+        gameStarted = false;
+
+        Time.timeScale = 1f;
+
+        foreach (var tank in FindObjectsOfType<TankController>())
+            tank.enabled = false;
+
+        if (winningPlayer == 1)
+            SceneManager.LoadScene(player1WinScene);
+        else if (winningPlayer == 2)
+            SceneManager.LoadScene(player2WinScene);
     }
     private void UpdateScoreUI()
     {
