@@ -31,8 +31,7 @@
         private Sprite Player1, Player2;
 
         [Header("Spawn Positions (Editable)")]
-        [SerializeField] private GameObject player1Spawn;
-        [SerializeField] private GameObject player2Spawn;
+     
 
         [Header("Shooting")]
         [SerializeField] private GameObject normalBulletPrefab;
@@ -74,22 +73,20 @@
 
     private void Start()
         {
-            if (trueIndex == 0)
-            {
-                GetComponent<SpriteRenderer>().sprite = Player1;
-                gameObject.tag = "Player1";
-                player1Spawn = GameObject.FindGameObjectWithTag("p1");
-                transform.position = player1Spawn.transform.position;
-            }
-            else if (trueIndex == 1)
-            {
-                GetComponent<SpriteRenderer>().sprite = Player2;
-                gameObject.tag = "Player2";
-                player2Spawn = GameObject.FindGameObjectWithTag("p2");
-                transform.position = player2Spawn.transform.position;
-            }
+        if (trueIndex == 0)
+        {
+            GetComponent<SpriteRenderer>().sprite = Player1;
+            gameObject.tag = "Player1";
+        }
+        else if (trueIndex == 1)
+        {
+            GetComponent<SpriteRenderer>().sprite = Player2;
+            gameObject.tag = "Player2";
+        }
 
-            spriteRnd = GetComponent<SpriteRenderer>();
+        transform.position = GetRandomSpawnPosition();
+
+        spriteRnd = GetComponent<SpriteRenderer>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -172,23 +169,27 @@
             SceneManager.LoadScene("GameSelect");
         }
 
-        public void ResetToSpawn()
+    public void ResetToSpawn()
+    {
+        transform.position = GetRandomSpawnPosition();
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        rb.rotation = 0f;
+    }
+    private Vector3 GetRandomSpawnPosition()
+    {
+        string tag = trueIndex == 0 ? "p1" : "p2";
+        GameObject[] spawns = GameObject.FindGameObjectsWithTag(tag);
+
+        if (spawns.Length == 0)
         {
-            if (trueIndex == 0 && player1Spawn != null)
-            {
-                transform.position = player1Spawn.transform.position;
-                rb.velocity = Vector2.zero;
-                rb.angularVelocity = 0f;
-                rb.rotation = 0f;
-            }
-            else if (trueIndex == 1 && player2Spawn != null)
-            {
-                transform.position = player2Spawn.transform.position;
-                rb.velocity = Vector2.zero;
-                rb.angularVelocity = 0f;
-                rb.rotation = 0f;
-            }
+            Debug.LogError($"No spawn points found with tag {tag}");
+            return transform.position;
         }
+
+        return spawns[Random.Range(0, spawns.Length)].transform.position;
+    }
+   
 
     public void OnUsePowerUp(InputAction.CallbackContext context)
     {
