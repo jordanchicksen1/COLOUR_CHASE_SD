@@ -22,10 +22,6 @@
 
         private SpriteRenderer spriteRnd;
 
-        [Header("Camera Settings")]
-        public GameObject cameraPrefab; 
-        private Camera playerCam;
-
         private int trueIndex;
         private static int assignedIndex = 0;
 
@@ -80,16 +76,6 @@
             }
 
             spriteRnd = GetComponent<SpriteRenderer>();
-
-            GameObject camObj = Instantiate(cameraPrefab);
-            playerCam = camObj.GetComponent<Camera>();
-
-            playerCam.transform.position = transform.position + new Vector3(0, 0, -10);
-
-        if (playerInput.playerIndex == 0)
-            playerCam.rect = new Rect(0, 0, 0.5f, 1); 
-        else if (playerInput.playerIndex == 1)
-            playerCam.rect = new Rect(0.5f, 0, 0.5f, 1); 
     }
 
         public void OnDrive(InputAction.CallbackContext context) => forwardInput = context.ReadValue<float>();
@@ -146,10 +132,8 @@
 
         private void Update()
         {
-            if (playerCam != null)
-            playerCam.transform.position = transform.position + new Vector3(0, 0, -10);
-
-    }
+      
+        }
 
         public void OnGameSelection(InputAction.CallbackContext context)
         {
