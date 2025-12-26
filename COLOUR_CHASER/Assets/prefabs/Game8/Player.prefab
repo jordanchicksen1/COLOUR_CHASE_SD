@@ -225,8 +225,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CarController, Assembly-CSharp
+      - m_Target: {fileID: 256224357516500182}
+        m_TargetAssemblyTypeName: TankController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
