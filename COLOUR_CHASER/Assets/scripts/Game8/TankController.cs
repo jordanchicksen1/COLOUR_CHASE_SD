@@ -18,7 +18,7 @@
 
         private float forwardInput;
         private Vector2 moveInput;  
-        private Vector2 lookInput;   
+     
 
     [SerializeField] private float turnInput;
 
@@ -85,10 +85,6 @@
         moveInput = context.ReadValue<Vector2>();
     }
 
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        lookInput = context.ReadValue<Vector2>();
-    }
     public void OnFireNormal(InputAction.CallbackContext context)
     {
         if (context.started && Time.time >= nextNormalShotTime)
@@ -129,22 +125,34 @@
 
     void FixedUpdate()
         {
+        if (moveInput.sqrMagnitude < 0.01f)
+        {
+            rb.velocity = Vector2.Lerp(
+                rb.velocity,
+                Vector2.zero,
+                drag * Time.fixedDeltaTime
+            );
+            return;
+        }
 
-        // Forward / reverse based on left stick Y
-        float moveValue = moveInput.y * acceleration;
-        rb.AddForce(transform.up * moveValue);
+        float targetAngle =
+            Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg - 90f;
 
-        // Apply drag
-        rb.velocity = rb.velocity * (1 - drag * Time.fixedDeltaTime);
+        rb.MoveRotation(targetAngle);
+
+        float speed = moveInput.magnitude * acceleration;
+        rb.AddForce(transform.up * speed, ForceMode2D.Force);
+
+        rb.velocity = Vector2.Lerp(
+            rb.velocity,
+            Vector2.zero,
+            drag * Time.fixedDeltaTime
+        );
     }
 
         private void Update()
         {
-          if (lookInput.sqrMagnitude > 0.1f)
-          {
-              float angle = Mathf.Atan2(lookInput.y, lookInput.x) * Mathf.Rad2Deg - 90f;
-              rb.MoveRotation(angle);
-          }
+       
         }
 
         public void OnGameSelection(InputAction.CallbackContext context)
