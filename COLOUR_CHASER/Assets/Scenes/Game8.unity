@@ -19078,7 +19078,7 @@ MonoBehaviour:
   player2Score: 0
   player1ScoreText: {fileID: 1750246649}
   player2ScoreText: {fileID: 444507927}
-  killsToWin: 3
+  killsToWin: 5
   player1WinScene: P1Tank
   player2WinScene: P2Tank
 --- !u!4 &1586380460

@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text player2ScoreText;
 
     [Header("Win Condition")]
-    [SerializeField] private int killsToWin = 3;
+    [SerializeField] private int killsToWin = 5;
 
     [SerializeField] private string player1WinScene = "Player1Win";
     [SerializeField] private string player2WinScene = "Player2Win";
