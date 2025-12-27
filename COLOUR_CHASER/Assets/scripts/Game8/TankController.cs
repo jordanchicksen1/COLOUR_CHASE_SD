@@ -41,7 +41,13 @@
         [SerializeField] private float shotForce = 20f;
         [SerializeField] private float lobForce = 10f;
 
-        [Header("Shot Cooldowns")]
+    [Header("Death FX")]
+    [SerializeField] private GameObject deathParticlePrefab;
+    [SerializeField] private float respawnDelay = 2f;
+
+    private bool isDead = false;
+
+    [Header("Shot Cooldowns")]
         [SerializeField] private float normalShotCooldown = 0.3f;
         [SerializeField] private float lobShotCooldown = 1f;
 
@@ -101,6 +107,32 @@
             ShootNormal();
             nextNormalShotTime = Time.time + normalShotCooldown;
         }
+    }
+
+    public void Die()
+    {
+        if (isDead) return;
+        isDead = true;
+
+        Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
+
+        rb.velocity = Vector2.zero;
+        rb.simulated = false;
+        GetComponent<Collider2D>().enabled = false;
+        spriteRnd.enabled = false;
+        StartCoroutine(Respawn());
+    }
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(respawnDelay);
+
+        ResetToSpawn();
+
+        rb.simulated = true;
+        GetComponent<Collider2D>().enabled = true;
+        spriteRnd.enabled = true;
+
+        isDead = false;
     }
 
     public void OnFireLob(InputAction.CallbackContext context)

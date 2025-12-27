@@ -17,6 +17,7 @@ public class Bullet : MonoBehaviour
         {
             if (tank.PlayerIndex != ownerIndex)
             {
+                tank.Die();
                 GameManager.Instance.PlayerKilled(tank.PlayerIndex);
             }
         }

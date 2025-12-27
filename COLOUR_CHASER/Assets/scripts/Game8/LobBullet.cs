@@ -22,6 +22,7 @@ public class LobBullet : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
+
     void FixedUpdate()
     {
         timer += Time.fixedDeltaTime;
