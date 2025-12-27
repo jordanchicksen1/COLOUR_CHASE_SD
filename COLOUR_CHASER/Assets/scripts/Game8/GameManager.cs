@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [Header("Countdown")]
     [SerializeField] private TMP_Text countdownText;
     [SerializeField] private float countdownTime = 3f;
+    [SerializeField] private GameObject countdownBanner;
+    [SerializeField] private GameObject backgroundMusic;
+    [SerializeField] private AudioSource counterSFX;
     private int playersJoined = 0;
 
     private bool gameStarted = false;
@@ -121,21 +124,24 @@ public class GameManager : MonoBehaviour
     private IEnumerator CountdownRoutine()
     {
         countdownText.gameObject.SetActive(true);
-
+        countdownBanner.SetActive(true);
         float timer = countdownTime;
 
         while (timer > 0)
         {
             countdownText.text = Mathf.Ceil(timer).ToString();
+            counterSFX.Play();
             yield return new WaitForSecondsRealtime(1f);
             timer--;
         }
 
         countdownText.text = "GO!";
+        counterSFX.Play();
         yield return new WaitForSecondsRealtime(0.5f);
 
         countdownText.gameObject.SetActive(false);
-
+        countdownBanner.SetActive(false);
+        backgroundMusic.SetActive(true);
         Time.timeScale = 1f;
         gameStarted = true;
 

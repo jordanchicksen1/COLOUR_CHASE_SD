@@ -55,6 +55,14 @@
         private float nextLobShotTime = 0f;
         public int PlayerIndex => trueIndex;
 
+    [Header("Sound Effects")]
+    public AudioSource dieSFX;
+    public AudioSource shoot1SFX;
+    public AudioSource shoot2SFX;
+    public AudioSource boostSFX;
+    public AudioSource missileSFX;
+    public AudioSource powerUpSFX;
+
     public enum PowerUpType { None, Missiles, SpeedBoost }
 
     private PowerUpType currentPowerUp = PowerUpType.None;
@@ -81,12 +89,12 @@
         {
         if (trueIndex == 0)
         {
-            GetComponent<SpriteRenderer>().sprite = Player1;
+            GetComponent<SpriteRenderer>().sprite = Player2;
             gameObject.tag = "Player1";
         }
         else if (trueIndex == 1)
         {
-            GetComponent<SpriteRenderer>().sprite = Player2;
+            GetComponent<SpriteRenderer>().sprite = Player1;
             gameObject.tag = "Player2";
         }
 
@@ -116,6 +124,7 @@
 
         Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
 
+        dieSFX.Play();
         rb.velocity = Vector2.zero;
         rb.simulated = false;
         GetComponent<Collider2D>().enabled = false;
@@ -150,6 +159,7 @@
 
         Rigidbody2D rb2 = b.GetComponent<Rigidbody2D>();
         rb2.AddForce(firePoint.up * shotForce, ForceMode2D.Impulse);
+        shoot1SFX.Play();
     }
 
     private void ShootLob()
@@ -160,6 +170,7 @@
         Rigidbody2D rb2 = b.GetComponent<Rigidbody2D>();
         Vector2 dir = (firePoint.up + firePoint.right * 0.4f).normalized;
         rb2.AddForce(dir * lobForce, ForceMode2D.Impulse);
+        shoot2SFX.Play();
     }
 
 
@@ -232,10 +243,12 @@
         {
             case PowerUpType.Missiles:
                 FireMissiles();
+                missileSFX.Play();
                 break;
 
             case PowerUpType.SpeedBoost:
                 StartCoroutine(SpeedBoost());
+                boostSFX.Play();
                 break;
         }
 
@@ -251,6 +264,7 @@
             GameObject m = Instantiate(missilePrefab, firePoint.position, rot);
             m.GetComponent<Rigidbody2D>()
              .AddForce(m.transform.up * missileForce, ForceMode2D.Impulse);
+            
         }
     }
     IEnumerator SpeedBoost()
@@ -269,6 +283,7 @@
     public void GivePowerUp(PowerUpType type)
     {
         currentPowerUp = type;
+        powerUpSFX.Play();
     }
 
 }
