@@ -262,9 +262,10 @@
             Quaternion rot = firePoint.rotation * Quaternion.Euler(0, 0, spread);
 
             GameObject m = Instantiate(missilePrefab, firePoint.position, rot);
-            m.GetComponent<Rigidbody2D>()
-             .AddForce(m.transform.up * missileForce, ForceMode2D.Impulse);
-            
+
+            Bullet bullet = m.GetComponent<Bullet>();
+            if (bullet != null)
+                bullet.SetOwner(trueIndex);
         }
     }
     IEnumerator SpeedBoost()
