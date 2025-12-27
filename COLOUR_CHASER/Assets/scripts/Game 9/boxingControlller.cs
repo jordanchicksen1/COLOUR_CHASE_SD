@@ -119,30 +119,36 @@ public class BoxingController : MonoBehaviour
 
     private void RightPunch()
     {
-        RaycastHit2D hit = Physics2D.Raycast(RayPoint.position, transform.up, raycastDistance, PlayerLayer);
-
-        Debug.DrawRay(transform.position, transform.up * raycastDistance, Color.red, raycastDistance);
-        if (hit.collider != null && hit.collider.CompareTag(OtherPlayersTag))
+       if(!isBlockingRight)
         {
-            OtherPlayersHP = hit.collider.GetComponent<BoxingHPManager>();
-            OtherPlayersHP.isTakingRightPunch = true;
+            RaycastHit2D hit = Physics2D.Raycast(RayPoint.position, transform.up, raycastDistance, PlayerLayer);
 
+            Debug.DrawRay(transform.position, transform.up * raycastDistance, Color.red, raycastDistance);
+            if (hit.collider != null && hit.collider.CompareTag(OtherPlayersTag))
+            {
+                OtherPlayersHP = hit.collider.GetComponent<BoxingHPManager>();
+                OtherPlayersHP.isTakingRightPunch = true;
+
+            }
+            animationManagerScript.RightPunch();
         }
-        animationManagerScript.RightPunch();
     }
 
     private void leftPunch()
     {
-        RaycastHit2D hit = Physics2D.Raycast(RayPoint.position, transform.up, raycastDistance, PlayerLayer);
-
-        Debug.DrawRay(transform.position, transform.up * raycastDistance, Color.red, raycastDistance);
-
-        if (hit.collider != null && hit.collider.CompareTag(OtherPlayersTag))
+        if (!isBlockingLeft)
         {
-            OtherPlayersHP = hit.collider.GetComponent<BoxingHPManager>();
-            OtherPlayersHP.isTakingLeftPunch = true;
+            RaycastHit2D hit = Physics2D.Raycast(RayPoint.position, transform.up, raycastDistance, PlayerLayer);
+
+            Debug.DrawRay(transform.position, transform.up * raycastDistance, Color.red, raycastDistance);
+
+            if (hit.collider != null && hit.collider.CompareTag(OtherPlayersTag))
+            {
+                OtherPlayersHP = hit.collider.GetComponent<BoxingHPManager>();
+                OtherPlayersHP.isTakingLeftPunch = true;
+            }
+            animationManagerScript.LeftPunch();
         }
-        animationManagerScript.LeftPunch();
     }
 
     
@@ -214,12 +220,16 @@ public class BoxingController : MonoBehaviour
                 RoundManager.Player2WinIndex++;
                 playerHPManager.HP = 100;
                 RoundManager.currentRound++;
+                BoxingHPManager OtherPlayersHP = OtherPlayer.GetComponent<BoxingHPManager>();
+                OtherPlayersHP.HP = 100;
             }
             else if (playerInput.playerIndex ==1)
             {
                 RoundManager.Player1WinIndex++;
                 playerHPManager.HP = 100;
                 RoundManager.currentRound++;
+                BoxingHPManager OtherPlayersHP = OtherPlayer.GetComponent<BoxingHPManager>();
+                OtherPlayersHP.HP = 100;
             }
         }
     }

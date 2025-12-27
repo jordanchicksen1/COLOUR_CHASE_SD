@@ -69,6 +69,9 @@ public class BoxingHPManager : MonoBehaviour
             TakeDamageRight();
             
         }
+
+        UpdateHealthBar();
+
     }
 
     /* ----------------- HEALTH BAR ----------------- */
@@ -128,7 +131,6 @@ public class BoxingHPManager : MonoBehaviour
         HP -= BlockedDamage;
         HP = Mathf.Clamp(HP, 0, 100);
 
-        UpdateHealthBar();
 
         yield return null;
     }
